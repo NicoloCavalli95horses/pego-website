@@ -1,6 +1,6 @@
 <template>
   <div class="backdrop">
-    <div class="modal" :style="{ width: `${width}px`, height: `${height}px` }">
+    <div class="modal" :style="{ 'width': `${width}px`, 'height': `${height}px` }">
       <!-- Header -->
       <header>
         <h2>{{ title }}</h2>
@@ -24,12 +24,17 @@
 const props = defineProps({
   title: String,
   width: Number,
+  click_out_close: Boolean,
   height: Number,
 });
+
+const emit = defineEmits('close');
 </script>
 
 <style lang="scss" scoped>
 .backdrop {
+  position: fixed;
+  z-index: 10;
   width: 100%;
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.4);
