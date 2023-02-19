@@ -39,7 +39,7 @@ body {
 }
 
 /* Font */
-h1, h2, h3, h5, h6, p, ul, li, a, span, input, textarea {
+h1, h2, h3, h5, h6, p, ul, li, a, span, input, textarea, label {
   font-family: 'Quicksand', monospace;
 }
 
@@ -48,7 +48,7 @@ h4 {
 }
 
 /* Color */
-h1, h2, h3, h4, h5, h6, p, ul, li, a, span {
+h1, h2, h3, h4, h5, h6, p, ul, li, a, span, label{
   color: var(--white);
 }
 

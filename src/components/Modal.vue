@@ -23,11 +23,13 @@
 
 <script setup>
 // ==============================
-// Props
-
+// Import
+// ==============================
 import { reactive } from "@vue/reactivity";
 import { onMounted, onUnmounted } from "@vue/runtime-core";
 
+// ==============================
+// Props
 // ==============================
 const props = defineProps({
   title: String,
