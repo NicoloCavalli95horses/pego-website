@@ -1,5 +1,7 @@
 <template>
   <h1>About</h1>
+  <div style="height: 800px;"></div>
+
 </template>
 
 <script setup>

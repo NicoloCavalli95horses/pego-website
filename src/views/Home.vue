@@ -1,6 +1,7 @@
 <template>
   <!-- <Icon icon="fa-solid fa-left-long" /> -->
   <h1>Homepage</h1>
+  <div style="height: 800px;"></div>
 </template>
 
 <script setup>
@@ -21,8 +22,4 @@ library.add(faRightLong, faLeftLong, faMusic);
 </script>
 
 <style lang="scss" scoped>
-  .square {
-    width: 200px;
-    height: 200vh;
-  }
 </style>

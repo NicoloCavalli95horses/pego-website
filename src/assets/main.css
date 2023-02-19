@@ -2,26 +2,26 @@
 
 .top-left-corner {
   position: absolute;
-  top: 22px;
-  left: 22px;
+  top: 2.2rem;
+  left: 2.2rem;
 }
 
 .top-right-corner {
   position: absolute;
-  top: 22px;
-  right: 22px;
+  top: 2.2rem;
+  right: 2.2rem;
 }
 
 .bottom-right-corner {
   position: absolute;
-  bottom: 22px;
-  right: 22px;
+  bottom: 2.2rem;
+  right: 2.2rem;
 }
 
 .bottom-left-corner {
   position: absolute;
-  bottom: 22px;
-  left: 22px;
+  bottom: 2.2rem;
+  left: 2.2rem;
 }
 
 .abs-center {
@@ -33,35 +33,46 @@
 
 .abs-center-bottom {
   position: absolute;
-  bottom: 22px;
+  bottom: 2.2rem;
   left: 50%;
   transform: translate(-50%, 0);
 }
 
 .abs-center-top {
   position: absolute;
-  top: 22px;
+  top: 2.2rem;
   left: 50%;
   transform: translate(-50%, 0%);
 }
 
-
 .abs-center-left {
   position: absolute;
   top: 50%;
-  left: 22px;
+  left: 2.2rem;
 }
 
 .abs-center-right {
   position: absolute;
   top: 50%;
-  right: 22px;
+  right: 2.2rem;
+}
+
+.fix-bottom-right {
+  position: fixed;
+  bottom: 2.2rem;
+  right: 2.2rem;
+}
+
+.fix-bottom-left {
+  position: fixed;
+  bottom: 2.2rem;
+  left: 2.2rem;
 }
 
 svg {
   color: white;
-  width: 25px;
-  height: 25px;
+  width: 2.5rem;
+  height: 2.5rem;
 }
 
 .full-flex {
@@ -95,63 +106,63 @@ svg {
 }
 
 .top-6 {
-  margin-top: 6px;
+  margin-top: 0.6rem;
 }
 
 .top-12 {
-  margin-top: 12px;
+  margin-top: 1.2rem;
 }
 
 .top-24 {
-  margin-top: 12px;
+  margin-top: 1.2rem;
 }
 
 .top-32 {
-  margin-top: 32px;
+  margin-top: 3.2rem;
 }
 
 .bottom-6 {
-  margin-bottom: 6px;
+  margin-bottom: 0.6rem;
 }
 
 .bottom-12 {
-  margin-bottom: 12px;
+  margin-bottom: 1.2rem;
 }
 
 .bottom-24 {
-  margin-bottom: 24px;
+  margin-bottom: 2.4rem;
 }
 
 .r-6 {
-  margin-right: 6px;
+  margin-right: 0.6rem;
 }
 
 .r-12 {
-  margin-right: 12px;
+  margin-right: 1.2rem;
 }
 
 .r-24 {
-  margin-right: 24px;
+  margin-right: 2.4rem;
 }
 
 .l-6 {
-  margin-left: 6px;
+  margin-left: 0.6rem;
 }
 
 .l-12 {
-  margin-left: 12px;
+  margin-left: 1.2rem;
 }
 
 .l-24 {
-  margin-left: 24px;
+  margin-left: 2.4rem;
 }
 
 .m-12 {
-  margin: 12px;
+  margin: 1.2rem;
 }
 
 .m-22 {
-  margin: 22px;
+  margin: 2.2rem;
 }
 
 .bold {
@@ -184,7 +195,7 @@ svg {
 
 /* width */
 ::-webkit-scrollbar {
-  width: 6px;
+  width: 0.6rem;
 }
 
 /* Track */
@@ -208,13 +219,13 @@ svg {
 }
 
 code {
-  padding: 6px 8px;
+  padding: 0.6rem 0.8rem;
   background-color: #555;
-  border-radius: 22px;
+  border-radius: 2.2rem;
   font-family: monospace;
   text-transform: uppercase;
   letter-spacing: 2px;
-  margin: 0 3px;
+  margin: 0 0.3rem;
 }
 
 .fadein {
@@ -236,6 +247,10 @@ code {
 }
 
 svg {
-  width: 46px;
-  font-size: 46px;
+  width: 4rem;
+  font-size: 4rem;
+}
+
+.no-overflow {
+  overflow: hidden;
 }

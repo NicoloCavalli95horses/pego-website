@@ -1,6 +1,10 @@
 <template>
   <div class="backdrop">
-    <div class="modal" :style="{ 'width': `${width}px`, 'height': `${height}px` }">
+    <div 
+      class="modal"
+      :class="{ 'mobile' : screen.width <= 500 }"
+      :style="{ 'width': `${width}px`, 'height': `${height}px` }"
+    >
       <!-- Header -->
       <header>
         <h2>{{ title }}</h2>
@@ -20,38 +24,72 @@
 <script setup>
 // ==============================
 // Props
+
+import { reactive } from "@vue/reactivity";
+import { onMounted, onUnmounted } from "@vue/runtime-core";
+
 // ==============================
 const props = defineProps({
   title: String,
   width: Number,
   click_out_close: Boolean,
   height: Number,
+  full_size: Boolean,
 });
 
 const emit = defineEmits('close');
+
+//==================================
+// Consts
+//==================================
+const screen = reactive({
+  width: window.innerWidth,
+  height: window.innerHeight
+})
+
+//==================================
+// Functions
+//==================================
+function onResize(){
+  screen.width = window.innerWidth;
+  screen.height = window.innerHeight;
+}
+
+//==================================
+// Life cycle
+//==================================
+onMounted(() => {
+  window.addEventListener('resize', onResize);
+})
+
+onUnmounted(() => {
+  window.removeEventListener('resize', onResize);
+})
 </script>
 
 <style lang="scss" scoped>
 .backdrop {
   position: fixed;
-  z-index: 10;
+  z-index: 2;
   width: 100%;
   height: 100vh;
-  background-color: rgba(0, 0, 0, 0.4);
+  background-color: var(--bg-color);
   backdrop-filter: blur(15px);
   .modal {
     position: absolute;
     top: 50%;
     left: 50%;
-    min-width: 400px;
     transform: translate(-50%, -50%);
-    border-radius: 8px;
-    background-color: #222;
+    border-radius: var(--radius-s);
+    background-color: var(--dark-grey);
     display: flex;
     justify-content: space-between;
     flex-direction: column;
-    padding: 22px 26px;
-    gap: 22px;
+    padding: 2.2rem 2.6rem;
+    gap: 2.2rem;
+    &.mobile {
+      width: 80%;
+    }
     .body {
       display: flex;
       align-items: center;

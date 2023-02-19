@@ -1,6 +1,6 @@
 <template>
-  <button :class="{ disabled: disabled, default: def, card: card }">
-    <h3>{{ text }}</h3>
+  <button :class="{ 'disabled': disabled, 'default': def, 'card': card, 'bg' : bg }">
+    <span>{{ text }}</span>
     <slot name="icon" />
   </button>
 </template>
@@ -13,6 +13,7 @@ const props = defineProps({
   text: String,
   def: Boolean,
   card: Boolean,
+  bg: Boolean,
   disabled: Boolean,
 });
 </script>
@@ -22,21 +23,24 @@ button {
   width: max-content;
   text-decoration: none;
   border: none;
-  background-color: rgba(0, 0, 0, 0.5);
-  padding: 18px 32px;
-  border-radius: 8px;
+  padding: 1.8rem 2.8rem;
+  border-radius: var(--radius-xl);
   letter-spacing: 4px;
   cursor: pointer;
-  transition-duration: 400ms;
-
+  transition-duration: var(--transition-medium);
+  background-color: transparent;
   display: flex;
   align-items: center;
   justify-content: center;
   text-transform: uppercase;
+  user-select: none;
 
   &:hover {
-    transition-duration: 400ms;
+    transition-duration: var(--transition-medium);
     filter: brightness(150%);
+  }
+  &.bg {
+    background-color: var(--overlay-color);
   }
   &.disabled {
     opacity: 0.5;
@@ -47,30 +51,7 @@ button {
     }
   }
   &.default {
-    background-color: var(--blue-secondary);
-  }
-
-  &.card {
-    position: relative;
-    width: 100%;
-    max-width: 220px;
-    height: 100px;
-    overflow: hidden;
-    background-color: var(--blue);
-    &::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      right: 0;
-      border-top: 20px solid var(--blue-secondary);
-      border-left: 20px solid transparent;
-      border-right: 20px solid var(--blue-secondary);
-      border-bottom: 20px solid transparent;
-    }
-  }
-
-  h3 {
-    color: white;
+    background-color: var(--secondary);
   }
 }
 </style>

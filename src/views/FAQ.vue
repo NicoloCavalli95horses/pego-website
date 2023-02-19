@@ -1,5 +1,6 @@
 <template>
   <h1>FAQ</h1>
+  <div style="height: 800px;"></div>
 </template>
 
 <script setup>

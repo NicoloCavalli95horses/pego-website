@@ -1,22 +1,25 @@
-@import url('https://fonts.googleapis.com/css?family=Sofia&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Teko&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Quicksand&display=swap');
 
 :root {
-  --blue: #606dbc;
-  --blue-secondary: #465298;
-  --green: #2ba22b;
-  --green-secondary: #268e26;
-  --red: #e42525;
-  --red-secondary: #a21313;
+  --primary: #2ba22b;
+  --secondary: #268e26;
 
+  --black: #111;
   --dark-grey: #222;
   --grey: #444;
   --light-grey: #888;
+  --white: #eee;
+  --overlay-color: rgba(0,0,0,0.5);
 
-  --radius-xl: 26px;
-  --radius-l: 18px;
-  --radius-m: 12px;
-  --radius-s: 6px;
+  --radius-xl: 2.6rem;
+  --radius-l: 1.8rem;
+  --radius-m: 1.2rem;
+  --radius-s: 0.6rem;
+
+  --transition-slow: 800ms;
+  --transition-medium: 400ms;
+  --transition-fast: 200ms;
 }
 
 * {
@@ -24,21 +27,72 @@
   padding: 0;
 }
 
+/* Root font-size: 1rem = 10px */
+html {
+  font-size: 10px;
+}
+
 body {
   width: 100%;
   height: 100vh;
-  background-color: #222;
+  background-color: var(--dark-grey);
 }
 
+/* Font */
+h1, h2, h3, h5, h6, p, ul, li, a, span, input, textarea {
+  font-family: 'Quicksand', monospace;
+}
+
+h4 {
+  font-family: 'Teko', sans-serif;
+}
+
+/* Color */
 h1, h2, h3, h4, h5, h6, p, ul, li, a, span {
-  font-family: 'Quicksand', monospace;
-  color: white;
+  color: var(--white);
 }
 
-input[type="text"], textarea {
-  font-family: 'Quicksand', monospace;
+/* Size */
+h1 {
+  font-size: 2.6rem;
+}
+
+h2 {
+  font-size: 2.2rem;
+}
+
+h3 {
+  font-size: 2rem;
+}
+
+h4 {
+  font-size: 1.8rem;
+}
+
+h5 {
+  font-size: 1.5rem;
+}
+
+h6 {
+  font-size: 1.2rem;
+}
+
+p, span, ul, li, a {
+  font-size: 1.4rem;
 }
 
 a {
   text-decoration: none;
+}
+
+
+/* Code for Firefox */
+::-moz-selection { 
+  color: var(--white);
+  background: var(--primary);
+}
+
+::selection {
+  color: var(--white);
+  background: var(--primary);
 }
