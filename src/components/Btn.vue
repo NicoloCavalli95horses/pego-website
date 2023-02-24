@@ -1,5 +1,5 @@
 <template>
-  <button :class="{ 'disabled': disabled, 'default': def, 'card': card, 'bg' : bg }">
+  <button :class="{ 'disabled': disabled, 'default': def, 'card': card, 'bg': bg }">
     <span>{{ text }}</span>
     <slot name="icon" />
   </button>
@@ -34,6 +34,9 @@ button {
   justify-content: center;
   text-transform: uppercase;
   user-select: none;
+  span {
+    color: var(--white);
+  }
 
   &:hover {
     transition-duration: var(--transition-medium);

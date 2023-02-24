@@ -21,27 +21,25 @@
   </nav>
 
   <!-- Space from navbar -->
-  <div :style="{ 'width': '100%', 'height': NAV_HEIGHT }" />
+  <!-- <div :style="{ 'width': '100%', 'height': NAV_HEIGHT }" /> -->
 
   <!-- Mobile menu -->
-  <template v-if="show.menu">
-    <teleport to=".modals">
-      <div class="overlay">
-        <div class="centered-menu">
-          <Icon icon="fa-solid fa-xmark" class="top-right-corner" @click="show.menu = false" />
-          <RouterLink to="/about" @click="show.menu = false">
-            <h2>About</h2>
-          </RouterLink>
-          <RouterLink to="/faq" @click="show.menu = false">
-            <h2>FAQ</h2>
-          </RouterLink>
-          <RouterLink to="/" @click="show.menu = false">
-            <h2>Page</h2>
-          </RouterLink>
-        </div>
+  <teleport to=".modals">
+    <div v-if="show.menu" v-prevent-body-overflow class="backdrop">
+      <div class="centered-menu">
+        <Icon icon="fa-solid fa-xmark" class="top-right-corner" @click="show.menu = false" />
+        <RouterLink to="/about" @click="show.menu = false">
+          <h2>About</h2>
+        </RouterLink>
+        <RouterLink to="/faq" @click="show.menu = false">
+          <h2>FAQ</h2>
+        </RouterLink>
+        <RouterLink to="/" @click="show.menu = false">
+          <h2>Page</h2>
+        </RouterLink>
       </div>
-    </teleport>
-  </template>
+    </div>
+  </teleport>
 
 </template>
 
@@ -59,7 +57,7 @@ import Logo from "./Logo.vue"
 // Consts
 //==================================
 library.add( faBars, faXmark );
-const NAV_HEIGHT = "120px";
+const NAV_HEIGHT = "100px";
 
 const screen = reactive({
   width: window.innerWidth,
@@ -94,9 +92,11 @@ onUnmounted(() => {
 <style lang="scss" scoped>
 nav {
   position: fixed;
+  top: 0;
+  left: 0;
   width: 100%;
   height: v-bind("NAV_HEIGHT");
-  background-color: rgba(0, 0, 0, 0.4);
+  background-color: var(--primary-01);
   display: flex;
   align-items: center;
   span {
@@ -113,20 +113,12 @@ nav {
  }
 }
 
-.overlay {
-  position: fixed;
-  z-index: 3;
+.centered-menu {
+  height: 100%;
   width: 100%;
-  height: 100vh;
-  background-color: var(--bg-color);
-  backdrop-filter: blur(15px);
-  .centered-menu {
-    height: 100%;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    align-items: center;
-  }
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
 }
 </style>

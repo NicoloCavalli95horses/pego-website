@@ -1,5 +1,9 @@
 <template>
-  <div ref="scroller_ref" class="scroller" @scroll="(e) => (scrolled = e.target.scrollLeft)">
+  <div
+    ref="scroller_ref"
+    class="scroller"
+    @scroll="(e) => (scrolled = e.target.scrollLeft)"
+  >
     <!-- ⚠️ inline-block elements only -->
     <slot />
   </div>
@@ -32,7 +36,6 @@ const props = defineProps({
 //==============================
 const scrolled = ref(0);
 const scroller_ref = ref(undefined);
-
 </script>
 
 <style lang="scss" scoped>

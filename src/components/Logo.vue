@@ -1,6 +1,6 @@
 <template>
   <div class="logo">
-    <h4>Pegorer Srl</h4>
+    <h4>S.T.A. di Pegorer</h4>
   </div>
 </template>
 
@@ -16,9 +16,5 @@ export default {
   display: grid;
   place-content: center;
   user-select: none;
-  h4 {
-    letter-spacing: 3px;
-    font-size: 2rem;
-  }
 }
 </style>

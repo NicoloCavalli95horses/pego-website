@@ -2,7 +2,10 @@
   <footer>
     <div class="wrapper">
       <h4>Pegorer Srl</h4>
-      <h6 class="top-12">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nisi quia similique minima eveniet et officia animi, natus illo at</h6>
+      <h6 class="top-12">
+        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nisi quia
+        similique minima eveniet et officia animi, natus illo at
+      </h6>
       <div class="top-12">
         <div class="chip-wrapper">
           <Chip>
@@ -25,7 +28,7 @@
 // ==============================
 // Import
 // ==============================
-import Chip from "./Chip.vue"
+import Chip from "./Chip.vue";
 
 //==============================
 // Const
@@ -33,7 +36,7 @@ import Chip from "./Chip.vue"
 </script>
 
 <style lang="scss" scoped>
- footer {
+footer {
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -52,5 +55,5 @@ import Chip from "./Chip.vue"
     justify-content: center;
     gap: 0.8rem;
   }
- }
+}
 </style>
