@@ -8,6 +8,7 @@
     <Btn class="top-32" text="contattaci" :def="true" @click="show.modal = true" />
   </div>
 
+  <h1 class="bottom-12">Cosa facciamo</h1>
   <Carousel class="bottom-24" :show_dots="device == 'desktop' || device == 'tablet'">
       <div class="card-wrapper">
         <div class="card"></div>
@@ -23,16 +24,32 @@
       </div>
   </Carousel>
 
-  <div class="separator"></div>
+  <div class="separator" />
   
-  <div :class="{ 'flex-center' : device == 'desktop' || device == 'tablet', 'flex-column' : device == 'mobile' }">
-    <Counter label="clienti" value="30" :animation_time="5000" />
-    <Counter label="anni di esperienza" value="20" :animation_time="5000" />
-    <Counter label="provice operative" value="4" :animation_time="5000" />
+  <div class="flex-center flex-wrap">
+    <Counter label="clienti fidelizzati" :value="86" :animation_time="5000" icon="fa-solid fa-users" />
+    <Counter label="anni di esperienza" :value="getExpYear()" :animation_time="5000" icon="fa-solid fa-cake-candles" />
+    <Counter label="provice operative" :value="4" :animation_time="5000" icon="fa-solid fa-map-location-dot" />
   </div>
   
-  <div class="separator"></div>
+  <div class="separator" />
   
+  <h1 class="bottom-12">Chi siamo</h1>
+  <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Temporibus quasi quibusdam id nulla cum nemo dicta minima consectetur quia iusto qui dignissimos, similique pariatur quae necessitatibus perferendis ullam doloremque eveniet. At quo amet corrupti beatae, quis voluptatum asperiores quas, explicabo ipsam repudiandae, quibusdam unde officia perferendis.</p>
+  <div class="w-100 flex-center top-24">
+    <Btn text="about" :def="true"></Btn>
+  </div>
+
+  <div class="separator" />
+
+  <h1 class="bottom-12">Domande frequenti</h1>
+  <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Temporibus quasi quibusdam id nulla cum nemo dicta minima consectetur quia iusto qui dignissimos, similique pariatur quae necessitatibus perferendis ullam doloremque eveniet. At quo amet corrupti beatae, quis voluptatum asperiores quas, explicabo ipsam repudiandae, quibusdam unde officia perferendis.</p>
+  <div class="w-100 flex-center top-24">
+    <Btn text="faq" :def="true"></Btn>
+  </div>
+  
+  <div class="separator" />
+
   <!-- Contact modal -->
   <Modal
     v-if="show.modal"
@@ -61,13 +78,22 @@
 //==============================
 // Import
 //==============================
-import { reactive, ref } from "@vue/reactivity";
+import { reactive } from "@vue/reactivity";
 import Btn from "../components/Btn.vue";
 import Carousel from "../components/Carousel.vue";
 import Counter from "../components/Counter.vue";
 import Modal from "../components/Modal.vue";
 import ContactForm from "../components/ContactForm.vue";
 import { getViewport } from "../utils/screen_size.js"
+
+
+//==============================
+// Function
+//==============================
+function getExpYear(){
+  const date = new Date();
+  return date.getFullYear() - 2004;
+}
 
 //==============================
 // Consts
@@ -86,8 +112,8 @@ const show = reactive({
     box-sizing: border-box;
     border: 2px solid white;
     border-radius: var(--radius-m);
-    width: 32rem;
-    height: 20rem;
+    width: 20rem;
+    height: 32rem;
   }
   h4 {
     margin: 0.5rem 0 1.5rem 0;

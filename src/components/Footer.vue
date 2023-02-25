@@ -1,23 +1,23 @@
 <template>
   <footer>
-    <div class="wrapper">
-      <h4>Pegorer Srl</h4>
-      <h6 class="top-12">
-        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nisi quia
-        similique minima eveniet et officia animi, natus illo at
-      </h6>
+    <div class="text-wrapper">
+      <h4>Pegorer S.T.A.</h4>
+      <h5 class="top-12">
+        Professionisti nell'installazione e manutenzione di impianti termotecnici
+      </h5>
       <div class="top-12">
-        <div class="chip-wrapper">
-          <Chip>
-            <template #default>
-              <h6>+346 xxx xxxx</h6>
-            </template>
-          </Chip>
-          <Chip>
-            <template #default>
-              <h6>P.IVA xxx xxxx xxx</h6>
-            </template>
-          </Chip>
+        <div class="partners-wrapper">
+          <div class="partner-img" :style="{ 'background-image' :  `url('icons/palazzetti.jpg')` }" />
+          <div class="partner-img" :style="{ 'background-image' :  `url('icons/mcz.png')` }" />
+          <!-- <div class="partner-img"></div> -->
+        </div>
+      </div>
+      <div class="top-12">
+        <div class="contacts-wrapper">
+          <h6>+346 xxx xxxx</h6>
+          <h6>pegorersta@gmail.com</h6>
+          <h6>P. IVA xxx xxx xxxx xxx</h6>
+          <h6>Carbonera, TV (31030)</h6>
         </div>
       </div>
     </div>
@@ -43,17 +43,32 @@ footer {
   align-items: center;
   justify-content: center;
   background-color: var(--apple-blossom);
-  .wrapper {
-    padding: 3rem;
+  .text-wrapper {
+    padding: 4rem;
     max-width: 300px;
     text-align: center;
   }
 
-  .chip-wrapper {
+  .partners-wrapper {
+    height: 100px;
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 0.8rem;
+    .partner-img {
+      width: 100px;
+      height: 60px;
+      margin: 0.5rem;
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: 50%;
+      opacity: 90%;
+    }
+  }
+  .contacts-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 }
 </style>

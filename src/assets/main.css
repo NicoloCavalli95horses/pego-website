@@ -89,6 +89,10 @@ svg {
   justify-content: center;
 }
 
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
 .flex-start {
   align-items: center;
   justify-content: flex-start;

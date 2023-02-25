@@ -10,7 +10,9 @@
 .chip {
   width: max-content;
   border-radius: var(--radius-l);
-  border: 1px solid var(--light-grey);
-  padding: 0.5rem 1rem;
+  border: 1px solid var(--karry);
+  padding: 0.8rem 1.5rem;
+  margin: 0.4rem;
+  box-sizing: border-box;
 }
 </style>
