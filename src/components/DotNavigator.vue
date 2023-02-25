@@ -5,7 +5,7 @@
         v-for="i in scroller.dots"
         :key="i"
         class="dot"
-        :class="{ active: i == scroller.active }"
+        :class="{ 'active': i == scroller.active }"
         @click="onDotClick(i)"
       />
     </div>
@@ -122,16 +122,16 @@ watch(
     width: 15px;
     height: 15px;
     border-radius: 50%;
-    border: 2px solid var(--secondary);
+    border: 2px solid var(--atomic-tangerine);
     margin: 0 0.6rem;
     transition-duration: var(--transition-medium);
     &.active {
-      background-color: var(--secondary);
+      background-color: var(--atomic-tangerine);
       transition-duration: 400ms;
     }
     &:hover {
       cursor: pointer;
-      background-color: var(--secondary);
+      background-color: var(--crusta);
       transition-duration: var(--transition-medium);
     }
   }

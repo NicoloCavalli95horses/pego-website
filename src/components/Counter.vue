@@ -55,10 +55,12 @@ onMounted(() => {
   width: 20rem;
   height: 10rem;
   border-radius: var(--radius-l);
-  border: 2px solid var(--light-grey);
+  // border: 2px solid var(--atomic-tangerine);
   display: grid;
   place-items: center;
   label {
+    display: inline-block;
+    width: 100%;
     text-align: center;
     font-size: 1.8rem;
     text-transform: capitalize;
@@ -70,6 +72,9 @@ onMounted(() => {
     text-align: center;
     h2 {
       font-size: 4rem;
+    }
+    h2, svg {
+      color: var(--karry);
     }
   }
 }

@@ -1,6 +1,6 @@
 <template>
   <!-- Desktop/tablet -->
-  <nav v-if="screen.width >= 500" class="desktop">
+  <nav v-if="device == 'desktop' || device == 'tablet'" class="desktop">
     <RouterLink to="/">
       <Logo class="l-24" />
     </RouterLink>
@@ -13,15 +13,12 @@
   </nav>
 
   <!-- Mobile -->
-  <nav v-else-if="screen.width <= 500" class="mobile">
+  <nav v-else-if="device == 'mobile'" class="mobile">
     <RouterLink to="/">
       <Logo class="l-24" />
     </RouterLink>
     <Icon class="r-24" icon="fa-solid fa-bars" @click="show.menu = true" />
   </nav>
-
-  <!-- Space from navbar -->
-  <!-- <div :style="{ 'width': '100%', 'height': NAV_HEIGHT }" /> -->
 
   <!-- Mobile menu -->
   <teleport to=".modals">
@@ -47,45 +44,29 @@
 //==================================
 // Import
 //==================================
-import { onMounted, onUnmounted, reactive } from "@vue/runtime-core";
+import { computed, onMounted, onUnmounted, reactive } from "@vue/runtime-core";
 import { RouterLink, RouterView } from "vue-router";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faBars, faXmark } from "@fortawesome/free-solid-svg-icons";
+import { getViewport } from "../utils/screen_size.js"
 import Logo from "./Logo.vue"
+library.add( faBars, faXmark );
 
 //==================================
 // Consts
 //==================================
-library.add( faBars, faXmark );
-const NAV_HEIGHT = "100px";
-
-const screen = reactive({
-  width: window.innerWidth,
-  height: window.innerHeight
+const device = getViewport();
+const nav_height = computed(() => {
+  if ( device.value == 'desktop' || device.value == 'tablet' ) {
+    return '100px'
+  } else if ( device.value == 'mobile' ){
+    return '70px'
+  }
 });
 
 const show = reactive({
   menu: false,
 });
-
-//==================================
-// Functions
-//==================================
-function onResize(){
-  screen.width = window.innerWidth;
-  screen.height = window.innerHeight;
-}
-
-//==================================
-// Life cycle
-//==================================
-onMounted(() => {
-  window.addEventListener('resize', onResize);
-})
-
-onUnmounted(() => {
-  window.removeEventListener('resize', onResize);
-})
 
 </script>
 
@@ -95,8 +76,7 @@ nav {
   top: 0;
   left: 0;
   width: 100%;
-  height: v-bind("NAV_HEIGHT");
-  background-color: var(--primary-01);
+  height: v-bind("nav_height");
   display: flex;
   align-items: center;
   span {

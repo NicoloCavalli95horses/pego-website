@@ -84,6 +84,7 @@ onUnmounted(() => {
   flex-direction: column;
   padding: 2.2rem 2.6rem;
   gap: 2.2rem;
+  background-color: var(--background);
   &.mobile {
     width: 80%;
   }

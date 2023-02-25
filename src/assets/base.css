@@ -2,32 +2,18 @@
 @import url('https://fonts.googleapis.com/css?family=Quicksand&display=swap');
 
 :root {
-  /* main color */
-  --rgb-primary: 43, 162, 43;
-  --rgb-secondary: 38, 142, 38;
+  /* main colors */
+  --karry: rgb(255, 235, 210); 
+  --atomic-tangerine: rgb(255, 163, 100);
+  --crusta: rgb(252, 118, 67);
+  --apple-blossom: rgb(175, 79, 65);
+  --pickled-bluewood: rgb(39, 50, 72);
   
-  /* color shades 0.1-0.8 */
-  --primary: rgb(var(--rgb-primary));
-  --primary-08: rgb(var(--rgb-primary), 0.8);
-  --primary-06: rgb(var(--rgb-primary), 0.6);
-  --primary-04: rgb(var(--rgb-primary), 0.4);
-  --primary-02: rgb(var(--rgb-primary), 0.2);
-  --primary-01: rgb(var(--rgb-primary), 0.1);
-  
-  --secondary: rgb(var(--rgb-secondary));
-  --secondary-08: rgb(var(--rgb-secondary), 0.8);
-  --secondary-06: rgb(var(--rgb-secondary), 0.6);
-  --secondary-04: rgb(var(--rgb-secondary), 0.4);
-  --secondary-02: rgb(var(--rgb-secondary), 0.2);
-  --secondary-01: rgb(var(--rgb-secondary), 0.1);
-  
-  /* neutral colors */
-  --black: #888;
-  --dark-grey: #666;
-  --grey: #ccc;
-  --light-grey: #ddd;
-  --white: #eee;
-  --overlay-color: #58585880;
+  /* functional colors */
+  --background: var(--pickled-bluewood);
+  --backdrop: rgba(255, 235, 210, 0.1);
+  --font-light: var(--karry);
+  --font-dark: var(--pickled-bluewood);
 
   --radius-xl: 2.6rem;
   --radius-l: 1.8rem;
@@ -52,7 +38,11 @@ html {
 body {
   width: 100%;
   height: 100vh;
-  background-color: var(--white);
+  background-color: var(--pickled-bluewood);
+}
+
+nav {
+  background-color: var(--pickled-bluewood);
 }
 
 /* Font */
@@ -66,16 +56,16 @@ h1, h4 {
 
 /* Color */
 h2, h3, h4, p, ul, li, a, span, label {
-  color: var(--dark-grey);
+  color: var(--font-light);
 }
 
 h5, h6 {
-  color: var(--white);
+  color: var(--font-light);
 }
 
 /* Size */
 h1 {
-  color: var(--primary);
+  color: var(--atomic-tangerine);
   font-size: clamp(3rem, 5vw, 4rem);
 }
 
@@ -107,14 +97,33 @@ a {
   text-decoration: none;
 }
 
-
 /* Code for Firefox */
 ::-moz-selection { 
-  color: var(--white);
-  background: var(--primary);
+  color: var(--font-light);
+  background: var(--crusta);
 }
 
 ::selection {
-  color: var(--white);
-  background: var(--primary);
+  color: var(--font-light);
+  background: var(--crusta);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 0.6rem;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: var(--font-light);
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: var(--atomic-tangerine);
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: var(--crusta);
 }

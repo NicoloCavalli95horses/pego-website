@@ -35,7 +35,7 @@ button {
   text-transform: uppercase;
   user-select: none;
   span {
-    color: var(--white);
+    color: var(--font-light);
   }
 
   &:hover {
@@ -54,7 +54,7 @@ button {
     }
   }
   &.default {
-    background-color: var(--secondary);
+    background-color: var(--crusta);
   }
 }
 </style>
