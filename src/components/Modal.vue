@@ -1,10 +1,12 @@
 <template>
   <teleport to=".modals">
-    <div class="backdrop" v-prevent-body-overflow>
+    <div class="backdrop" v-prevent-body-overflow @click="onBackdropClick()">
       <div
+        ref="modal_ref"
         class="modal"
-        :class="{ mobile: screen.width <= 500 }"
-        :style="{ width: `${width}px`, height: `${height}px` }"
+        :class="{ 'mobile': screen.width <= 500 }"
+        :style="{ 'width': `${width}px`, 'height': `${height}px` }"
+        @click="e => e.stopPropagation()"
       >
         <!-- Header -->
         <header>
@@ -27,7 +29,7 @@
 // ==============================
 // Import
 // ==============================
-import { reactive } from "@vue/reactivity";
+import { reactive, ref } from "@vue/reactivity";
 import { onMounted, onUnmounted } from "@vue/runtime-core";
 
 // ==============================
@@ -41,7 +43,7 @@ const props = defineProps({
   full_size: Boolean,
 });
 
-const emit = defineEmits("close");
+const emit = defineEmits(["closed"]);
 
 //==================================
 // Consts
@@ -57,6 +59,12 @@ const screen = reactive({
 function onResize() {
   screen.width = window.innerWidth;
   screen.height = window.innerHeight;
+}
+
+function onBackdropClick() {
+  if ( props.click_out_close ){
+    emit('closed');
+  }
 }
 
 //==================================

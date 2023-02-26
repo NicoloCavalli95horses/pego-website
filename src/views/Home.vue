@@ -9,7 +9,7 @@
   </div>
 
   <h1 class="bottom-12">Cosa facciamo</h1>
-  <Carousel class="bottom-24" :show_dots="device == 'desktop' || device == 'tablet'">
+  <Carousel :show_dots="device == 'desktop' || device == 'tablet'">
       <div class="card-wrapper">
         <div class="card"></div>
         <h4>Emergenze</h4>
@@ -54,7 +54,7 @@
   <Modal
     v-if="show.modal"
     :click_out_close="true"
-    @close="show.modal = false"
+    @closed="show.modal = false"
     title="Contattaci"
   >
     <template #default>

@@ -7,9 +7,8 @@
       </h5>
       <div class="top-12">
         <div class="partners-wrapper">
-          <div class="partner-img" :style="{ 'background-image' :  `url('icons/palazzetti.jpg')` }" />
-          <div class="partner-img" :style="{ 'background-image' :  `url('icons/mcz.png')` }" />
-          <!-- <div class="partner-img"></div> -->
+          <img class="partner-img" :src=palazzetti_img />
+          <img class="partner-img" :src="mcz_img" />
         </div>
       </div>
       <div class="top-12">
@@ -28,11 +27,14 @@
 // ==============================
 // Import
 // ==============================
+import { defineAsyncComponent } from "vue";
 import Chip from "./Chip.vue";
 
 //==============================
 // Const
 //==============================
+const palazzetti_img = 'icons/palazzetti.jpg';
+const mcz_img = 'icons/mcz.png';
 </script>
 
 <style lang="scss" scoped>
@@ -59,9 +61,6 @@ footer {
       width: 100px;
       height: 60px;
       margin: 0.5rem;
-      background-size: cover;
-      background-repeat: no-repeat;
-      background-position: 50%;
       opacity: 90%;
     }
   }
