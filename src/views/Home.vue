@@ -35,18 +35,11 @@
   <div class="separator" />
   
   <h1 class="bottom-12">Chi siamo</h1>
-  <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Temporibus quasi quibusdam id nulla cum nemo dicta minima consectetur quia iusto qui dignissimos, similique pariatur quae necessitatibus perferendis ullam doloremque eveniet. At quo amet corrupti beatae, quis voluptatum asperiores quas, explicabo ipsam repudiandae, quibusdam unde officia perferendis.</p>
-  <div class="w-100 flex-center top-24">
-    <Btn text="about" :def="true"></Btn>
-  </div>
+  <About />
 
   <div class="separator" />
 
-  <h1 class="bottom-12">Domande frequenti</h1>
-  <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Temporibus quasi quibusdam id nulla cum nemo dicta minima consectetur quia iusto qui dignissimos, similique pariatur quae necessitatibus perferendis ullam doloremque eveniet. At quo amet corrupti beatae, quis voluptatum asperiores quas, explicabo ipsam repudiandae, quibusdam unde officia perferendis.</p>
-  <div class="w-100 flex-center top-24">
-    <Btn text="faq" :def="true"></Btn>
-  </div>
+  <FAQ />
   
   <div class="separator" />
 
@@ -84,6 +77,8 @@ import Carousel from "../components/Carousel.vue";
 import Counter from "../components/Counter.vue";
 import Modal from "../components/Modal.vue";
 import ContactForm from "../components/ContactForm.vue";
+import FAQ from "./FAQ.vue";
+import About from "./About.vue";
 import { getViewport } from "../utils/screen_size.js"
 
 

@@ -28,6 +28,7 @@
 * {
   margin: 0;
   padding: 0;
+  -webkit-tap-highlight-color: rgba(0,0,0,0); 
 }
 
 /* Root font-size: 1rem = 10px */
@@ -46,7 +47,7 @@ nav {
 }
 
 /* Font */
-h1, h2, h3, h5, h6, p, ul, li, a, span, input, textarea, label {
+h1, h2, h3, h5, h6, p, ul, li, a, span, input, textarea, label, summary, details {
   font-family: 'Quicksand', monospace;
 }
 
@@ -55,7 +56,7 @@ h1, h4 {
 }
 
 /* Color */
-h2, h3, h4, p, ul, li, a, span, label {
+h2, h3, h4, p, ul, li, a, span, label, summary, details {
   color: var(--font-light);
 }
 

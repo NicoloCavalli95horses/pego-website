@@ -280,3 +280,21 @@ svg {
 .fixed {
   display: fixed;
 }
+
+
+.fadein {
+  animation: fadein 500ms linear;
+}
+
+.fadeout {
+  animation: fadein 500ms reverse;
+}
+
+@keyframes fadein {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
