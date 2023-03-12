@@ -4,10 +4,10 @@
     <RouterLink to="/">
       <Logo class="l-24" />
     </RouterLink>
-    <RouterLink to="/about">
+    <RouterLink to="/">
       <span>About</span>
     </RouterLink>
-    <RouterLink to="/faq">
+    <RouterLink to="/">
       <span>FAQ</span>
     </RouterLink>
   </nav>

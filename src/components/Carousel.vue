@@ -41,6 +41,7 @@ const scroller_ref = ref(undefined);
 <style lang="scss" scoped>
 .scroller {
   width: 100%;
+  text-align: center;
   overflow: auto;
   white-space: nowrap;
   -ms-overflow-style: none; /* IE and Edge */

@@ -1,6 +1,6 @@
 import { computed, onMounted, onUnmounted, reactive, ref } from "vue";
 
-export const getViewport = () => {
+export function getViewport(){
   // const
   const width = ref( window.innerWidth );
   const device = computed(() => {
