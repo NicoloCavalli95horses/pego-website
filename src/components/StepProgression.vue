@@ -54,6 +54,10 @@ const props = defineProps({
     width: max-content;
     left: 50%;
     transform: translate(-50%, 0%);
+    text-transform: uppercase;
+    font-size: 1rem;
+    padding-top: 0.5rem;
+    letter-spacing: 0.2rem;
   }
 }
 </style>

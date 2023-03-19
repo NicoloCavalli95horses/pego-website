@@ -285,7 +285,7 @@ svg {
   display: fixed;
 }
 
-
+/* animations */
 .fadein {
   animation: fadein 500ms linear;
 }
@@ -301,4 +301,11 @@ svg {
   100% {
     opacity: 1;
   }
+}
+
+/* commons tags */
+label {
+  font-size: 1.5rem;
+  padding: 1rem 0;
+  color: var(--secondary);
 }

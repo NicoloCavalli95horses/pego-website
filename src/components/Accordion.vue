@@ -2,8 +2,7 @@
   <div class="accordion" @click="show = !show">
     <div class="question" :class="{ active: show }">
       <h4>{{ question }}</h4>
-      <Icon :icon="show ? 'fa-solid fa-chevron-down' : 'fa-solid fa-chevron-right'"
-      />
+      <Icon :icon="show ? 'fa-solid fa-chevron-down' : 'fa-solid fa-chevron-right'" />
     </div>
     <div v-if="show" class="answer">
       <h4 :class="{ show: show }">{{ answer }}</h4>
@@ -16,17 +15,18 @@
 // Import
 // ==============================
 import { ref } from "vue";
-import { library } from "@fortawesome/fontawesome-svg-core";
-import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 
+// ==============================
+// Props
+// ==============================
 const props = defineProps({
   question: String,
   answer: String,
 });
+
 // ==============================
 // Consts
 // ==============================
-library.add(faChevronDown);
 const show = ref(false);
 
 // ==============================

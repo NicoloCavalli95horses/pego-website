@@ -2,9 +2,10 @@
   <Modal
     title="Contattaci"
     :width="device != 'mobile' ? 65 : undefined"
+    :height="device != 'mobile' ? 55 : undefined"
     :click_out_close="true"
     :full_size="device == 'mobile'"
-    @closed="$emit('close')"
+    @closed="$emit('closed')"
   >
     <template #default>
       <div class="w-100">
@@ -17,7 +18,7 @@
     <template #footer>
       <div class="flex-center">
         <template v-if="active == 0">
-          <Btn :bg="false" text="chiudi" @click="$emit('close')" />
+          <Btn :bg="false" text="chiudi" @click="$emit('closed')" />
         </template>
         <template v-else>
           <Btn :bg="false" text="indietro" @click="active--" />
@@ -45,13 +46,13 @@ import StepProgression from "./StepProgression.vue";
 // ==============================
 // Props, emits
 // ==============================
-const emit = defineEmits('close');
+const emit = defineEmits('closed');
 
 // ==============================
 // Consts
 // ==============================
 const device = getViewport();
-const steps = [{ label: 'chi sei' }, { label: 'richiesta' }, { label: 'dettagli' }];
+const steps = [{ label: 'Chi sei' }, { label: 'Richiesta' }, { label: 'Dettagli' }];
 const active = ref(0);
 </script>
 

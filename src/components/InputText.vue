@@ -89,11 +89,6 @@ onMounted(() => {
 </script>
 
 <style lang="scss" scoped>
-label {
-  font-size: 1.5rem;
-  padding: 1rem 0;
-  color: var(--secondary);
-}
 input, textarea {
   box-sizing: border-box;
   width: 100%;

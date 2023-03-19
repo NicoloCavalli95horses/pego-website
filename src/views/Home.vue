@@ -57,7 +57,7 @@
   <div class="separator" />
 
   <!-- Contact modal -->
-  <ContactModal v-if="show.modal" @close="show.modal = false" />
+  <ContactModal v-if="show.modal" @closed="show.modal = false" />
 </template>
 
 <script setup>
