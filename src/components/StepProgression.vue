@@ -1,0 +1,59 @@
+<template>
+  <div class="wrapper">
+    <template v-for="(step, i) in steps" :key="i">
+      <div class="step-column">
+        <div class="dot" :class="{ 'active' : i <= active }"></div>
+        <p class="label">{{ step.label }}</p>
+      </div>
+    </template>
+  </div>
+</template>
+
+<script setup>
+// ==============================
+// Import
+// ==============================
+import { reactive, ref } from "@vue/reactivity";
+import { onMounted, onUnmounted } from "@vue/runtime-core";
+
+// ==============================
+// Props
+// ==============================
+const props = defineProps({
+  steps: Array,
+  active: Number
+});
+</script>
+
+<style lang="scss" scoped>
+.wrapper {
+  width: 85%;
+  margin: 2rem auto 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid var(--karry);
+  .step-column {
+    box-sizing: border-box;
+    height: 100%;
+    transform: translate(0, -50%);
+  }
+  .dot {
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 50%;
+    border: 2px solid var(--karry);;
+    background-color: var(--background);
+    position: relative;
+    &.active {
+      background-color: var(--karry);
+    }
+  }
+  p {
+    position: absolute;
+    width: max-content;
+    left: 50%;
+    transform: translate(-50%, 0%);
+  }
+}
+</style>

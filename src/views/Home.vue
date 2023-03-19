@@ -1,11 +1,13 @@
 <template>
+  <!-- Hero section -->
   <div class="w-100 h-100 flex-column">
     <h1>S.T.A. di Pegorer</h1>
     <h2 class="top-32 c-text">Professionisti nell'installazione e manutenzione <br />di impianti termotecnici</h2>
-    <SvgIcons><use href="#ink-blot" /></SvgIcons>
+    <!-- <SvgIcons><use href="#ink-blot" /></SvgIcons> -->
     <Btn class="top-32" text="contattaci" :def="true" @click="show.modal = true" />
   </div>
 
+  <!-- What we do -->
   <h1 class="bottom-12">Cosa offriamo</h1>
   <Carousel :show_dots="device !== 'mobile'">
     <Card 
@@ -32,6 +34,7 @@
 
   <div class="separator" />
 
+  <!-- Counters -->
   <div class="flex-center flex-wrap">
     <Counter
       label="clienti fidelizzati"
@@ -41,7 +44,7 @@
     />
     <Counter
       label="anni di esperienza"
-      :value="getExpYear()"
+      :value="new Date().getFullYear() - 2004"
       :animation_time="5000"
       icon="fa-solid fa-cake-candles"
     />
@@ -55,37 +58,26 @@
 
   <div class="separator" />
 
+  <!-- About section -->
   <h1 class="bottom-12">Chi siamo</h1>
   <About />
 
   <div class="separator" />
 
+  <!-- FAQ section -->
   <FAQ />
+  
+  <div class="separator" />
 
+  <!-- CTA -->
+  <div class="w-100 flex-column">
+    <Btn text="contattaci" :def="true" @click="show.modal = true" />
+  </div>
+  
   <div class="separator" />
 
   <!-- Contact modal -->
-  <Modal
-    v-if="show.modal"
-    :click_out_close="true"
-    @closed="show.modal = false"
-    title="Contattaci"
-  >
-    <template #default>
-      <ContactForm />
-    </template>
-    <template #footer>
-      <div class="flex-center">
-        <Btn :bg="false" text="chiudi" @click="show.modal = false" />
-        <Btn
-          class="l-12"
-          text="invia"
-          :def="true"
-          @click="show.modal = false"
-        />
-      </div>
-    </template>
-  </Modal>
+  <ContactModal v-if="show.modal" @close="show.modal = false" />
 </template>
 
 <script setup>
@@ -93,23 +85,15 @@
 // Import
 //==============================
 import { reactive } from "@vue/reactivity";
-import Btn from "../components/Btn.vue";
-import Carousel from "../components/Carousel.vue";
-import Counter from "../components/Counter.vue";
-import Modal from "../components/Modal.vue";
-import Card from "../components/Card.vue";
-import ContactForm from "../components/ContactForm.vue";
-import FAQ from "./FAQ.vue";
-import About from "./About.vue";
 import { getViewport } from "../utils/screen_size.js";
 
-//==============================
-// Function
-//==============================
-function getExpYear() {
-  const date = new Date();
-  return date.getFullYear() - 2004;
-}
+import FAQ from "./FAQ.vue";
+import About from "./About.vue";
+import Btn from "../components/Btn.vue";
+import Card from "../components/Card.vue";
+import Counter from "../components/Counter.vue";
+import Carousel from "../components/Carousel.vue";
+import ContactModal from "../components/ContactModal.vue";
 
 //==============================
 // Consts
@@ -118,6 +102,7 @@ const device = getViewport();
 const show = reactive({
   modal: false,
 });
+
 </script>
 
 <style lang="scss" scoped>

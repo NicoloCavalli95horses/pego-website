@@ -19,6 +19,17 @@ app.directive("prevent-body-overflow", {
   },
 });
 
+app.directive("focus", {
+  mounted(el, binding) {
+    if ( binding.value ) {
+      el.focus();
+    }
+  },
+  updated(el, binding) {
+    binding.value ? el.focus() : el.blur();
+  }
+});
+
 app.directive('click-outside', {
   mounted(el, binding, vnode) {
     el.clickOutsideEvent = function(event) {

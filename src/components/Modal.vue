@@ -4,13 +4,13 @@
       <div
         ref="modal_ref"
         class="modal"
-        :class="{ 'mobile': screen.width <= 500 }"
+        :class="{ 'full-size' : full_size }"
         :style="{ 'width': `${width}px`, 'height': `${height}px` }"
-        @click="e => e.stopPropagation()"
+        @click="(e) => e.stopPropagation()"
       >
         <!-- Header -->
         <header>
-          <h2>{{ title }}</h2>
+          <h1>{{ title }}</h1>
         </header>
         <!-- Body -->
         <div class="body">
@@ -62,8 +62,8 @@ function onResize() {
 }
 
 function onBackdropClick() {
-  if ( props.click_out_close ){
-    emit('closed');
+  if (props.click_out_close) {
+    emit("closed");
   }
 }
 
@@ -80,30 +80,36 @@ onUnmounted(() => {
 </script>
 
 <style lang="scss" scoped>
-.modal {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  border-radius: var(--radius-s);
-  background-color: var(--dark-grey);
-  display: flex;
-  justify-content: space-between;
-  flex-direction: column;
-  padding: 2.2rem 2.6rem;
-  gap: 2.2rem;
-  background-color: var(--background);
-  &.mobile {
-    width: 80%;
-  }
-  .body {
+.backdrop {
+  .modal {
+    border-radius: var(--radius-s);
     display: flex;
-    align-items: center;
-    height: 100%;
-  }
+    flex-direction: column;
+    padding: 2.2rem 2.6rem;
+    justify-content: space-around;
+    gap: 2.2rem;
+    background-color: var(--background);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    min-width: 350px;
+    .body {
+      display: flex;
+      align-items: center;
+    }
 
-  footer {
-    align-self: flex-end;
+    footer {
+      align-self: flex-end;
+    }
+    &.full-size {
+      width: 100%;
+      height: 100%;
+      box-sizing: border-box;
+      footer {
+        margin-bottom: 4.5rem;
+      }
+    }
   }
 }
 </style>
