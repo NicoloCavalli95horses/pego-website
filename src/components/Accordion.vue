@@ -46,9 +46,9 @@ function toggleOpen() {
     justify-content: space-between;
     align-items: center;
     transition-duration: var(--transition-medium);
-    border-bottom: 2px solid var(--crusta);
+    border-bottom: 2px solid var(--primary);
     &.active {
-      background-color: var(--crusta);
+      background-color: var(--primary);
       transition-duration: var(--transition-slow);
     }
     &:hover {

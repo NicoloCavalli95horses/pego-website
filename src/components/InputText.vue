@@ -92,7 +92,7 @@ onMounted(() => {
 label {
   font-size: 1.5rem;
   padding: 1rem 0;
-  color: var(--atomic-tangerine);
+  color: var(--secondary);
 }
 input, textarea {
   box-sizing: border-box;
@@ -100,10 +100,10 @@ input, textarea {
   border-radius: 1.2rem;
   outline: none;
   border: none;
-  caret-color: var(--crusta);
+  caret-color: var(--primary);
   font-size: 1.8rem;
   &:focus {
-    border: 0.2rem solid var(--crusta);
+    border: 0.2rem solid var(--primary);
   }
   &::placeholder {
     filter: grayscale(60%);

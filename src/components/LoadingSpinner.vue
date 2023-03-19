@@ -21,7 +21,7 @@
     width: 2px;
     height: 2px;
     border-radius: 50%;
-    border: 2px solid var(--atomic-tangerine);
+    border: 2px solid var(--secondary);
     margin: 2px;
     &:first-of-type {
       margin-left: 8px;
@@ -41,7 +41,7 @@
     background-color: transparent;
   }  
   100% {
-    background-color: var(--atomic-tangerine);
+    background-color: var(--secondary);
   }
 }
 </style>

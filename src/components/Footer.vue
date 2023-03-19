@@ -44,7 +44,7 @@ footer {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: var(--apple-blossom);
+  background-color: var(--footer);
   .text-wrapper {
     padding: 4rem;
     max-width: 300px;

@@ -1,5 +1,4 @@
 <template>
-  <h1 class="bottom-12">Domande frequenti</h1>
   <Accordion
     question="Siete aperti il weekend?"
     answer="Solo per emergenze dalle 8:30 alle 13:00"

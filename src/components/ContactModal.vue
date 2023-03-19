@@ -1,6 +1,7 @@
 <template>
   <Modal
     title="Contattaci"
+    :width="device != 'mobile' ? 65 : undefined"
     :click_out_close="true"
     :full_size="device == 'mobile'"
     @closed="$emit('close')"

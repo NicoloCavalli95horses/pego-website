@@ -97,7 +97,7 @@ onMounted(() => {
   .line {
     width: 100%;
     height: 2px;
-    background-color: var(--karry);
+    background-color: var(--font-light);
   }
   h2 {
       font-size: 3.5rem;
@@ -105,7 +105,7 @@ onMounted(() => {
       padding: 0;
     }
     h2, svg {
-      color: var(--karry);
+      color: var(--font-light);
     }
 }
 </style>

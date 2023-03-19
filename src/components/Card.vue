@@ -25,7 +25,7 @@ const props = defineProps({
   width: 25rem;
   overflow: hidden;
   margin: 0 0.8rem;
-  background-color: var(--karry);
+  background-color: var(--font-light);
   border-radius: var(--radius-l);
   img {
     width: 100%;

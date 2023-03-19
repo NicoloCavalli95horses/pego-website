@@ -32,7 +32,7 @@ const props = defineProps({
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-top: 1px solid var(--karry);
+  border-top: 1px solid var(--font-light);
   .step-column {
     box-sizing: border-box;
     height: 100%;
@@ -42,11 +42,11 @@ const props = defineProps({
     width: 1.5rem;
     height: 1.5rem;
     border-radius: 50%;
-    border: 2px solid var(--karry);;
+    border: 2px solid var(--font-light);
     background-color: var(--background);
     position: relative;
     &.active {
-      background-color: var(--karry);
+      background-color: var(--font-light);
     }
   }
   p {

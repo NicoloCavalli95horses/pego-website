@@ -70,7 +70,7 @@
 }
 
 svg {
-  color: var(--karry);
+  color: var(--font-light);
   width: 2.5rem;
   height: 2.5rem;
 }
@@ -135,6 +135,10 @@ svg {
 
 .bottom-24 {
   margin-bottom: 2.4rem;
+}
+
+.bottom-36 {
+  margin-bottom: 3.6rem;
 }
 
 .r-6 {

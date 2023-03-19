@@ -122,16 +122,16 @@ watch(
     width: 15px;
     height: 15px;
     border-radius: 50%;
-    border: 2px solid var(--atomic-tangerine);
+    border: 2px solid var(--secondary);
     margin: 0 0.6rem;
     transition-duration: var(--transition-medium);
     &.active {
-      background-color: var(--atomic-tangerine);
+      background-color: var(--secondary);
       transition-duration: 400ms;
     }
     &:hover {
       cursor: pointer;
-      background-color: var(--crusta);
+      background-color: var(--primary);
       transition-duration: var(--transition-medium);
     }
   }

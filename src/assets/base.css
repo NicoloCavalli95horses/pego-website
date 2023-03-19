@@ -2,18 +2,40 @@
 @import url('https://fonts.googleapis.com/css?family=Quicksand&display=swap');
 
 :root {
-  /* main colors */
+  /* AUTUMN COLOR PALETTE */
   --karry: rgb(255, 235, 210); 
   --atomic-tangerine: rgb(255, 163, 100);
   --crusta: rgb(252, 118, 67);
   --apple-blossom: rgb(175, 79, 65);
   --pickled-bluewood: rgb(39, 50, 72);
+
+  /* LIGHT FLAMES */
+  --quartz: #171515;
+  --cardovan: #894242;
+  --indian-red: #d55c5a;
+  --tulip: #f5918f;
+  --almond: #ebd4cc;
   
-  /* functional colors */
+  /* functional references */
+
+  /* autumn */
+  --primary: var(--crusta);
+  --secondary: var(--atomic-tangerine);
+  --footer: var(--apple-blossom);
   --background: var(--pickled-bluewood);
   --backdrop: rgba(255, 235, 210, 0.1);
   --font-light: var(--karry);
-  --font-dark: var(--pickled-bluewood);
+  --font-dark: var(--pickled-bluewood); 
+ 
+
+  /* light flames */
+  /* --primary: var(--cardovan);
+  --secondary: var(--indian-red);
+  --footer: var(--cardovan);
+  --background: var(--quartz);
+  --backdrop: rgba(255, 235, 210, 0.1);
+  --font-light: var(--almond);
+  --font-dark: var(--quartz); */
 
   --radius-xl: 2.6rem;
   --radius-l: 1.8rem;
@@ -39,11 +61,11 @@ html {
 body {
   width: 100%;
   height: 100vh;
-  background-color: var(--pickled-bluewood);
+  background-color: var(--background);
 }
 
 nav {
-  background-color: var(--pickled-bluewood);
+  background-color: var(--background);
 }
 
 /* Font */
@@ -66,7 +88,7 @@ h5, h6 {
 
 /* Size */
 h1 {
-  color: var(--atomic-tangerine);
+  color: var(--secondary);
   font-size: clamp(3rem, 5vw, 4rem);
 }
 
@@ -101,12 +123,12 @@ a {
 /* Code for Firefox */
 ::-moz-selection { 
   color: var(--font-light);
-  background: var(--crusta);
+  background: var(--primary);
 }
 
 ::selection {
   color: var(--font-light);
-  background: var(--crusta);
+  background: var(--primary);
 }
 
 /* Scrollbar */
@@ -116,15 +138,15 @@ a {
 
 /* Track */
 ::-webkit-scrollbar-track {
-  background: var(--font-light);
+  background: var(--font-dark);
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: var(--atomic-tangerine);
+  background: var(--secondary);
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--crusta);
+  background: var(--primary);
 }

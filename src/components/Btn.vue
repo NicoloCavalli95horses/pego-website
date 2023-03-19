@@ -54,7 +54,7 @@ button {
     }
   }
   &.default {
-    background-color: var(--crusta);
+    background-color: var(--primary);
   }
 }
 </style>

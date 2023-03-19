@@ -4,7 +4,7 @@
   </template>
   <template v-else>
     <NavBar />
-    <div class="margins">
+    <div :class="[ device == 'mobile' ?  'mobile-layout' : 'desktop-layout' ]">
       <RouterView />
     </div>
     <Footer />
@@ -15,6 +15,7 @@
 // Import
 //==================================
 import { reactive, ref } from "@vue/reactivity";
+import { getViewport } from "./utils/screen_size";
 import { RouterView } from "vue-router";
 import { onBeforeMount, onUnmounted } from "@vue/runtime-core";
 import LoadingSpinner from "./components/LoadingSpinner.vue";
@@ -28,6 +29,7 @@ const show = reactive({
   modal: false,
 });
 const isLoaded = ref(false);
+const device = getViewport();
 
 //==================================
 // Function
@@ -49,7 +51,12 @@ onUnmounted(() => {
 </script>
 
 <style lang="scss" scoped>
-.margins {
-  margin: 0 2.3rem;
+.mobile-layout {
+  padding: 0 2.3rem;
+}
+.desktop-layout {
+  margin: 0 auto;
+  padding: 0 2.3rem;
+  max-width: 110rem;
 }
 </style>

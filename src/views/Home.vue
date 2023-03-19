@@ -8,29 +8,8 @@
   </div>
 
   <!-- What we do -->
-  <h1 class="bottom-12">Cosa offriamo</h1>
-  <Carousel :show_dots="device !== 'mobile'">
-    <Card 
-      title="Manutenzione ordinaria"
-      description="Su marchi Palazzetti, Royal, Cola, Last Calor, Star Calor, L'Artistico"
-      img_src="/img/about.jpg"
-    />
-    <Card
-      title="Assistenza tecnica e consulenza professionale"
-      description="Aumentare l'efficienza e la sicurezza dell'impianto tramite regolare controllo e pulizia."
-      img_src="/img/about.jpg"
-    />
-    <Card
-      title="Rilascio libretto impianti"
-      description="Previo possesso della certificazione della canna fumaria, dell'impianto elettrico e dell'installazione."
-      img_src="/img/about.jpg"
-    />
-    <Card
-      title="Contratti di manutenzione"
-      description="Sconto del 10% sui pezzi di ricambistica"
-      img_src="/img/about.jpg"
-    />
-  </Carousel>
+  <h1 :class="[ device == 'mobile' ? 'bottom-12' : 'bottom-36']">Cosa offriamo</h1>
+  <WhatWeDo />
 
   <div class="separator" />
 
@@ -59,12 +38,13 @@
   <div class="separator" />
 
   <!-- About section -->
-  <h1 class="bottom-12">Chi siamo</h1>
+  <h1 :class="[ device == 'mobile' ? 'bottom-12' : 'bottom-36']">Chi siamo</h1>
   <About />
-
+  
   <div class="separator" />
-
+  
   <!-- FAQ section -->
+  <h1 :class="[ device == 'mobile' ? 'bottom-12' : 'bottom-36']">Domande frequenti</h1>
   <FAQ />
   
   <div class="separator" />
@@ -89,10 +69,9 @@ import { getViewport } from "../utils/screen_size.js";
 
 import FAQ from "./FAQ.vue";
 import About from "./About.vue";
+import WhatWeDo from "./WhatWeDo.vue";
 import Btn from "../components/Btn.vue";
-import Card from "../components/Card.vue";
 import Counter from "../components/Counter.vue";
-import Carousel from "../components/Carousel.vue";
 import ContactModal from "../components/ContactModal.vue";
 
 //==============================
@@ -106,14 +85,14 @@ const show = reactive({
 </script>
 
 <style lang="scss" scoped>
-svg#ink-blot {
-  position: absolute;
-  max-width: 650px;
-  max-height: 650px;
-  min-width: 300px;
-  min-height: 300px;
-  z-index: -1;
-  fill: #222;
-  opacity: 50%;
-}
+// svg#ink-blot {
+//   position: absolute;
+//   max-width: 650px;
+//   max-height: 650px;
+//   min-width: 300px;
+//   min-height: 300px;
+//   z-index: -1;
+//   fill: #222;
+//   opacity: 50%;
+// }
 </style>

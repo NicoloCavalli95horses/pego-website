@@ -5,7 +5,7 @@
         ref="modal_ref"
         class="modal"
         :class="{ 'full-size' : full_size }"
-        :style="{ 'width': `${width}px`, 'height': `${height}px` }"
+        :style="{ 'width': `${width}rem`, 'height': `${height}rem` }"
         @click="(e) => e.stopPropagation()"
       >
         <!-- Header -->
@@ -29,7 +29,7 @@
 // ==============================
 // Import
 // ==============================
-import { reactive, ref } from "@vue/reactivity";
+import { reactive } from "@vue/reactivity";
 import { onMounted, onUnmounted } from "@vue/runtime-core";
 
 // ==============================
@@ -93,7 +93,6 @@ onUnmounted(() => {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    min-width: 350px;
     .body {
       display: flex;
       align-items: center;
