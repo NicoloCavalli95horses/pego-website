@@ -8,6 +8,7 @@
   --crusta: rgb(252, 118, 67);
   --apple-blossom: rgb(175, 79, 65);
   --pickled-bluewood: rgb(39, 50, 72);
+  --darker-pickled-bluewood: rgb(27, 35, 50);
 
   /* LIGHT FLAMES */
   --quartz: #171515;
@@ -17,25 +18,15 @@
   --almond: #ebd4cc;
   
   /* functional references */
-
-  /* autumn */
   --primary: var(--crusta);
   --secondary: var(--atomic-tangerine);
-  --footer: var(--apple-blossom);
+  --footer: var(--darker-pickled-bluewood);
   --background: var(--pickled-bluewood);
   --backdrop: rgba(255, 235, 210, 0.1);
   --font-light: var(--karry);
-  --font-dark: var(--pickled-bluewood); 
- 
-
-  /* light flames */
-  /* --primary: var(--cardovan);
-  --secondary: var(--indian-red);
-  --footer: var(--cardovan);
-  --background: var(--quartz);
-  --backdrop: rgba(255, 235, 210, 0.1);
-  --font-light: var(--almond);
-  --font-dark: var(--quartz); */
+  --font-dark: var(--pickled-bluewood);
+  --white: rgb(240, 240, 255); 
+  --black: rgb(17, 17, 17);
 
   --radius-xl: 2.6rem;
   --radius-l: 1.8rem;
@@ -45,6 +36,9 @@
   --transition-slow: 800ms;
   --transition-medium: 400ms;
   --transition-fast: 200ms;
+
+  --nav-height-desktop: 10rem;
+  --nav-height-mobile: 7rem;
 }
 
 * {
@@ -56,6 +50,8 @@
 /* Root font-size: 1rem = 10px */
 html {
   font-size: 10px;
+  scroll-behavior: smooth;
+  scroll-padding-top: var(--nav-height-desktop);
 }
 
 body {

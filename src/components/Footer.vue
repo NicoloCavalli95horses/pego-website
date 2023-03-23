@@ -3,7 +3,7 @@
     <div class="text-wrapper">
       <h4>Pegorer S.T.A.</h4>
       <h5 class="top-12">
-        Professionisti nell'installazione e manutenzione di impianti termotecnici
+        Manutenzione e assistenza tecnica autorizzata per impianti a biomassa
       </h5>
       <div class="top-12">
         <div class="partners-wrapper">

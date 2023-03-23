@@ -220,6 +220,9 @@ code {
   letter-spacing: 2px;
   margin: 0 0.3rem;
 }
+.spacing {
+  letter-spacing: 0.2rem;
+}
 
 .fadein {
   transition-duration: 500ms;

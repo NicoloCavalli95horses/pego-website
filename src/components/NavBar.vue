@@ -1,15 +1,9 @@
 <template>
   <!-- Desktop/tablet -->
   <nav v-if="device == 'desktop' || device == 'tablet'" class="desktop">
-    <RouterLink to="/">
-      <Logo class="l-24" />
-    </RouterLink>
-    <RouterLink to="/">
-      <span>About</span>
-    </RouterLink>
-    <RouterLink to="/">
-      <span>FAQ</span>
-    </RouterLink>
+    <Logo />
+    <span><a href="#about">Chi siamo</a></span>
+    <span><a href="#faq">FAQ</a></span>
   </nav>
 
   <!-- Mobile -->
@@ -17,57 +11,21 @@
     <RouterLink to="/">
       <Logo class="l-24" />
     </RouterLink>
-    <Icon class="r-24" icon="fa-solid fa-bars" @click="show.menu = true" />
   </nav>
-
-  <!-- Mobile menu -->
-  <teleport to=".modals">
-    <div v-if="show.menu" v-prevent-body-overflow class="backdrop">
-      <div class="centered-menu">
-        <Icon icon="fa-solid fa-xmark" class="top-right-corner" @click="show.menu = false" />
-        <RouterLink to="/about" @click="show.menu = false">
-          <h2>About</h2>
-        </RouterLink>
-        <RouterLink to="/faq" @click="show.menu = false">
-          <h2>FAQ</h2>
-        </RouterLink>
-        <RouterLink to="/" @click="show.menu = false">
-          <h2>Page</h2>
-        </RouterLink>
-      </div>
-    </div>
-  </teleport>
-
 </template>
 
 <script setup>
 //==================================
 // Import
 //==================================
-import { computed, onMounted, onUnmounted, reactive } from "@vue/runtime-core";
-import { RouterLink, RouterView } from "vue-router";
-import { library } from "@fortawesome/fontawesome-svg-core";
-import { faBars, faXmark } from "@fortawesome/free-solid-svg-icons";
+import { RouterLink } from "vue-router";
 import { getViewport } from "../utils/screen_size.js"
 import Logo from "./Logo.vue"
-library.add( faBars, faXmark );
 
 //==================================
 // Consts
 //==================================
 const device = getViewport();
-const nav_height = computed(() => {
-  if ( device.value == 'desktop' || device.value == 'tablet' ) {
-    return '100px'
-  } else if ( device.value == 'mobile' ){
-    return '70px'
-  }
-});
-
-const show = reactive({
-  menu: false,
-});
-
 </script>
 
 <style lang="scss" scoped>
@@ -76,7 +34,6 @@ nav {
   top: 0;
   left: 0;
   width: 100%;
-  height: v-bind("nav_height");
   display: flex;
   align-items: center;
   span {
@@ -86,10 +43,12 @@ nav {
     cursor: pointer;
   }
   &.desktop {
+    height: var(--nav-height-desktop);
     justify-content: space-around;
- }
- &.mobile {
-  justify-content: space-between;
+  }
+  &.mobile {
+   height: var(--nav-height-mobile);
+   justify-content: space-between;
  }
 }
 

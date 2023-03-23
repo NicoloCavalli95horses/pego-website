@@ -12,7 +12,7 @@
     v-if="show_dots"
     :current_scroll="scrolled"
     :container="scroller_ref"
-    :max_dots="5"
+    :max_dots="3"
     @scroll="(val) => (scroller_ref.scrollLeft = val)"
   />
 </template>

@@ -117,7 +117,7 @@ watch(
   display: flex;
   justify-content: center;
   width: 100%;
-  margin-top: 1.2rem;
+  margin-top: 3rem;
   .dot {
     width: 15px;
     height: 15px;

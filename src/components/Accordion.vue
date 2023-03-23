@@ -1,11 +1,11 @@
 <template>
   <div class="accordion" @click="show = !show">
-    <div class="question" :class="{ active: show }">
+    <div class="question" :class="{ 'active': show }">
       <h4>{{ question }}</h4>
       <Icon :icon="show ? 'fa-solid fa-chevron-down' : 'fa-solid fa-chevron-right'" />
     </div>
     <div v-if="show" class="answer">
-      <h4 :class="{ show: show }">{{ answer }}</h4>
+      <h4 :class="{ 'show': show }">{{ answer }}</h4>
     </div>
   </div>
 </template>
@@ -28,13 +28,6 @@ const props = defineProps({
 // Consts
 // ==============================
 const show = ref(false);
-
-// ==============================
-// Functions
-// ==============================
-function toggleOpen() {
-  isOpen.value = !isOpen.value;
-}
 </script>
 
 <style lang="scss" scoped>

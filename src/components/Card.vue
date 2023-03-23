@@ -22,20 +22,20 @@ const props = defineProps({
 <style lang="scss" scoped>
 .card {
   display: inline-block;
-  width: 25rem;
+  width: 40rem;
   overflow: hidden;
   margin: 0 0.8rem;
-  background-color: var(--font-light);
-  border-radius: var(--radius-l);
+  background-color: var(--white);
+  border-radius: var(--radius-m);
   img {
     width: 100%;
   }
   .text-wrapper {
     margin: 1.5rem;
-    height: 15rem;
+    height: 18rem;
     white-space: normal;
     h4, p {
-      padding: 1rem 0;
+      padding: 1.3rem 0;
       color: var(--font-dark);
     }
     h4 {

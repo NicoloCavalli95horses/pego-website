@@ -1,5 +1,5 @@
 <template>
-  <button :class="{ 'disabled': disabled, 'default': def, 'card': card, 'bg': bg }">
+  <button :class="{ 'disabled': disabled, 'default': def }">
     <span>{{ text }}</span>
     <slot name="icon" />
   </button>
@@ -12,8 +12,6 @@
 const props = defineProps({
   text: String,
   def: Boolean,
-  card: Boolean,
-  bg: Boolean,
   disabled: Boolean,
 });
 </script>
@@ -41,9 +39,6 @@ button {
   &:hover {
     transition-duration: var(--transition-medium);
     filter: brightness(150%);
-  }
-  &.bg {
-    background-color: var(--overlay-color);
   }
   &.disabled {
     opacity: 0.5;

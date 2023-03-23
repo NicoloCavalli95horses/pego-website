@@ -20,23 +20,23 @@ import Card from "../components/Card.vue";
 const device = getViewport();
 const cards = [
   { 
-    title: "Manutenzione ordinaria",
-    description: "Su marchi Palazzetti, Royal, Cola, Last Calor, Star Calor, L'Artistico",
+    title: "Manutenzione straordinaria",
+    description: "Su stufe a pellet Palazzetti, MCZ, Cadel, Anselmo Cola, Last Calor, Royal, Freepoint, Termovana, Red, Brisach. Una regolare manutenzione garantisce la sicurezza e diminuisce i consumi.",
     img_src: "/img/about.jpg"
   },
   {
-    title: "Assistenza tecnica e consulenza professionale",
-    description: "Aumentare l'efficienza e la sicurezza dell'impianto tramite regolare controllo e pulizia.",
+    title: "Assistenza tecnica autorizzata",
+    description: "Nelle riparazioni utilizziamo ricambi originali e offriamo la garanzia prevista dalla legislazione vigente.",
     img_src: "/img/about.jpg"
   },
   {
    title: "Rilascio libretto impianti",
-   description: "Previo possesso della certificazione della canna fumaria, dell'impianto elettrico e dell'installazione.",
+   description: "Se ne sei sprovvisto, chiedici informazioni. Possiamo inserire e gestire il tuo libretto impianto nel catasto C.I.R.C.E.",
    img_src: "/img/about.jpg"
   },
   {
-    title: "Contratti di manutenzione",
-    description: "Sconto del 10% sui pezzi di ricambistica",
+    title: "Prove di ventilazione",
+    description: "La prova di ventilazione certifica che gli ambienti di installazione non superino la soglia di 4 Pascal di pressione negativa, laddove non è possibile effettuare un foro di aerazione permanente secondo la norma tecnica vigente.",
     img_src: "/img/about.jpg"
   },
 ]
