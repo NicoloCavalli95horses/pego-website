@@ -54,6 +54,7 @@ const emit = defineEmits('closed');
 const device = getViewport();
 const steps = [{ label: 'Chi sei' }, { label: 'Richiesta' }, { label: 'Dettagli' }];
 const active = ref(0);
+
 </script>
 
 <style></style>

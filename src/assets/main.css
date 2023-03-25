@@ -125,6 +125,10 @@ svg {
   margin-top: 3.2rem;
 }
 
+.top-48 {
+  margin-top: 4.8rem;
+}
+
 .bottom-6 {
   margin-bottom: 0.6rem;
 }
@@ -171,6 +175,10 @@ svg {
 
 .m-22 {
   margin: 2.2rem;
+}
+
+.c-margin {
+  margin: 0 auto;
 }
 
 .separator {

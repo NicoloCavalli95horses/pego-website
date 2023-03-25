@@ -2,13 +2,13 @@
   <!-- Hero section -->
   <div class="w-100 h-100 flex-column">
     <h1 class="spacing">S.T.A. di Pegorer</h1>
-    <h2 class="top-32 c-text spacing">Manutenzione e assistenza tecnica autorizzata <br />per impianti a biomassa</h2>
+    <h2 class="top-32 c-text" :class="{'spacing' : device != 'mobile' }">Manutenzione e assistenza tecnica autorizzata <br />per impianti a biomassa</h2>
     <Btn class="top-32" text="contattaci" :def="true" @click="show.modal = true" />
   </div>
 
   <!-- What we do -->
   <h1 :class="[ device == 'mobile' ? 'bottom-12' : 'bottom-36']">Cosa offriamo</h1>
-  <WhatWeDo />
+  <What />
 
   <div class="separator" />
 
@@ -50,11 +50,16 @@
 
   <!-- Where section -->
   <h1 :class="[ device == 'mobile' ? 'bottom-12' : 'bottom-36']">Dove operiamo</h1>
+  <Where />
 
+  <div class="separator" />
+  <div class="separator" />
+  
+  <!-- <h1 class="bottom-24">Hai bisogno di noi?</h1> -->
   <!-- CTA -->
-  <div class="w-100 flex-column">
-    <Btn text="contattaci" :def="true" @click="show.modal = true" />
-  </div>
+  <!-- <div class="w-100 flex-column"> -->
+    <!-- <Btn text="contattaci" :def="true" @click="show.modal = true" /> -->
+  <!-- </div> -->
   
   <div class="separator" />
 
@@ -74,12 +79,12 @@ import { getViewport } from "../utils/screen_size.js";
 
 import FAQ from "./FAQ.vue";
 import About from "./About.vue";
-import WhatWeDo from "./WhatWeDo.vue";
+import What from "./What.vue";
+import Where from "./Where.vue";
 import Btn from "../components/Btn.vue";
 import OnTopBtn from "../components/OnTopBtn.vue";
 import Counter from "../components/Counter.vue";
 import ContactModal from "../components/ContactModal.vue";
-import { computed } from "vue";
 
 //==============================
 // Consts

@@ -48,6 +48,7 @@ onUnmounted(() => {
 <style lang="scss" scoped>
 .fixed-right {
   position: fixed;
+  z-index: 1;
   right: 2.2rem;
   bottom: 2.2rem;
   svg {

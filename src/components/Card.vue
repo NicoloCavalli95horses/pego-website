@@ -1,7 +1,7 @@
 <template>
-  <div class="card">
+  <div class="card" :style="{ 'width' : device == 'mobile' ? '25rem': '35rem' }">
     <img :src="img_src" :alt="title" />
-    <div class="text-wrapper">
+    <div class="text-wrapper" :style="{ 'height' : device == 'mobile' ? '22rem' : '18rem' }">
       <h4>{{ title }}</h4>
       <p>{{ description }}</p>
     </div>
@@ -10,6 +10,11 @@
 
 <script setup>
 // ==============================
+// Import
+// ==============================
+import { getViewport } from "../utils/screen_size.js";
+
+// ==============================
 // Props
 // ==============================
 const props = defineProps({
@@ -17,12 +22,13 @@ const props = defineProps({
   description: String,
   img_src: String,
 });
+
+const device = getViewport();
 </script>
 
 <style lang="scss" scoped>
 .card {
   display: inline-block;
-  width: 40rem;
   overflow: hidden;
   margin: 0 0.8rem;
   background-color: var(--white);
@@ -32,7 +38,6 @@ const props = defineProps({
   }
   .text-wrapper {
     margin: 1.5rem;
-    height: 18rem;
     white-space: normal;
     h4, p {
       padding: 1.3rem 0;
