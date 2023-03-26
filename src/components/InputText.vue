@@ -5,9 +5,9 @@
       <input
         ref="input_ref"
         type="text"
+        :name="name"
         autocomplete="off"
         v-model="value"
-        v-focus="is_focused"
         :required="is_required"
         :placeholder="placeholder"
         @input="$emit('update', value)"
@@ -25,7 +25,6 @@
         maxlength="10"
         autocomplete="off"
         v-model="value"
-        v-focus="is_focused"
         :required="is_required"
         :placeholder="placeholder"
         pattern="^(\+39)?\s?\d{3}\s?\d{3}\s?\d{4}$"
@@ -41,7 +40,6 @@
       rows="30"
       autocomplete="off"
       v-model="value"
-      v-focus="is_focused"
       :required="is_required"
       :placeholder="placeholder"
       @input="$emit('update', value)"
@@ -65,8 +63,8 @@ const props = defineProps({
     type: String,
     default: 'text'
   },
+  name: String,
   placeholder: String,
-  is_focused: Boolean,
   is_required: Boolean,
 });
 

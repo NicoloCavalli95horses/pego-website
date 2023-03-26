@@ -44,7 +44,7 @@ footer {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: var(--footer);
+  background-color: var(--footer-bg);
   .text-wrapper {
     padding: 4rem;
     max-width: 300px;

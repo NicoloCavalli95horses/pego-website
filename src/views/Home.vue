@@ -28,7 +28,7 @@
     />
     <Counter
       label="comuni coperti"
-      :value="150"
+      :value="96"
       :animation_time="3000"
       icon="fa-solid fa-map-location-dot"
     />
@@ -42,24 +42,24 @@
   
   <div class="separator" />
   
-  <!-- FAQ section -->
-  <h1 :class="[ device == 'mobile' ? 'bottom-12' : 'bottom-36']" id="faq">Domande frequenti (FAQ)</h1>
-  <FAQ />
-  
-  <div class="separator" />
-
   <!-- Where section -->
   <h1 :class="[ device == 'mobile' ? 'bottom-12' : 'bottom-36']">Dove operiamo</h1>
   <Where />
 
   <div class="separator" />
+
+    <!-- FAQ section -->
+  <h1 v-if="device != 'mobile'" class="bottom-12" id="faq">Domande frequenti (FAQ)</h1>
+  <h1 v-else class="bottom-36">Domande frequenti</h1>
+  <FAQ />
+  
   <div class="separator" />
   
-  <!-- <h1 class="bottom-24">Hai bisogno di noi?</h1> -->
-  <!-- CTA -->
-  <!-- <div class="w-100 flex-column"> -->
-    <!-- <Btn text="contattaci" :def="true" @click="show.modal = true" /> -->
-  <!-- </div> -->
+  <h1 class="bottom-24">Possiamo aiutarti?</h1>
+  <h3>La manutenzione è obbligatoria per legge e aumenta l'efficienza dell'impianto, migliorandone la resa e riducendone i consumi.</h3>
+  <div class="w-100 flex-column top-24">
+    <Btn text="contattaci" :def="true" @click="show.modal = true" />
+  </div>
   
   <div class="separator" />
 

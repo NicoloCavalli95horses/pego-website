@@ -20,7 +20,7 @@
   /* functional references */
   --primary: var(--crusta);
   --secondary: var(--atomic-tangerine);
-  --footer: var(--darker-pickled-bluewood);
+  --footer-bg: var(--darker-pickled-bluewood);
   --background: var(--pickled-bluewood);
   --backdrop: rgba(255, 235, 210, 0.1);
   --font-light: var(--karry);

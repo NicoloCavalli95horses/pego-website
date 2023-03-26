@@ -38,8 +38,8 @@ import { onMounted, onUnmounted } from "@vue/runtime-core";
 const props = defineProps({
   title: String,
   width: Number,
-  click_out_close: Boolean,
   height: Number,
+  click_out_close: Boolean,
   full_size: Boolean,
 });
 
