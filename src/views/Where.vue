@@ -2,10 +2,8 @@
   <template v-if="device != 'mobile'">
     <div class="wrapper">
       <div class="text-wrapper">
-        <h3>
-          Raggiungiamo la maggior parte dei comuni in provincia di Treviso, e
-          alcuni comuni in provincia di Venezia
-        </h3>
+        <h3> Raggiungiamo la maggior parte dei comuni in provincia di Treviso, e
+          alcuni comuni in provincia di Venezia. </h3>
         <div class="w-100 top-32">
           <Btn
             class="c-margin"
@@ -30,10 +28,7 @@
 
   <template v-else>
     <div class="flex-column">
-      <h4>
-        Raggiungiamo la maggior parte dei comuni in provincia di Treviso, e
-        alcuni comuni in provincia di Venezia
-      </h4>
+      <h4> Raggiungiamo la maggior parte dei comuni in provincia di Treviso, e alcuni comuni in provincia di Venezia. </h4>
       <div class="w-100 top-32">
         <Btn
           class="c-margin"
@@ -65,10 +60,7 @@
   >
     <div class="flex-column w-100">
       <div class="input">
-        <InputText
-          placeholder="Il mio comune"
-          @update="(val) => (filter = val)"
-        />
+        <InputText placeholder="Il mio comune" @update="(val) => (filter = val)" />
       </div>
 
       <div class="city-list top-12">
@@ -79,21 +71,12 @@
             </div>
           </template>
         </template>
-        <p v-else>
-          Ci dispiace, ma attualmente non raggiumgiamo questo comune.
-        </p>
+        <p v-else> Ci dispiace, ma attualmente non raggiumgiamo questo comune. </p>
       </div>
     </div>
 
     <template #footer>
-      <Btn
-        :bg="false"
-        text="chiudi"
-        @click="
-          show.modal = false;
-          filter = '';
-        "
-      />
+      <Btn :bg="false" text="chiudi" @click="show.modal = false; filter = ''; "/>
     </template>
   </Modal>
 </template>
@@ -251,6 +234,7 @@ const filteredCities = computed(() =>
   }
 }
 
+
 .city-list {
   width: 100%;
   height: 40rem;
@@ -258,7 +242,7 @@ const filteredCities = computed(() =>
   .city {
     display: flex;
     align-items: center;
-    height: 3rem;
+    height: 3.5rem;
     padding-left: 1rem;
     &:nth-of-type(odd) {
       background-color: var(--footer-bg);

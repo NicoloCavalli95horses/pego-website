@@ -1,5 +1,13 @@
 @import './base.css';
 
+.float-r {
+  float: right;
+}
+
+.float-l {
+  float: left;
+}
+
 .top-left-corner {
   position: absolute;
   top: 2.2rem;

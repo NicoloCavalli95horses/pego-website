@@ -103,7 +103,9 @@ onUnmounted(() => {
     }
     &.full-size {
       width: 100%;
-      height: 100%;
+      top: 0;
+      left: 0;
+      transform: none;
       box-sizing: border-box;
       footer {
         margin-bottom: 4.5rem;

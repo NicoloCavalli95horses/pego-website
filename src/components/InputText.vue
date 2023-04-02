@@ -5,12 +5,12 @@
       <input
         ref="input_ref"
         type="text"
-        :name="name"
         autocomplete="off"
-        v-model="value"
+        :value="modelValue"
+        :name="name"
         :required="is_required"
         :placeholder="placeholder"
-        @input="$emit('update', value)"
+        @input="$emit('update:modelValue', $event.target.value)"
       />
   </template>
   
@@ -24,11 +24,11 @@
         minlength="10"
         maxlength="10"
         autocomplete="off"
-        v-model="value"
+        :value="modelValue"
         :required="is_required"
         :placeholder="placeholder"
         pattern="^(\+39)?\s?\d{3}\s?\d{3}\s?\d{4}$"
-        @input="$emit('update', value)"
+        @input="$emit('update:modelValue', $event.target.value)"
       />
   </template>
   
@@ -39,10 +39,10 @@
       cols="30"
       rows="30"
       autocomplete="off"
-      v-model="value"
+      :value="modelValue"
       :required="is_required"
       :placeholder="placeholder"
-      @input="$emit('update', value)"
+      @input="$emit('update:modelValue', $event.target.value)"
     >
     </textarea>
   </template>
@@ -63,17 +63,16 @@ const props = defineProps({
     type: String,
     default: 'text'
   },
-  name: String,
+  modelValue: [String, Number],
   placeholder: String,
   is_required: Boolean,
 });
 
-const emits = defineEmits(["update"]);
+const emits = defineEmits(["update:modelValue"]);
 
 // ==============================
 // Variables
 // ==============================
-const value = ref("");
 const input_ref = ref(undefined);
 
 //==============================
