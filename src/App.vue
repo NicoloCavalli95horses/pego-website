@@ -25,9 +25,6 @@ import Footer from "./components/Footer.vue";
 //==================================
 // Const
 //==================================
-const show = reactive({
-  modal: false,
-});
 const isLoaded = ref(false);
 const device = getViewport();
 

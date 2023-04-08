@@ -18,6 +18,7 @@
           class="form"
           autocomplete="off"
           enctype="multipart/form-data"
+          @submit="onSubmit()"
         >
           <template v-if="active == 0">
             <InputText
@@ -84,7 +85,7 @@
             </template>
           </div>
 
-          <input type="hidden" name="_next" value="https://192.168.73.63:5173/">
+          <input type="hidden" name="_next" value="https://192.168.73.63:5173/thanks">
           <input type="hidden" name="_subject" :value="name.content + ' ' + surname.content">
           <input type="hidden" name="_template" value="table">
 
@@ -125,6 +126,7 @@ const emit = defineEmits(['closed']);
 const device = getViewport();
 const steps = [{ label: 'Chi sei' }, { label: 'Richiesta' }, { label: 'Dettagli' }];
 const active = ref(0);
+const show_thanks = ref( false );
 
 const name = reactive({
   content: '',
@@ -201,6 +203,9 @@ function onStepTwo(e){
   dropdown.error = !dropdown.selection ? true : false;
 }
 
+function onSubmit(){
+  show_thanks.value = true;
+}
 // ==============================
 // Watch
 // ==============================
