@@ -1,7 +1,7 @@
 <template>
   <div class="abs-center">
     <div class="wrapper">
-      <h1>Loading</h1>
+      <h2>Loading</h2>
       <div class="dot"></div>
       <div class="dot"></div>
       <div class="dot"></div>

@@ -7,7 +7,7 @@
   </div>
 
   <!-- What we do -->
-  <h1 :class="[ device == 'mobile' ? 'bottom-12' : 'bottom-36']">Cosa offriamo</h1>
+  <h3 :class="[ device == 'mobile' ? 'bottom-12' : 'bottom-36']">Cosa offriamo</h3>
   <What />
 
   <div class="separator" />
@@ -37,26 +37,26 @@
   <div class="separator" />
 
   <!-- About section -->
-  <h1 :class="[ device == 'mobile' ? 'bottom-12' : 'bottom-36']" id="about">Chi siamo</h1>
+  <h3 :class="[ device == 'mobile' ? 'bottom-12' : 'bottom-36']" id="about">Chi siamo</h3>
   <About />
   
   <div class="separator" />
   
   <!-- Where section -->
-  <h1 :class="[ device == 'mobile' ? 'bottom-12' : 'bottom-36']">Dove operiamo</h1>
+  <h3 :class="[ device == 'mobile' ? 'bottom-12' : 'bottom-36']">Dove operiamo</h3>
   <Where />
 
   <div class="separator" />
 
     <!-- FAQ section -->
-  <h1 v-if="device != 'mobile'" class="bottom-12" id="faq">Domande frequenti (FAQ)</h1>
-  <h1 v-else class="bottom-36">Domande frequenti</h1>
+  <h3 v-if="device != 'mobile'" class="bottom-12" id="faq">Domande frequenti (FAQ)</h3>
+  <h3 v-else class="bottom-36">Domande frequenti</h3>
   <FAQ />
   
   <div class="separator" />
   
-  <h1 class="bottom-24">Possiamo aiutarti?</h1>
-  <h3>La manutenzione è obbligatoria per legge e aumenta l'efficienza dell'impianto, migliorandone la resa e riducendone i consumi.</h3>
+  <h3 class="bottom-24">Possiamo aiutarti?</h3>
+  <h4>La manutenzione è obbligatoria per legge e aumenta l'efficienza dell'impianto, migliorandone la resa e riducendone i consumi.</h4>
   <div class="w-100 flex-column top-24">
     <Btn text="contattaci" :def="true" @click="show.modal = true" />
   </div>

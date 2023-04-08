@@ -10,7 +10,7 @@
       >
         <!-- Header -->
         <header>
-          <h1>{{ title }}</h1>
+          <h3>{{ title }}</h3>
         </header>
         <!-- Body -->
         <div class="body">
@@ -80,6 +80,7 @@ onUnmounted(() => {
 </script>
 
 <style lang="scss" scoped>
+$header-h: 8rem;
 .backdrop {
   .modal {
     border-radius: var(--radius-s);
@@ -93,22 +94,23 @@ onUnmounted(() => {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    .body {
+    header {
       display: flex;
       align-items: center;
+      height: $header-h;
     }
-
     footer {
       align-self: flex-end;
     }
     &.full-size {
+      position: fixed;
       width: 100%;
       top: 0;
       left: 0;
       transform: none;
       box-sizing: border-box;
-      footer {
-        margin-bottom: 4.5rem;
+      .body {
+        min-height: calc(100vh - $header-h);
       }
     }
   }

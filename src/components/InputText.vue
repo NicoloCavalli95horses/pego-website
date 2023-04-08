@@ -10,10 +10,10 @@
         :class="{ 'error': error }"
         :value="modelValue"
         :required="is_required"
-        :placeholder="placeholder"
+        :placeholder="getPlaceholder"
         @input="$emit('update:modelValue', $event.target.value)"
       />
-      <div v-if="error" class="warning-text">
+      <div v-if="error" class="warning-text" :class="{ 'mobile' : device == 'mobile' }">
         <label>{{ error_message || 'campo obbligatorio' }}</label>
       </div>
     </div>
@@ -33,10 +33,10 @@
         :class="{ 'error': error }"
         :value="modelValue"
         :required="is_required"
-        :placeholder="placeholder"
+        :placeholder="getPlaceholder"
         @input="$emit('update:modelValue', $event.target.value)"
       />
-      <div v-if="error" class="warning-text">
+      <div v-if="error" class="warning-text" :class="{ 'mobile' : device == 'mobile' }">
         <label>{{ error_message || 'campo obbligatorio' }}</label>
       </div>
     </div>
@@ -53,11 +53,11 @@
         :class="{ 'error': error }"
         :value="modelValue"
         :required="is_required"
-        :placeholder="placeholder"
+        :placeholder="getPlaceholder"
         @input="$emit('update:modelValue', $event.target.value)"
       >
       </textarea>
-      <div v-if="error" class="warning-text textarea">
+      <div v-if="error" class="warning-text textarea" :class="{ 'mobile' : device == 'mobile' }">
         <label>{{ error_message || 'campo obbligatorio' }}</label>
       </div>
     </div>
@@ -69,7 +69,8 @@
 // Import
 // ==============================
 import { ref } from "@vue/reactivity";
-import { onMounted } from "@vue/runtime-core";
+import { getViewport } from "../utils/screen_size.js";
+import { computed, onMounted } from "@vue/runtime-core";
 
 // ==============================
 // Props
@@ -91,7 +92,9 @@ const emit = defineEmits(["update:modelValue"]);
 // ==============================
 // Variables
 // ==============================
+const device = getViewport();
 const input_ref = ref(undefined);
+const getPlaceholder = computed(() => (device.value == 'mobile' && props.error) ? '' : props.placeholder );
 
 //==============================
 // Life cycle
@@ -149,9 +152,17 @@ onMounted(() => {
     top: 50%;
     right: 0;
     transform: translate(-2rem, -50%);
+    pointer-events: none;
+    touch-action: none;
     &.textarea {
       top: 0;
       transform: translate(-2rem, 2rem);
+    }
+
+    &.mobile {
+      top: 50%;
+      left: 0;
+      transform: translate(2rem, -50%);
     }
 
     label {

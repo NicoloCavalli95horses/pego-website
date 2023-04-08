@@ -2,8 +2,8 @@
   <template v-if="device != 'mobile'">
     <div class="wrapper">
       <div class="text-wrapper">
-        <h3> Raggiungiamo la maggior parte dei comuni in provincia di Treviso, e
-          alcuni comuni in provincia di Venezia. </h3>
+        <h4> Raggiungiamo la maggior parte dei comuni in provincia di Treviso, e
+          alcuni comuni in provincia di Venezia. </h4>
         <div class="w-100 top-32">
           <Btn
             class="c-margin"
@@ -60,7 +60,10 @@
   >
     <div class="flex-column w-100">
       <div class="input">
-        <InputText placeholder="Il mio comune" @update="(val) => (filter = val)" />
+        <InputText
+          placeholder="Il mio comune"
+          v-model="filter"
+        />
       </div>
 
       <div class="city-list top-12">
@@ -75,9 +78,9 @@
       </div>
     </div>
 
-    <template #footer>
+    <div class="footer">
       <Btn :bg="false" text="chiudi" @click="show.modal = false; filter = ''; "/>
-    </template>
+    </div>
   </Modal>
 </template>
 
@@ -214,7 +217,7 @@ const filteredCities = computed(() =>
   .text-wrapper {
     width: calc(50% - 2.2rem);
     margin-right: 4.4rem;
-    h3 {
+    h4 {
       padding-bottom: 2.2rem;
     }
   }
@@ -248,5 +251,10 @@ const filteredCities = computed(() =>
       background-color: var(--footer-bg);
     }
   }
+}
+
+.footer {
+  display: flex;
+  justify-content: flex-end;
 }
 </style>

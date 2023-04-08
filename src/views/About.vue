@@ -5,7 +5,14 @@
         <img src="/img/about.jpg" alt="repairs" />
       </div>
       <div class="text-wrapper">
-        <h3>Un'attività a gestione familiare che ha a cuore il cliente.</h3>
+        <h4>Un'attività a gestione familiare che ha a cuore il cliente.</h4>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem nemo
+          rerum numquam deserunt dolor optio odio nesciunt necessitatibus hic
+          unde? Dolores ipsam blanditiis magni laborum facere error non debitis
+          ducimus! Ad veritatis aperiam magnam suscipit.
+        </p>
+        <br><br>
         <p>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem nemo
           rerum numquam deserunt dolor optio odio nesciunt necessitatibus hic
@@ -20,7 +27,7 @@
     <div class="wrapper mobile">
       <img src="/img/about.jpg" alt="repairs" />
       <div class="text-wrapper">
-        <h3>Lorem ipsum dolor sit</h3>
+        <h4>Lorem ipsum dolor sit</h4>
         <p>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem nemo
           rerum numquam deserunt dolor optio odio nesciunt necessitatibus hic
@@ -66,10 +73,9 @@ const device = getViewport();
     .text-wrapper {
       width: calc(50% - 2.2rem);
       margin-left: 2.2rem;
-      h3 {
+      h4 {
         margin-bottom: 2.2rem;
         padding-bottom: 1.4rem;
-        border-bottom: 1px solid var(--font-light);
       }
     }
   }
@@ -82,10 +88,8 @@ const device = getViewport();
       height: auto;
     }
     .text-wrapper {
-      h3 {
-        margin-bottom: 2.2rem;
+      h4 {
         padding: 2.2rem 0;
-        border-bottom: 1px solid var(--font-light);
       }
     }
   }

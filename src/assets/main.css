@@ -112,6 +112,12 @@ svg {
   align-items: center;
   justify-content: center;
 }
+.flex-column.left {
+  align-items: flex-start;
+}
+.flex-column.right {
+  align-items: flex-end;
+}
 
 .flex-space-between {
   justify-content: space-between;
@@ -196,6 +202,10 @@ svg {
 
 .bold {
   font-weight: bold;
+}
+
+.w-50 {
+  width: 50%;
 }
 
 .w-100 {
