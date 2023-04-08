@@ -20,28 +20,63 @@
           enctype="multipart/form-data"
         >
           <template v-if="active == 0">
-            <InputText placeholder="Nome" v-model="name" :is_required="true" />
-            <InputText placeholder="Cognome" v-model="surname" :is_required="true" />
-            <InputText placeholder="Email" v-model="email" />
-            <InputText placeholder="Cellulare" v-model="tel" input_type="tel" />
+            <InputText
+              placeholder="Nome"
+              v-model="name.content"
+              :is_required="true"
+              :error="name.error"
+            />
+            <InputText
+              placeholder="Cognome"
+              v-model="surname.content"
+              :is_required="true"
+              :error="surname.error"
+            />
+            <InputText
+              placeholder="Email"
+              v-model="email.content"
+              :error_message="email.error_msg"
+              :error="email.error"
+            />
+            <InputText
+              placeholder="Cellulare"
+              v-model="tel.content"
+              input_type="tel"
+              :error_message="tel.error_msg"
+              :error="tel.error"
+            />
           </template>
           <template v-if="active == 1">
-            <DropDown title="Seleziona marchio" :is_required="true" :options="options" />
-            <InputText input_type="textarea" v-model="message" placeholder="Descrivi il problema qui"/>
+            <DropDown
+              title="Seleziona marchio"
+              v-model="dropdown.selection"
+              :is_required="true"
+              :options="dropdown.options"
+              :error="dropdown.error"
+            />
+            <InputText
+              input_type="textarea"
+              v-model="textarea.content"
+              placeholder="Descrivi il problema qui"
+              :error="textarea.error"
+            />
           </template>
           <template v-if="active == 2">
-            <InputFile placeholder="Carica una foto" @upload="f => onFileLoad(f)" />
+            <InputFile
+              placeholder="Carica una foto"
+              @upload="(f) => file = f"
+              />
           </template>
 
           <!-- Footer buttons -->
           <div class="footer-btns">
             <template v-if="active == 0">
               <Btn :bg="false" text="chiudi" @click="$emit('closed')" />
-              <Btn class="l-12" text="avanti" :def="true" @click="active++" />
+              <Btn class="l-12" text="avanti" :def="true" @click="(e) => onStepOne(e)" />
             </template>
             <template v-if="active == 1">
               <Btn :bg="false" text="indietro" @click="active--" />
-              <Btn class="l-12" text="avanti" :def="true" @click="active++" />
+              <Btn class="l-12" text="avanti" :def="true" @click="(e) => onStepTwo(e)" />
             </template>
             <template v-else-if="active == 2">
               <Btn :bg="false" text="indietro" @click="active--" />
@@ -49,19 +84,17 @@
             </template>
           </div>
 
-          <input type="hidden" name="_next" value="https://192.168.41.63:5173/">
-          <input type="hidden" name="_subject" :value="name + ' ' + surname">
+          <input type="hidden" name="_next" value="https://192.168.73.63:5173/">
+          <input type="hidden" name="_subject" :value="name.content + ' ' + surname.content">
           <input type="hidden" name="_template" value="table">
 
           <!-- Email cells -->
-          <input type="hidden" name="Nome" :value="name">
-          <input type="hidden" name="Cognome" :value="surname">
-          <input type="hidden" name="Email" :value="email">
-          <input type="hidden" name="Cellulare" :value="tel">
-          <input type="hidden" name="Messaggio" :value="message">
-          <input type="hidden" name="Allegati" :value="file">
+          <input type="hidden" name="Nome" :value="name.content">
+          <input type="hidden" name="Cognome" :value="surname.content">
+          <input type="hidden" name="Email" :value="email.content">
+          <input type="hidden" name="Cellulare" :value="tel.content">
+          <input type="hidden" name="Messaggio" :value="textarea.content">
         </form>
-
       </div>
     </template>
   </Modal>
@@ -71,7 +104,7 @@
 // ==============================
 // Import
 // ==============================
-import { ref } from "vue";
+import { computed, reactive, ref, watch } from "vue";
 import { getViewport } from "../utils/screen_size.js";
 
 import Btn from "./Btn.vue";
@@ -84,7 +117,7 @@ import StepProgression from "./StepProgression.vue";
 // ==============================
 // Props, emits
 // ==============================
-const emit = defineEmits('closed');
+const emit = defineEmits(['closed']);
 
 // ==============================
 // Consts
@@ -93,19 +126,109 @@ const device = getViewport();
 const steps = [{ label: 'Chi sei' }, { label: 'Richiesta' }, { label: 'Dettagli' }];
 const active = ref(0);
 
-const name = ref( '' );
-const surname = ref( '' );
-const email = ref( '' );
-const tel = ref( null );
-const file = ref( null );
-const message = ref( '' );
-const options = [ 'Opzione 1', 'Opzione 2', 'Opzione 3' ];
+const name = reactive({
+  content: '',
+  error: false,
+});
+const surname = reactive({
+  content: '',
+  error: false,
+});
+const email = reactive({
+  content: '',
+  error_msg: '',
+  error: false,
+});
+const tel = reactive({
+  content: '',
+  error_msg: '',
+  error: false,
+});
+const file = reactive({
+  content: '',
+  error: false,
+});
+const textarea = reactive({
+  content: '',
+  error: false,
+});
+const dropdown = reactive({
+  selection: '',
+  options: [ 'Opzione 1', 'Opzione 2', 'Opzione 3' ],
+  error: false,
+});
 
+const emailReg = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const telReg = /^(?:(?:\+|00)39)?\s*(?:\d{2}\s*){2}\d{6,7}$/;
+const isEmailValid = computed(() => email.content.length && emailReg.test(email.content) );
+const isTelValid = computed(() => tel.content.length && telReg.test(tel.content) );
+const isStepOneValid = computed(() => name.content && surname.content && ( email.content && isEmailValid.value || tel.content && isTelValid.value ));
+const isStepTwoValid = computed(() => dropdown.selection.length );
 
-function onFileLoad(f){
-  file.value = f[0];
-  console.log( file.value );
+// ==============================
+// Functions
+// ==============================
+function onStepOne(e){
+  // Prevent default browser error message
+  e.preventDefault();
+
+  if ( isStepOneValid.value ) {
+    active.value++;
+    return
+  }
+
+  name.error = !name.content ? true : false;
+  surname.error = !surname.content ? true : false;
+  tel.error = !isTelValid.value;
+  email.error = !isEmailValid.value;
+
+  if ( !isEmailValid.value && !isTelValid.value ){
+    email.error_msg = 'Fornire una email o un telefono valido';
+    tel.error_msg = 'Fornire una email o un telefono valido';
+    return
+  }
 }
+
+function onStepTwo(e){
+  // Prevent default browser error message
+  e.preventDefault();
+
+  if ( isStepTwoValid.value ) {
+    active.value++;
+    return
+  }
+
+  dropdown.error = !dropdown.selection ? true : false;
+}
+
+// ==============================
+// Watch
+// ==============================
+watch( () => name.content, (newVal) => {
+  if (newVal.length) {
+    name.error = false;
+  }
+});
+
+watch( () => surname.content, (newVal) => {
+  if (newVal.length) {
+    surname.error = false;
+  }
+});
+
+watch( [() => email.content, () => tel.content ], (newValEmail, newValTel) => {
+  if (newValEmail.length || newValTel.length) {
+    tel.error = false;
+    email.error = false;
+  }
+});
+
+watch( () => dropdown.selection, (newVal) => {
+  if (newVal.length){
+    dropdown.error = false;
+  }
+});
+
 </script>
 
 <style lang="scss" scoped>

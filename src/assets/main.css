@@ -240,10 +240,6 @@ code {
   letter-spacing: 0.2rem;
 }
 
-.fadein {
-  transition-duration: 500ms;
-}
-
 .hide {
   display: none;
 }
@@ -310,7 +306,7 @@ svg {
 }
 
 .fadeout {
-  animation: fadein 500ms reverse;
+  animation: fadein 500ms linear reverse;
 }
 
 @keyframes fadein {

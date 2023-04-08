@@ -27,6 +27,7 @@
   --font-dark: var(--pickled-bluewood);
   --white: rgb(240, 240, 255); 
   --black: rgb(17, 17, 17);
+  --error-color: rgb(209, 44, 44);
 
   --radius-xl: 2.6rem;
   --radius-l: 1.8rem;

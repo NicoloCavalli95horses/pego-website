@@ -19,7 +19,7 @@ import Btn from "./Btn.vue";
 // Props
 // ==============================
 const show = ref(false);
-const emits = defineEmits(["ontop"]);
+const emit = defineEmits(["ontop"]);
 
 // ==============================
 // Functions
@@ -27,7 +27,7 @@ const emits = defineEmits(["ontop"]);
 function onTopClick() {
   document.body.scrollTop = 0; // safari
   document.documentElement.scrollTop = 0; // chrome, firefox, opera
-  emits("ontop");
+  emit("ontop");
 }
 
 function onScroll() {

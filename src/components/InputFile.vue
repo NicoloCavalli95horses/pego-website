@@ -11,8 +11,8 @@
     class="display-none"
     ref="input_ref"
     type="file"
+    name="Allegato"
     accept="image/png, image/jpeg"
-    multiple
     @change="e => onFileUpload(e)"
   />
 </template>
@@ -29,9 +29,10 @@ import { onMounted } from "@vue/runtime-core";
 // ==============================
 const props = defineProps({
   placeholder: String,
+  is_required: Boolean,
 });
 
-const emits = defineEmits(["upload"]);
+const emit = defineEmits(["upload"]);
 
 // ==============================
 // Variables
@@ -44,8 +45,7 @@ const file = ref( null );
 // ==============================
 function onFileUpload( e ){
   file.value = e.target.files;
-  console.log( file.value );
-  emits('upload', file.value);
+  emit('upload', file.value);
 }
 
 //==============================

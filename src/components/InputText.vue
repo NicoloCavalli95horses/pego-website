@@ -2,21 +2,27 @@
   <!-- text input -->
   <template v-if="input_type == 'text'">
     <label> {{ placeholder }}<template v-if="is_required">*</template> </label>
+    <div class="input-wrapper">
       <input
         ref="input_ref"
         type="text"
         autocomplete="off"
+        :class="{ 'error': error }"
         :value="modelValue"
-        :name="name"
         :required="is_required"
         :placeholder="placeholder"
         @input="$emit('update:modelValue', $event.target.value)"
       />
+      <div v-if="error" class="warning-text">
+        <label>{{ error_message || 'campo obbligatorio' }}</label>
+      </div>
+    </div>
   </template>
-  
+
   <!-- tel input -->
   <template v-else-if="input_type == 'tel'">
     <label> {{ placeholder }}<template v-if="is_required">*</template> </label>
+    <div class="input-wrapper">
       <input
         ref="input_ref"
         type="tel"
@@ -24,27 +30,37 @@
         minlength="10"
         maxlength="10"
         autocomplete="off"
+        :class="{ 'error': error }"
         :value="modelValue"
         :required="is_required"
         :placeholder="placeholder"
-        pattern="^(\+39)?\s?\d{3}\s?\d{3}\s?\d{4}$"
         @input="$emit('update:modelValue', $event.target.value)"
       />
+      <div v-if="error" class="warning-text">
+        <label>{{ error_message || 'campo obbligatorio' }}</label>
+      </div>
+    </div>
   </template>
-  
+
   <!-- textarea -->
   <template v-else-if="input_type == 'textarea'">
     <label> {{ placeholder }}<template v-if="is_required">*</template> </label>
-    <textarea
-      cols="30"
-      rows="30"
-      autocomplete="off"
-      :value="modelValue"
-      :required="is_required"
-      :placeholder="placeholder"
-      @input="$emit('update:modelValue', $event.target.value)"
-    >
-    </textarea>
+    <div class="input-wrapper">
+      <textarea
+        cols="30"
+        rows="30"
+        autocomplete="off"
+        :class="{ 'error': error }"
+        :value="modelValue"
+        :required="is_required"
+        :placeholder="placeholder"
+        @input="$emit('update:modelValue', $event.target.value)"
+      >
+      </textarea>
+      <div v-if="error" class="warning-text textarea">
+        <label>{{ error_message || 'campo obbligatorio' }}</label>
+      </div>
+    </div>
   </template>
 </template>
 
@@ -61,14 +77,16 @@ import { onMounted } from "@vue/runtime-core";
 const props = defineProps({
   input_type: {
     type: String,
-    default: 'text'
+    default: "text",
   },
   modelValue: [String, Number],
   placeholder: String,
   is_required: Boolean,
+  error: Boolean,
+  error_message: String
 });
 
-const emits = defineEmits(["update:modelValue"]);
+const emit = defineEmits(["update:modelValue"]);
 
 // ==============================
 // Variables
@@ -86,35 +104,60 @@ onMounted(() => {
 </script>
 
 <style lang="scss" scoped>
-input, textarea {
-  box-sizing: border-box;
-  width: 100%;
-  border-radius: 1.2rem;
-  outline: none;
-  border: none;
-  caret-color: var(--primary);
-  font-size: 1.8rem;
-  &:focus {
-    border: 0.2rem solid var(--primary);
+.input-wrapper {
+  position: relative;
+  input, textarea {
+    box-sizing: border-box;
+    width: 100%;
+    border-radius: 1.2rem;
+    outline: none;
+    border: none;
+    caret-color: var(--primary);
+    font-size: 1.8rem;
+    &:focus {
+      border: 0.2rem solid var(--primary);
+    }
+    &::placeholder {
+      filter: grayscale(60%);
+      opacity: 0.7;
+    }
+    &.error {
+      border: 2px solid var(--error-color);
+      &::placeholder {
+        color: var(--error-color);
+      }
+    }
   }
-  &::placeholder {
-    filter: grayscale(60%);
-    opacity: 0.7;
+
+  input {
+    padding: 0 1.2rem;
+    height: 3.5rem;
   }
-}
 
-input {
-  padding: 0 1.2rem;
-  height: 3.5rem;
-}
+  textarea {
+    height: 200px;
+    padding: 1rem 1.2rem;
+    resize: none;
+    &::placeholder {
+      filter: grayscale(60%);
+      opacity: 0.7;
+    }
+  }
 
-textarea {
-  height: 200px;
-  padding: 1rem 1.2rem;
-  resize: none;
-  &::placeholder {
-    filter: grayscale(60%);
-    opacity: 0.7;
+  .warning-text {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translate(-2rem, -50%);
+    &.textarea {
+      top: 0;
+      transform: translate(-2rem, 2rem);
+    }
+
+    label {
+      font-size: 1.3rem;
+      color: var(--error-color);
+    }
   }
 }
 </style>
