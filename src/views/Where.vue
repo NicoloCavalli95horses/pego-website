@@ -78,9 +78,9 @@
       </div>
     </div>
 
-    <div class="footer">
+    <template #footer>
       <Btn :bg="false" text="chiudi" @click="show.modal = false; filter = ''; "/>
-    </div>
+    </template>
   </Modal>
 </template>
 
@@ -242,11 +242,13 @@ const filteredCities = computed(() =>
   width: 100%;
   height: 40rem;
   overflow-y: auto;
+  box-shadow: inset 0 0 1.5rem rgba(0, 0, 0, 0.3);
   .city {
     display: flex;
     align-items: center;
-    height: 3.5rem;
-    padding-left: 1rem;
+    height: 4rem;
+    padding-left: 2rem;
+    text-transform: uppercase;
     &:nth-of-type(odd) {
       background-color: var(--footer-bg);
     }

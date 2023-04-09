@@ -94,6 +94,7 @@
           <input type="hidden" name="Cognome" :value="surname.content">
           <input type="hidden" name="Email" :value="email.content">
           <input type="hidden" name="Cellulare" :value="tel.content">
+          <input type="hidden" name="Marchio" :value="dropdown.selection">
           <input type="hidden" name="Messaggio" :value="textarea.content">
         </form>
       </div>
@@ -156,7 +157,7 @@ const textarea = reactive({
 });
 const dropdown = reactive({
   selection: '',
-  options: [ 'Opzione 1', 'Opzione 2', 'Opzione 3' ],
+  options: [ 'Palazzetti', 'MCZ', 'Cadel', 'Anselmo Cola', 'Last Calor', 'Royal', 'Freepoint', 'Termovana', 'Red', 'Brisach', 'Altro (non incluso)' ],
   error: false,
 });
 

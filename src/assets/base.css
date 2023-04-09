@@ -40,6 +40,8 @@
 
   --nav-height-desktop: 10rem;
   --nav-height-mobile: 7rem;
+
+  --box-shadow: var(--black) 0px 2rem 3rem -1rem;
 }
 
 * {

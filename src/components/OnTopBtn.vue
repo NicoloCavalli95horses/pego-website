@@ -51,6 +51,8 @@ onUnmounted(() => {
   z-index: 1;
   right: 2.2rem;
   bottom: 2.2rem;
+  box-shadow: var(--box-shadow);
+  border-radius: var(--radius-xl);
   svg {
     width: 1.8rem;
     height: 1.8rem;

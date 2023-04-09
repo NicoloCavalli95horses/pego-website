@@ -94,6 +94,7 @@ $header-h: 8rem;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    box-shadow: var(--box-shadow);
     header {
       display: flex;
       align-items: center;

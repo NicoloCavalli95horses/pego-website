@@ -2,7 +2,7 @@
   <Modal
     title="Grazie per averci contattato"
     :width="device != 'mobile' ? 50 : undefined"
-    :height="device != 'mobile' ? 50 : undefined"
+    :height="device != 'mobile' ? 20 : undefined"
     :click_out_close="true"
     :full_size="device == 'mobile'"
     @closed="$router.push('/')"

@@ -1,5 +1,5 @@
 <template>
-  <div class="logo">
+  <div class="logo" @click="$router.push('/')">
     <h4>S.T.A. di Pegorer</h4>
   </div>
 </template>

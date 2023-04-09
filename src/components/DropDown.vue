@@ -1,22 +1,22 @@
 <template>
   <label> {{ title }}<template v-if="is_required">*</template> </label>
   <div class="dd-wrapper" :class="{ 'active': modelValue, 'error' : error }" @click="show = !show">
-    <p :class="{ 'error': error }">
-      {{ modelValue || (error ? "Campo obbligatorio" : "Seleziona una opzione") }}
-    </p>
+    <p :class="{ 'error': error }"> {{ modelValue || (error ? "Campo obbligatorio" : "Seleziona una opzione") }} </p>
     <Icon icon="fa-solid fa-chevron-right" :class="{ 'rotate': show }" />
-
     <template v-if="show">
-      <div
-        v-for="(opt, i) of options"
-        :key="opt"
-        class="option"
-        :class="{ 'fadein': show }"
-        :style="{ 'top': 5 * (i + 1) + 'rem' }"
-        @click="(e) => onOptionClick(e, opt)"
-      >
+      <div class="options" :style="{ 'height' :  max_options * 5 + 'rem' }">
+        <div
+          v-for="(opt, i) of options"
+          :key="opt"
+          class="option"
+          :class="{ 'active' : modelValue == opt }"
+          :style="{ 'top': 5 * (i + 1) + 'rem' }"
+          @click="(e) => onOptionClick(e, opt)"
+        >
         <p>{{ opt }}</p>
+        <Icon v-if="modelValue == opt" icon="fa-solid fa-check" />
       </div>
+    </div>
     </template>
   </div>
 </template>
@@ -31,11 +31,16 @@ import { ref } from "vue";
 // Props
 // ==============================
 const props = defineProps({
+  modelValue: [String, Number],
   title: String,
+  error: Boolean,
   options: Array,
   is_required: Boolean,
-  modelValue: [String, Number],
-  error: Boolean,
+  max_options: {
+    type: Number,
+    default: 4
+  }
+
 });
 
 const emit = defineEmits(["update:modelValue"]);
@@ -78,43 +83,49 @@ function onOptionClick(e, option) {
   }
   svg {
     font-size: 2.2rem;
-    transition-duration: var(--transition-medium);
+    transition-duration: var(--transition-fast);
   }
   .rotate {
     transition-duration: var(--transition-medium);
     transform: rotate(90deg);
   }
   p {
+    text-transform: uppercase;
     &.error {
       color: var(--error-color);
     }
   }
-  .option {
-    display: flex;
-    align-items: center;
+  .options {
     position: absolute;
     width: 100%;
-    height: 5rem;
-    background-color: var(--background);
-    z-index: 1;
+    top: calc( 100% + 1.2rem);
     left: 0;
-    border-bottom: 0.2rem solid rgba(255, 255, 255, 0.1);
-    box-sizing: border-box;
-    transition-duration: var(--transition-medium);
-    &:hover {
-      filter: brightness(110%);
-      background-color: var(--primary);
+    z-index: 1;
+    overflow-y: scroll;
+    box-shadow: rgba(0, 0, 0, 0.25) 0 1.4rem 2.8rem, rgba(0, 0, 0, 0.22) 0 1rem 1rem;
+    .option {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 5rem;
+      box-sizing: border-box;
+      background-color: var(--background);
       transition-duration: var(--transition-medium);
-    }
-    &:first-of-type {
-      border-radius: var(--radius-s) var(--radius-s) 0 0;
-    }
-    &:last-of-type {
-      border-radius: 0 0 var(--radius-s) var(--radius-s);
-      border-top: none;
-    }
-    p {
-      margin-left: 1.8rem;
+      &:hover {
+        filter: brightness(110%);
+        background-color: var(--primary);
+        transition-duration: var(--transition-medium);
+      }
+      &:nth-of-type(odd):not(:hover) {
+        background-color: var(--footer-bg);
+      }
+      &.active {
+        background-color: var(--primary) !important;
+      }
+      p {
+        margin-left: 1.8rem;
+        text-transform: uppercase;
+      }
     }
   }
 }
