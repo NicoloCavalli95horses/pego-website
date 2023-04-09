@@ -6,7 +6,7 @@
       <input
         ref="input_ref"
         type="text"
-        autocomplete="off"
+        autocomplete="none"
         :class="{ 'error': error }"
         :value="modelValue"
         :required="is_required"
@@ -29,7 +29,7 @@
         size="10"
         minlength="10"
         maxlength="10"
-        autocomplete="off"
+        autocomplete="none"
         :class="{ 'error': error }"
         :value="modelValue"
         :required="is_required"
@@ -47,9 +47,7 @@
     <label> {{ placeholder }}<template v-if="is_required">*</template> </label>
     <div class="input-wrapper">
       <textarea
-        cols="30"
-        rows="30"
-        autocomplete="off"
+        autocomplete="none"
         :class="{ 'error': error }"
         :value="modelValue"
         :required="is_required"
@@ -138,7 +136,7 @@ onMounted(() => {
   }
 
   textarea {
-    height: 200px;
+    height: 18rem;
     padding: 1rem 1.2rem;
     resize: none;
     &::placeholder {

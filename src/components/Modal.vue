@@ -11,6 +11,9 @@
         <!-- Header -->
         <header>
           <h3>{{ title }}</h3>
+          <div class="top-24 bottom-24">
+            <slot name="header" />
+          </div>
         </header>
         <!-- Body -->
         <div class="body">
@@ -80,12 +83,9 @@ onUnmounted(() => {
 </script>
 
 <style lang="scss" scoped>
-$header-h: 8rem;
 .backdrop {
   .modal {
     border-radius: var(--radius-s);
-    display: flex;
-    flex-direction: column;
     padding: 2.2rem 2.6rem;
     justify-content: space-around;
     gap: 2.2rem;
@@ -95,23 +95,22 @@ $header-h: 8rem;
     left: 50%;
     transform: translate(-50%, -50%);
     box-shadow: var(--box-shadow);
-    header {
-      display: flex;
-      align-items: center;
-      height: $header-h;
-    }
     footer {
       align-self: flex-end;
     }
     &.full-size {
       position: fixed;
       width: 100%;
+      height: 100%;
       top: 0;
       left: 0;
       transform: none;
       box-sizing: border-box;
+
       .body {
-        min-height: calc(100vh - $header-h);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
       }
     }
   }

@@ -90,7 +90,6 @@ function onOptionClick(e, option) {
     transform: rotate(90deg);
   }
   p {
-    text-transform: uppercase;
     &.error {
       color: var(--error-color);
     }

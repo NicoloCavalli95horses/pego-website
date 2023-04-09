@@ -2,19 +2,20 @@
   <Modal
     title="Grazie per averci contattato"
     :width="device != 'mobile' ? 50 : undefined"
-    :height="device != 'mobile' ? 20 : undefined"
     :click_out_close="true"
     :full_size="device == 'mobile'"
     @closed="$router.push('/')"
   >
     <template #default>
-      <h4>
+      <p>
         Il tuo messaggio è stato inviato con successo, verrai ricontattato nei
         prossimi giorni.
-      </h4>
+      </p>
     </template>
     <template #footer>
-      <Btn :bg="false" text="chiudi" @click="$router.push('/')" />
+      <div class="btn top-24">
+        <Btn :bg="false" text="chiudi" @click="$router.push('/')" />
+      </div>
     </template>
   </Modal>
 </template>
@@ -32,3 +33,12 @@ import { getViewport } from "../utils/screen_size.js";
 // ==============================
 const device = getViewport();
 </script>
+
+<style lang="scss" scoped>
+.btn {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+</style>
