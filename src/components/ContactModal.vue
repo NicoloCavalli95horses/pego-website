@@ -73,55 +73,49 @@
             </template>
             <template v-if="active == 2">
               <InputText
-                placeholder="Provincia"
-                v-model="district.content"
-                :is_required="true"
-                :error="district.error"
-              />
-              <InputText
                 placeholder="Comune"
                 v-model="city.content"
                 :is_required="true"
                 :error="city.error"
               />
               <InputText
-                placeholder="Cap"
-                v-model="cap.content"
+                placeholder="Indirizzo"
+                v-model="address.content"
                 :is_required="true"
-                :error="cap.error"
+                :error="address.error"
+              />
+              <InputText
+                placeholder="Numero"
+                v-model="houseNumber.content"
+                input_type="tel"
+                :is_required="true"
+                :error="houseNumber.error"
               />
             </template>
             <template v-if="active == 3">
               <DropDown
                 title="Seleziona marchio"
-                v-model="dropdown.selection"
+                v-model="system.brand.content"
                 :is_required="true"
-                :options="dropdown.options"
-                :error="dropdown.error"
+                :options="system.brand.options"
+                :error="system.brand.error"
               />
-              <DropDown
-                title="Modello"
-                v-model="dropdown.selection"
-                :is_required="true"
-                :options="dropdown.options"
-                :error="dropdown.error"
+              <InputText
+                placeholder="Modello"
+                v-model="system.model.content"
+                :error="system.model.error"
               />
-              <DropDown
-                title="Matricola"
-                v-model="dropdown.selection"
-                :is_required="true"
-                :options="dropdown.options"
-                :error="dropdown.error"
+              <InputText
+                placeholder="Matricola"
+                v-model="system.register.content"
+                :error="system.register.error"
               />
-              <!-- <InputText
-                input_type="date"
-                v-model="date.content"
-                placeholder="Anno di installazione"
-                :error="date.error"
-              /> -->
-              <!-- MODELLO -->
-              <!-- MATRICOLA -->
-              <!-- ANNO DI INSTALLAZIONE -->
+              <InputText
+                placeholder="Anno installazione"
+                v-model="system.year.content"
+                input_type="tel"
+                :error="system.year.error"
+              />
             </template>
             <template v-if="active == 4">
               <InputFile
@@ -162,7 +156,7 @@
           </div>
 
           <input type="hidden" name="_next" value="https://192.168.73.63:5173/thanks">
-          <input type="hidden" name="_subject" :value="request.selected + ' ' + name.content + ' ' + surname.content">
+          <input type="hidden" name="_subject" :value="getEmailObject">
           <input type="hidden" name="_template" value="table">
 
           <!-- Email cells -->
@@ -174,11 +168,14 @@
           <input type="hidden" name="Email" :value="email.content">
           <input type="hidden" name="Cellulare" :value="tel.content">
           
-          <input type="hidden" name="Provincia" :value="district.content">
           <input type="hidden" name="Città" :value="city.content">
-          <input type="hidden" name="CAP" :value="cap.content">
+          <input type="hidden" name="Via" :value="address.content">
+          <input type="hidden" name="Numero civico" :value="houseNumber.content">
 
-          <input type="hidden" name="Marchio" :value="dropdown.selection">
+          <input type="hidden" name="Marchio" :value="system.brand.content">
+          <input type="hidden" name="Modello" :value="system.model.content">
+          <input type="hidden" name="Matricola" :value="system.register.content">
+          <input type="hidden" name="Anno installazione" :value="getSystemYear">
 
           <input type="hidden" name="Ulteriori informazioni" :value="textarea.content">
         </form>
@@ -221,8 +218,8 @@ const steps = [
 ];
 
 const request = reactive({
-  options: [ 'Manutenzione stagionale', 'Riparazione', 'Informazioni' ],
-  selected: '',
+  options: [ 'Riparazione', 'Manutenzione stagionale', 'Informazioni' ],
+  selected: 'Riparazione',
   content: '',
   error: false
 });
@@ -244,15 +241,15 @@ const tel = reactive({
   error_msg: '',
   error: false,
 });
-const district = reactive({
-  content: '',
-  error: false,
-});
 const city = reactive({
   content: '',
   error: false,
 });
-const cap = reactive({
+const address = reactive({
+  content: '',
+  error: false,
+});
+const houseNumber = reactive({
   content: '',
   error: false,
 });
@@ -268,25 +265,45 @@ const textarea = reactive({
   content: '',
   error: false,
 });
-const dropdown = reactive({
-  selection: '',
-  options: [ 'Palazzetti', 'MCZ', 'Cadel', 'Anselmo Cola', 'Last Calor', 'Royal', 'Freepoint', 'Termovana', 'Red', 'Brisach', 'Altro (non incluso)' ],
-  error: false,
+const system = reactive({
+  brand: {
+    content: '',
+    options: [ 'Palazzetti', 'MCZ', 'Cadel', 'Anselmo Cola', 'Last Calor', 'Royal', 'Freepoint', 'Termovana', 'Red', 'Brisach', 'Altro (non incluso)' ],
+    error: false,
+  },
+  model: {
+    content: '',
+    error: false,
+  },
+  register: {
+    content: '',
+    error: false
+  },
+  year: {
+    content: '',
+    error: false
+  }
 });
 
 const emailReg = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const telReg = /^(?:(?:\+|00)39)?\s*(?:\d{2}\s*){2}\d{6,7}$/;
-const capReg = /^[0-9]{5}$/;
+const houseNumberReg = /^\d+(\s*[a-zA-Z]?)$/;
+const isValidSystemYear = /^(19|20)\d{2}$/;
 
 const isEmailValid = computed(() => email.content.length && emailReg.test(email.content) );
 const isTelValid = computed(() => tel.content.length && telReg.test(tel.content) );
-const isCapValid = computed(() => cap.content && capReg.test(cap.content));
+const isHouseNumberValid = computed(() => houseNumber.content && houseNumberReg.test(houseNumber.content));
 
 const isStepZeroValid = computed(() => request.selected.length && request.content.length )
 const isStepOneValid = computed(() => name.content && surname.content && ( email.content && isEmailValid.value || tel.content && isTelValid.value ));
-const isStepTwoValid = computed(() => district.content && city.content && isCapValid.value );
-const isStepThreeValid = computed(() => dropdown.selection.length );
+const isStepTwoValid = computed(() => address.content && city.content && isHouseNumberValid.value );
+const isStepThreeValid = computed(() => system.brand.content.length );
 
+const getEmailObject = computed(() => request.selected + ' - ' + name.content + ' ' + surname.content );
+const getSystemYear = computed(() => {
+  let year = parseInt( system.year.content );
+  return `${ year }, (${new Date().getFullYear() - year} anni fa)`
+});
 // ==============================
 // Functions
 // ==============================
@@ -332,9 +349,9 @@ function onStepTwo(e){
     return
   }
 
-  district.error = !district.content ? true : false;
+  address.error = !address.content ? true : false;
   city.error = !city.content ? true : false;
-  cap.error = !isCapValid.value ? true : false;
+  houseNumber.error = !isHouseNumberValid.value ? true : false;
 }
 
 function onStepThree(e){
@@ -346,7 +363,7 @@ function onStepThree(e){
     return
   }
 
-  dropdown.error = !dropdown.selection ? true : false;
+  system.brand.error = !system.brand.content ? true : false;
 }
 
 // ==============================
@@ -377,9 +394,9 @@ watch( [() => email.content, () => tel.content ], (newValEmail, newValTel) => {
   }
 });
 
-watch( () => dropdown.selection, (newVal) => {
+watch( () => system.brand.content, (newVal) => {
   if (newVal.length){
-    dropdown.error = false;
+    system.brand.error = false;
   }
 });
 

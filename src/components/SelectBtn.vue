@@ -30,7 +30,7 @@ const emit = defineEmits(["update:modelValue"]);
 <style lang="scss" scoped>
 .wrapper {
   width: 100%;
-  height: 5.5rem;
+  height: 6.5rem;
   display: flex;
   align-items: center;
   overflow: hidden;
