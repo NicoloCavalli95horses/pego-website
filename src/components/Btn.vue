@@ -24,7 +24,7 @@ button {
   border: none;
   padding: 1.8rem 2.8rem;
   border-radius: var(--radius-xl);
-  letter-spacing: 4px;
+  letter-spacing: 0.4rem;
   cursor: pointer;
   transition-duration: var(--transition-medium);
   background-color: transparent;

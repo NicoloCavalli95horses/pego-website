@@ -27,6 +27,24 @@
         >
           <div class="inputs">
             <template v-if="active == 0">
+              <SelectBtn
+                class="top-12 bottom-12"
+                v-model="request.selected"
+                placeholder="Tipo di richiesta"
+                :options="request.options"
+                :is_required="true"
+                :error="request.error"
+              />
+              <InputText
+                placeholder="Descrivi la tua richiesta"
+                v-model="request.content"
+                input_type="textarea"
+                :is_required="true"
+                :error_message="request.error_msg"
+                :error="request.error"
+              />
+            </template>
+            <template v-if="active == 1">
               <InputText
                 placeholder="Nome"
                 v-model="name.content"
@@ -53,7 +71,7 @@
                 :error="tel.error"
               />
             </template>
-            <template v-if="active == 1">
+            <template v-if="active == 2">
               <InputText
                 placeholder="Provincia"
                 v-model="district.content"
@@ -73,7 +91,7 @@
                 :error="cap.error"
               />
             </template>
-            <template v-if="active == 2">
+            <template v-if="active == 3">
               <DropDown
                 title="Seleziona marchio"
                 v-model="dropdown.selection"
@@ -105,7 +123,7 @@
               <!-- MATRICOLA -->
               <!-- ANNO DI INSTALLAZIONE -->
             </template>
-            <template v-if="active == 3">
+            <template v-if="active == 4">
               <InputFile
                 placeholder="Carica una foto"
                 @upload="(f) => file = f"
@@ -123,27 +141,34 @@
           <div class="footer-btns">
             <template v-if="active == 0">
               <Btn :bg="false" text="chiudi" @click="$emit('closed')" />
-              <Btn class="l-12" text="avanti" :def="true" @click="(e) => onStepOne(e)" />
+              <Btn class="l-12" text="avanti" :def="true" @click="(e) => onStepZero(e)" />
             </template>
             <template v-if="active == 1">
               <Btn :bg="false" text="indietro" @click="active--" />
-              <Btn class="l-12" text="avanti" :def="true" @click="(e) => onStepTwo(e)" />
+              <Btn class="l-12" text="avanti" :def="true" @click="(e) => onStepOne(e)" />
             </template>
             <template v-if="active == 2">
               <Btn :bg="false" text="indietro" @click="active--" />
-              <Btn class="l-12" text="avanti" :def="true" @click="(e) => onStepThree(e)" />
+                <Btn class="l-12" text="avanti" :def="true" @click="(e) => onStepTwo(e)" />
             </template>
             <template v-else-if="active == 3">
+              <Btn :bg="false" text="indietro" @click="active--" />
+              <Btn class="l-12" text="avanti" :def="true" @click="(e) => onStepThree(e)" />
+            </template>
+            <template v-else-if="active == 4">
               <Btn :bg="false" text="indietro" @click="active--" />
               <Btn text="conferma" :def="true" type="submit" />
             </template>
           </div>
 
           <input type="hidden" name="_next" value="https://192.168.73.63:5173/thanks">
-          <input type="hidden" name="_subject" :value="name.content + ' ' + surname.content">
+          <input type="hidden" name="_subject" :value="request.selected + ' ' + name.content + ' ' + surname.content">
           <input type="hidden" name="_template" value="table">
 
           <!-- Email cells -->
+          <input type="hidden" name="Richiesta" :value="request.selected">
+          <input type="hidden" name="Descrizione" :value="request.content">
+
           <input type="hidden" name="Nome" :value="name.content">
           <input type="hidden" name="Cognome" :value="surname.content">
           <input type="hidden" name="Email" :value="email.content">
@@ -170,6 +195,7 @@ import { computed, reactive, ref, watch } from "vue";
 import { getViewport } from "../utils/screen_size.js";
 
 import Btn from "./Btn.vue";
+import SelectBtn from "./SelectBtn.vue";
 import Modal from "./Modal.vue";
 import DropDown from "./DropDown.vue";
 import InputText from "./InputText.vue";
@@ -185,9 +211,21 @@ const emit = defineEmits(['closed']);
 // Consts
 // ==============================
 const device = getViewport();
-const steps = [{ label: 'Chi sei' }, {label:'Da dove vieni'}, { label: 'Dettagli tecnici' }, { label: 'Avanzate' }];
 const active = ref(0);
+const steps = [
+  { label: 'Richiesta' },
+  { label: 'Nominativo' },
+  { label:'Indirizzo' },
+  { label: 'Dettagli tecnici' },
+  { label: 'Opzionale' }
+];
 
+const request = reactive({
+  options: [ 'Manutenzione stagionale', 'Riparazione', 'Informazioni' ],
+  selected: '',
+  content: '',
+  error: false
+});
 const name = reactive({
   content: '',
   error: false,
@@ -244,6 +282,7 @@ const isEmailValid = computed(() => email.content.length && emailReg.test(email.
 const isTelValid = computed(() => tel.content.length && telReg.test(tel.content) );
 const isCapValid = computed(() => cap.content && capReg.test(cap.content));
 
+const isStepZeroValid = computed(() => request.selected.length && request.content.length )
 const isStepOneValid = computed(() => name.content && surname.content && ( email.content && isEmailValid.value || tel.content && isTelValid.value ));
 const isStepTwoValid = computed(() => district.content && city.content && isCapValid.value );
 const isStepThreeValid = computed(() => dropdown.selection.length );
@@ -251,6 +290,18 @@ const isStepThreeValid = computed(() => dropdown.selection.length );
 // ==============================
 // Functions
 // ==============================
+function onStepZero(e) {
+  // Prevent default browser error message
+  e.preventDefault();
+  
+  if ( isStepZeroValid.value ) {
+    active.value++;
+    return
+  }
+
+  request.error = !request.content ? true : false;
+}
+
 function onStepOne(e){
   // Prevent default browser error message
   e.preventDefault();
@@ -301,6 +352,12 @@ function onStepThree(e){
 // ==============================
 // Watch
 // ==============================
+watch( () => request.content, (newVal) => {
+  if (newVal.length) {
+    request.error = false;
+  }
+});
+
 watch( () => name.content, (newVal) => {
   if (newVal.length) {
     name.error = false;
