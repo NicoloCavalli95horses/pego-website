@@ -4,25 +4,28 @@
       <div
         ref="modal_ref"
         class="modal"
-        :class="{ 'full-size' : full_size }"
+        :class="{ 'full-size': full_size }"
         :style="{ 'width': `${width}rem`, 'height': `${height}rem` }"
         @click="(e) => e.stopPropagation()"
       >
-        <!-- Header -->
+        <!-- header -->
         <header>
           <h3>{{ title }}</h3>
           <div class="top-24 bottom-24">
             <slot name="header" />
           </div>
         </header>
-        <!-- Body -->
-        <div class="body">
-          <slot />
+        <!-- content -->
+        <div class="content">
+          <!-- body -->
+          <div class="body">
+            <slot />
+          </div>
+          <!-- footer -->
+          <footer>
+            <slot name="footer" />
+          </footer>
         </div>
-        <!-- Footer -->
-        <footer>
-          <slot name="footer" />
-        </footer>
       </div>
     </div>
   </teleport>
@@ -83,34 +86,56 @@ onUnmounted(() => {
 </script>
 
 <style lang="scss" scoped>
+$header-h: clamp(12rem, 8vw, 20rem);
+$footer-h: 6rem;
+$gap: 2.2rem;
 .backdrop {
   .modal {
     border-radius: var(--radius-s);
-    padding: 2.2rem 2.6rem;
+    padding: $gap 2.6rem;
     justify-content: space-around;
-    gap: 2.2rem;
+    gap: $gap;
     background-color: var(--background);
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     box-shadow: var(--box-shadow);
-    footer {
-      align-self: flex-end;
+    header {
+      width: 100%;
+      height: $header-h;
     }
+    .content {
+      width: 100%;
+      height: calc(100% - $header-h - $gap );
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+
+      .body {
+        width: 100%;
+        flex-grow: 1;
+        padding: $gap 0;
+      }
+      footer {
+        width: 100%;
+        height: $footer-h;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-end;
+      }
+    }
+
     &.full-size {
-      position: fixed;
       width: 100%;
       height: 100%;
       top: 0;
       left: 0;
       transform: none;
       box-sizing: border-box;
-
-      .body {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
+      footer {
+        margin: 2.2rem 0 3.2rem 0;
       }
     }
   }

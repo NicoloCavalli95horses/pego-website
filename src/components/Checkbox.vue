@@ -41,8 +41,8 @@ const emit = defineEmits(["update:modelValue"]);
       }
     }
     .dot {
-      width: 1.5rem;
-      height: 1.5rem;
+      width: 1.8rem;
+      height: 1.8rem;
       border-radius: 50%;
       background-color: var(--font-light);
       box-sizing: border-box;
