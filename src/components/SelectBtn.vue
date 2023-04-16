@@ -60,6 +60,7 @@ const emit = defineEmits(["update:modelValue"]);
       text-align: center;
       text-transform: uppercase;
       letter-spacing: 0.3rem;
+      font-size: clamp(1rem, 3vw, 1.4rem);
       color: var(--font-light);
     }
   }

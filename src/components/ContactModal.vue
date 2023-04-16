@@ -2,7 +2,7 @@
   <Modal
     title="Contattaci"
     :width="device != 'mobile' ? 70 : undefined"
-    :height="device != 'mobile' ? 55 : undefined"
+    :height="device != 'mobile' ? 60 : undefined"
     :click_out_close="true"
     :full_size="device == 'mobile'"
     @closed="$emit('closed')"
@@ -27,10 +27,10 @@
         >
           <div class="inputs">
             <template v-if="active == 0">
-              <SelectBtn
-                class="top-12 bottom-12"
+              <Checkbox
                 v-model="request.selected"
                 placeholder="Tipo di richiesta"
+                type="radio"
                 :options="request.options"
                 :is_required="true"
                 :error="request.error"
@@ -192,7 +192,7 @@ import { computed, reactive, ref, watch } from "vue";
 import { getViewport } from "../utils/screen_size.js";
 
 import Btn from "./Btn.vue";
-import SelectBtn from "./SelectBtn.vue";
+import Checkbox from "./Checkbox.vue";
 import Modal from "./Modal.vue";
 import DropDown from "./DropDown.vue";
 import InputText from "./InputText.vue";
@@ -218,8 +218,8 @@ const steps = [
 ];
 
 const request = reactive({
-  options: [ 'Riparazione', 'Manutenzione stagionale', 'Informazioni' ],
-  selected: 'Riparazione',
+  options: [ 'Riparazione', 'Manutenzione stagionale', 'Informazioni generali' ],
+  selected: '',
   content: '',
   error: false
 });
@@ -288,11 +288,12 @@ const system = reactive({
 const emailReg = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const telReg = /^(?:(?:\+|00)39)?\s*(?:\d{2}\s*){2}\d{6,7}$/;
 const houseNumberReg = /^\d+(\s*[a-zA-Z]?)$/;
-const isValidSystemYear = /^(19|20)\d{2}$/;
+const yearReg = /^(19|20)\d{2}$/;
 
 const isEmailValid = computed(() => email.content.length && emailReg.test(email.content) );
 const isTelValid = computed(() => tel.content.length && telReg.test(tel.content) );
 const isHouseNumberValid = computed(() => houseNumber.content && houseNumberReg.test(houseNumber.content));
+const isValidSystemYear = computed(() => system.year.content && yearReg.test(system.year.content));
 
 const isStepZeroValid = computed(() => request.selected.length && request.content.length )
 const isStepOneValid = computed(() => name.content && surname.content && ( email.content && isEmailValid.value || tel.content && isTelValid.value ));

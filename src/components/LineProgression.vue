@@ -2,12 +2,20 @@
   <div class="bar-wrapper">
     <div class="bar" :style="{ 'width' : active ? `${ 100 * active / steps.length }%` : '10%' }" />
   </div>
-  <div class="label">
-    <p v-if="prev"> {{ prev }} </p>
-    <p class="larger"> {{ steps.at(active).label }}</p>
-    <p> {{ succ }} </p>
-    <p v-if="!prev && steps.at(2).label"> {{ steps.at(2).label }}</p>
-  </div>
+  <template v-if="device == 'mobile'">
+    <div class="wrapper">
+      <p class="larger"> {{ steps.at(active).label }}</p>
+    </div>
+  </template>
+
+  <template v-else>
+    <div class="wrapper">
+      <p v-if="prev"> {{ prev }} </p>
+      <p class="larger"> {{ steps.at(active).label }}</p>
+      <p> {{ succ }} </p>
+      <p v-if="!prev && steps.at(2).label"> {{ steps.at(2).label }}</p>
+    </div>
+  </template>
 </template>
 
 <script setup>
@@ -15,6 +23,7 @@
 // Import
 // ==============================
 import { computed } from "vue";
+import { getViewport } from "../utils/screen_size.js";
 
 // ==============================
 // Props
@@ -27,6 +36,7 @@ const props = defineProps({
 // ==============================
 // Consts
 // ==============================
+const device = getViewport();
 const prev = computed(() => props.active - 1 >= 0 ? props.steps.at(props.active-1).label : false );
 const succ = computed(() => props.active + 1 < props.steps.length ? props.steps.at(props.active+1).label : 'invia');
 </script>
@@ -44,7 +54,7 @@ const succ = computed(() => props.active + 1 < props.steps.length ? props.steps.
     transition-duration: var(--transition-medium);
   }
 }
-.label {
+.wrapper {
   width: 100%;
   display: flex;
   align-items: center;

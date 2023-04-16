@@ -7,13 +7,13 @@
         ref="input_ref"
         type="text"
         autocomplete="none"
-        :class="{ 'error': error }"
+        :class="{ 'error': error && !modelValue }"
         :value="modelValue"
         :required="is_required"
         :placeholder="getPlaceholder"
         @input="$emit('update:modelValue', $event.target.value)"
       />
-      <div v-if="error" class="warning-text" :class="{ 'mobile' : device == 'mobile' }">
+      <div v-if="error && !modelValue" class="warning-text" :class="{ 'mobile' : device == 'mobile' }">
         <label>{{ error_message || 'campo obbligatorio' }}</label>
       </div>
     </div>
@@ -30,13 +30,13 @@
         minlength="10"
         maxlength="10"
         autocomplete="none"
-        :class="{ 'error': error }"
+        :class="{ 'error': error && !modelValue }"
         :value="modelValue"
         :required="is_required"
         :placeholder="getPlaceholder"
         @input="$emit('update:modelValue', $event.target.value)"
       />
-      <div v-if="error" class="warning-text" :class="{ 'mobile' : device == 'mobile' }">
+      <div v-if="error && !modelValue" class="warning-text" :class="{ 'mobile' : device == 'mobile' }">
         <label>{{ error_message || 'campo obbligatorio' }}</label>
       </div>
     </div>
@@ -48,14 +48,14 @@
     <div class="input-wrapper">
       <textarea
         autocomplete="none"
-        :class="{ 'error': error }"
+        :class="{ 'error': error && !modelValue }"
         :value="modelValue"
         :required="is_required"
         :placeholder="getPlaceholder"
         @input="$emit('update:modelValue', $event.target.value)"
       >
       </textarea>
-      <div v-if="error" class="warning-text textarea" :class="{ 'mobile' : device == 'mobile' }">
+      <div v-if="error && !modelValue" class="warning-text textarea" :class="{ 'mobile' : device == 'mobile' }">
         <label>{{ error_message || 'campo obbligatorio' }}</label>
       </div>
     </div>
