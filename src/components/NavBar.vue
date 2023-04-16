@@ -3,6 +3,7 @@
   <nav v-if="device == 'desktop' || device == 'tablet'" class="desktop">
     <Logo />
     <span><a href="#about">Chi siamo</a></span>
+    <span><a href="#where">Dove</a></span>
     <span><a href="#faq">FAQ</a></span>
   </nav>
 

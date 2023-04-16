@@ -16,8 +16,9 @@
   <div class="flex-center flex-wrap">
     <Counter
       label="clienti fidelizzati"
-      :value="86"
-      :animation_time="3000"
+      :value="2000"
+      :plus="true"
+      :animation_time="2000"
       icon="fa-solid fa-users"
     />
     <Counter
@@ -42,8 +43,14 @@
   
   <div class="separator" />
   
+  <!-- Partner section -->
+  <h3 :class="[ device == 'mobile' ? 'bottom-12' : 'bottom-36']" id="partners">Partners</h3>
+  <Partners />
+  
+  <div class="separator" />
+  
   <!-- Where section -->
-  <h3 :class="[ device == 'mobile' ? 'bottom-12' : 'bottom-36']">Dove operiamo</h3>
+  <h3 :class="[ device == 'mobile' ? 'bottom-12' : 'bottom-36']" id="where">Dove operiamo</h3>
   <Where />
 
   <div class="separator" />
@@ -81,6 +88,7 @@ import FAQ from "./FAQ.vue";
 import About from "./About.vue";
 import What from "./What.vue";
 import Where from "./Where.vue";
+import Partners from "./Partners.vue";
 import Btn from "../components/Btn.vue";
 import OnTopBtn from "../components/OnTopBtn.vue";
 import Counter from "../components/Counter.vue";

@@ -1,5 +1,5 @@
 <template>
-  <button :type="type" :class="{ 'disabled': disabled, 'default': def }">
+  <button :type="type" :class="{ 'disabled': disabled, 'default': def, 'shadow' : shadow }">
     <span>{{ text }}</span>
     <slot name="icon" />
   </button>
@@ -14,6 +14,7 @@ const props = defineProps({
   type: String,
   def: Boolean,
   disabled: Boolean,
+  shadow: Boolean,
 });
 </script>
 
@@ -51,6 +52,10 @@ button {
   }
   &.default {
     background-color: var(--primary);
+  }
+
+  &.shadow {
+    box-shadow: var(--box-shadow);
   }
 }
 </style>

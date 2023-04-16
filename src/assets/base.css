@@ -42,6 +42,8 @@
   --nav-height-mobile: 7rem;
 
   --box-shadow: var(--black) 0px 2rem 3rem -1rem;
+  --box-shadow-nav: var(--black) 0px 0rem 3rem -1rem;
+  --box-shadow-footer: var(--black) 0px 0rem 3rem -1rem;
 }
 
 * {
@@ -61,10 +63,18 @@ body {
   width: 100%;
   height: 100vh;
   background-color: var(--background);
+  background: 
+      linear-gradient(135deg,#0000 20.5%, var(--background) 0 29.5%,#0000 0) 0 25px,
+      linear-gradient( 45deg,#0000 8%, var(--background) 0 17%, #0000 0 58%) 50px 0,
+      linear-gradient(135deg,#0000 8%, var(--background) 0 17%, #0000 0 58%, var(--background) 0 67%,#0000 0),        
+      linear-gradient( 45deg,#0000 8%, var(--background) 0 17%, #0000 0 58%, var(--background) 0 67%,#0000 0 83%,var(--background) 0 92%,#0000 0),
+      rgba(39, 50, 72, 0.98);
+  background-size: 100px 100px;
 }
 
 nav {
   background-color: var(--background);
+  box-shadow: var(--box-shadow-nav);
 }
 
 /* Font */

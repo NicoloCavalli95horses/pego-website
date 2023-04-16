@@ -1,7 +1,10 @@
 <template>
   <div class="counter-wrapper" ref="counter_ref">
     <Icon :icon="icon" />
-    <h2><code> {{ counter }} </code></h2>
+    <h2>
+      <code>{{ counter }}</code>
+      <template v-if="plus">+</template>
+    </h2>
     <div class="line" />
     <label>{{ label }}</label>
   </div>
@@ -25,6 +28,7 @@ const props = defineProps({
   value: Number,
   animation_time: Number,
   icon: String,
+  plus: Boolean,
 });
 
 //==============================

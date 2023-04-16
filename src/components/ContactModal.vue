@@ -98,6 +98,14 @@
               :is_required="true"
               :options="system.brand.options"
               :error="system.brand.error"
+              :max_options="5"
+            />
+            <InputText
+              v-if="system.brand.content == OTHER"
+              placeholder="Specificare marchio"
+              v-model="system.other.content"
+              :is_required="true"
+              :error="system.other.error"
             />
             <InputText
               placeholder="Modello"
@@ -130,11 +138,7 @@
           </template>
         </div>
 
-        <input
-          type="hidden"
-          name="_next"
-          value="https://192.168.73.63:5173/thanks"
-        />
+        <input type="hidden" name="_next" value="https://192.168.73.63:5173/thanks" />
         <input type="hidden" name="_subject" :value="getEmailObject" />
         <input type="hidden" name="_template" value="table" />
 
@@ -151,7 +155,8 @@
         <input type="hidden" name="Via" :value="address.content" />
         <input type="hidden" name="Numero civico" :value="houseNumber.content" />
 
-        <input type="hidden" name="Marchio" :value="system.brand.content" />
+        <input v-if="system.brand.content != OTHER" type="hidden" name="Marchio" :value="system.brand.content" />
+        <input v-else type="hidden" name="Marchio (altro)" :value="system.other.content" />
         <input type="hidden" name="Modello" :value="system.model.content" />
         <input type="hidden" name="Matricola" :value="system.register.content" />
         <input type="hidden" name="Anno installazione" :value="getSystemYear" />
@@ -212,6 +217,7 @@
 // ==============================
 import { computed, reactive, ref, watch } from "vue";
 import { getViewport } from "../utils/screen_size.js";
+import { config } from "../utils/config.js";
 
 import Btn from "./Btn.vue";
 import Checkbox from "./Checkbox.vue";
@@ -225,6 +231,8 @@ import LineProgression from "./LineProgression.vue";
 // Props, emits
 // ==============================
 const emit = defineEmits(["closed"]);
+
+const OTHER = 'Altro (non incluso)';  
 
 // ==============================
 // Consts
@@ -290,19 +298,11 @@ const textarea = reactive({
 const system = reactive({
   brand: {
     content: "",
-    options: [
-      "Palazzetti",
-      "MCZ",
-      "Cadel",
-      "Anselmo Cola",
-      "Last Calor",
-      "Royal",
-      "Freepoint",
-      "Termovana",
-      "Red",
-      "Brisach",
-      "Altro (non incluso)",
-    ],
+    options: [ ...config.brand.map(b => b.name), OTHER ],
+    error: false,
+  },
+  other: {
+    content: "",
     error: false,
   },
   model: {
@@ -349,7 +349,10 @@ const isStepOneValid = computed(
 const isStepTwoValid = computed(
   () => address.content && city.content && isHouseNumberValid.value
 );
-const isStepThreeValid = computed(() => system.brand.content.length);
+const isStepThreeValid = computed(() => 
+  ( system.brand.content.length && system.brand.content != OTHER )
+  || ( system.brand.content == OTHER && system.other.content.length )
+);
 
 const getEmailObject = computed(
   () => request.selected + " - " + name.content + " " + surname.content
@@ -418,6 +421,7 @@ function onStepThree(e) {
   }
 
   system.brand.error = !system.brand.content ? true : false;
+  system.other.error = !system.other.content ? true : false;
 }
 
 // ==============================
@@ -462,6 +466,15 @@ watch(
   (newVal) => {
     if (newVal.length) {
       system.brand.error = false;
+    }
+  }
+);
+
+watch(
+  () => system.other.content,
+  (newVal) => {
+    if (newVal.length) {
+      system.other.error = false;
     }
   }
 );

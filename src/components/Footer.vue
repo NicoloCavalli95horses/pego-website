@@ -45,6 +45,7 @@ footer {
   align-items: center;
   justify-content: center;
   background-color: var(--footer-bg);
+  box-shadow: var(--box-shadow-footer);
   .text-wrapper {
     padding: 4rem;
     max-width: 300px;

@@ -161,6 +161,9 @@ onMounted(() => {
       top: 50%;
       left: 0;
       transform: translate(2rem, -50%);
+      &.textarea {
+        top: 2rem;
+      }
     }
 
     label {
