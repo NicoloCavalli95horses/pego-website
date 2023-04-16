@@ -147,7 +147,7 @@ const filteredCities = computed(() =>
 
 .city-list {
   width: 100%;
-  height: 40rem;
+  height: 35rem;
   overflow-y: auto;
   box-shadow: inset 0 0 1.5rem rgba(0, 0, 0, 0.3);
   .city {

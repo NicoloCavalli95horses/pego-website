@@ -7,11 +7,9 @@
     :full_size="device == 'mobile'"
     @closed="$emit('closed')"
   >
-    <template #header>
-      <LineProgression :steps="steps" :active="active" />
-    </template>
-
     <template #default>
+      <LineProgression :steps="steps" :active="active" />
+
       <!-- User info -->
       <form
         action="https://formsubmit.co/1384cf3d2204cf8365f1091212d3525e"
@@ -24,7 +22,7 @@
         @submit="onSubmit()"
         @keydown.enter.prevent="(e) => e.preventDefault()"
       >
-        <div class="inputs">
+        <div class="inputs top-24">
           <template v-if="active == 0">
             <Checkbox
               v-model="request.selected"
@@ -109,11 +107,13 @@
             />
             <InputText
               placeholder="Modello"
+              tooltip="L'indicazione del modello dell'impianto si trova su una apposita etichetta."
               v-model="system.model.content"
               :error="system.model.error"
             />
             <InputText
               placeholder="Matricola"
+              tooltip="La matricola identificativa dell'impianto si trova su una apposita etichetta."
               v-model="system.register.content"
               :error="system.register.error"
             />
@@ -127,11 +127,13 @@
           <template v-if="active == 4">
             <InputFile
               placeholder="Carica una foto"
+              tooltip="Carica una foto dell'impianto o del libretto per aiutarci ad identificare il problema."
               @upload="(f) => (file = f)"
             />
             <InputText
               input_type="textarea"
               v-model="textarea.content"
+              tooltip="Inserire qui ulteriori informazioni utili alla comprensione del problema."
               placeholder="Ulteriori informazioni"
               :error="textarea.error"
             />
@@ -238,7 +240,7 @@ const OTHER = 'Altro (non incluso)';
 // Consts
 // ==============================
 const device = getViewport();
-const active = ref(0);
+const active = ref(4);
 const steps = [
   { label: "Richiesta" },
   { label: "Nominativo" },

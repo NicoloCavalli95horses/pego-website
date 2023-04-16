@@ -1,9 +1,13 @@
 <template>
-  <label class="placeholder"> {{ placeholder }} <template v-if="is_required">*</template> </label>
-  <label for="file-input" class="file-input" :class="{ 'active' : file }">
+  <div class="label-wrapper">
+    <label> {{ placeholder }}<template v-if="is_required">*</template> </label>
+    <div v-if="tooltip"> <Tooltip :text="tooltip" /> </div>
+  </div>
+  <label for="file-input" class="file-input" :class="{ active: file }">
     <Icon icon="fa-solid fa-arrow-up-from-bracket" />
     <p class="l-12">
-      {{ file ? file[0].name : 'Nessun file selezionato (max. 5MB)' }} </p>
+      {{ file ? file[0].name : "Nessun file selezionato (max. 5MB)" }}
+    </p>
   </label>
 
   <input
@@ -13,7 +17,7 @@
     type="file"
     name="Allegato"
     accept="image/png, image/jpeg"
-    @change="e => onFileUpload(e)"
+    @change="(e) => onFileUpload(e)"
   />
 </template>
 
@@ -23,6 +27,7 @@
 // ==============================
 import { ref } from "@vue/reactivity";
 import { onMounted } from "@vue/runtime-core";
+import Tooltip from "./Tooltip.vue";
 
 // ==============================
 // Props
@@ -30,6 +35,7 @@ import { onMounted } from "@vue/runtime-core";
 const props = defineProps({
   placeholder: String,
   is_required: Boolean,
+  tooltip: String,
 });
 
 const emit = defineEmits(["upload"]);
@@ -38,14 +44,14 @@ const emit = defineEmits(["upload"]);
 // Variables
 // ==============================
 const input_ref = ref(undefined);
-const file = ref( null );
+const file = ref(null);
 
 // ==============================
 // Functions
 // ==============================
-function onFileUpload( e ){
+function onFileUpload(e) {
   file.value = e.target.files;
-  emit('upload', file.value);
+  emit("upload", file.value);
 }
 
 //==============================
@@ -67,7 +73,8 @@ onMounted(() => {
   border: 2px solid rgba(255, 255, 255, 0.1);
   cursor: pointer;
   padding: 0 1.5rem;
-  &:focus, &.active {
+  &:focus,
+  &.active {
     border: 0.2rem solid var(--primary);
   }
   &::placeholder {
@@ -79,4 +86,10 @@ onMounted(() => {
   }
 }
 
+.label-wrapper {
+  height: 6rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
 </style>

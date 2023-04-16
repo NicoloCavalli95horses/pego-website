@@ -86,7 +86,7 @@ onUnmounted(() => {
 </script>
 
 <style lang="scss" scoped>
-$header-h: clamp(12rem, 8vw, 20rem);
+$header-h: 6rem;
 $footer-h: 6rem;
 $gap: 2.2rem;
 .backdrop {

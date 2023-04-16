@@ -1,27 +1,45 @@
 <template>
   <!-- text input -->
   <template v-if="input_type == 'text'">
-    <label> {{ placeholder }}<template v-if="is_required">*</template> </label>
+    <div class="label-wrapper">
+      <label>
+        {{ placeholder }}<template v-if="is_required">*</template>
+      </label>
+      <div v-if="tooltip">
+        <Tooltip :text="tooltip" />
+      </div>
+    </div>
     <div class="input-wrapper">
       <input
         ref="input_ref"
         type="text"
         autocomplete="none"
-        :class="{ 'error': error && !modelValue }"
+        :class="{ error: error && !modelValue }"
         :value="modelValue"
         :required="is_required"
         :placeholder="getPlaceholder"
         @input="$emit('update:modelValue', $event.target.value)"
       />
-      <div v-if="error && !modelValue" class="warning-text" :class="{ 'mobile' : device == 'mobile' }">
-        <label>{{ error_message || 'campo obbligatorio' }}</label>
+      <div
+        v-if="error && !modelValue"
+        class="warning-text"
+        :class="{ mobile: device == 'mobile' }"
+      >
+        <label>{{ error_message || "campo obbligatorio" }}</label>
       </div>
     </div>
   </template>
 
   <!-- tel input -->
   <template v-else-if="input_type == 'tel'">
-    <label> {{ placeholder }}<template v-if="is_required">*</template> </label>
+    <div class="label-wrapper">
+      <label>
+        {{ placeholder }}<template v-if="is_required">*</template>
+      </label>
+      <div v-if="tooltip">
+        <Tooltip :text="tooltip" />
+      </div>
+    </div>
     <div class="input-wrapper">
       <input
         ref="input_ref"
@@ -30,33 +48,48 @@
         minlength="10"
         maxlength="10"
         autocomplete="none"
-        :class="{ 'error': error && !modelValue }"
+        :class="{ error: error && !modelValue }"
         :value="modelValue"
         :required="is_required"
         :placeholder="getPlaceholder"
         @input="$emit('update:modelValue', $event.target.value)"
       />
-      <div v-if="error && !modelValue" class="warning-text" :class="{ 'mobile' : device == 'mobile' }">
-        <label>{{ error_message || 'campo obbligatorio' }}</label>
+      <div
+        v-if="error && !modelValue"
+        class="warning-text"
+        :class="{ mobile: device == 'mobile' }"
+      >
+        <label>{{ error_message || "campo obbligatorio" }}</label>
       </div>
     </div>
   </template>
 
   <!-- textarea -->
   <template v-else-if="input_type == 'textarea'">
-    <label> {{ placeholder }}<template v-if="is_required">*</template> </label>
+    <div class="label-wrapper">
+      <label>
+        {{ placeholder }}<template v-if="is_required">*</template>
+      </label>
+      <div v-if="tooltip">
+        <Tooltip :text="tooltip" />
+      </div>
+    </div>
     <div class="input-wrapper">
       <textarea
         autocomplete="none"
-        :class="{ 'error': error && !modelValue }"
+        :class="{ error: error && !modelValue }"
         :value="modelValue"
         :required="is_required"
         :placeholder="getPlaceholder"
         @input="$emit('update:modelValue', $event.target.value)"
       >
       </textarea>
-      <div v-if="error && !modelValue" class="warning-text textarea" :class="{ 'mobile' : device == 'mobile' }">
-        <label>{{ error_message || 'campo obbligatorio' }}</label>
+      <div
+        v-if="error && !modelValue"
+        class="warning-text textarea"
+        :class="{ mobile: device == 'mobile' }"
+      >
+        <label>{{ error_message || "campo obbligatorio" }}</label>
       </div>
     </div>
   </template>
@@ -69,6 +102,7 @@
 import { ref } from "@vue/reactivity";
 import { getViewport } from "../utils/screen_size.js";
 import { computed, onMounted } from "@vue/runtime-core";
+import Tooltip from "./Tooltip.vue";
 
 // ==============================
 // Props
@@ -82,7 +116,8 @@ const props = defineProps({
   placeholder: String,
   is_required: Boolean,
   error: Boolean,
-  error_message: String
+  error_message: String,
+  tooltip: String,
 });
 
 const emit = defineEmits(["update:modelValue"]);
@@ -92,7 +127,9 @@ const emit = defineEmits(["update:modelValue"]);
 // ==============================
 const device = getViewport();
 const input_ref = ref(undefined);
-const getPlaceholder = computed(() => (device.value == 'mobile' && props.error) ? '' : props.placeholder );
+const getPlaceholder = computed(() =>
+  device.value == "mobile" && props.error ? "" : props.placeholder
+);
 
 //==============================
 // Life cycle
@@ -107,7 +144,8 @@ onMounted(() => {
 <style lang="scss" scoped>
 .input-wrapper {
   position: relative;
-  input, textarea {
+  input,
+  textarea {
     box-sizing: border-box;
     width: 100%;
     border-radius: 1.2rem;
@@ -171,5 +209,11 @@ onMounted(() => {
       color: var(--error-color);
     }
   }
+}
+.label-wrapper {
+  height: 6rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 </style>

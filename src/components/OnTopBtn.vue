@@ -2,7 +2,7 @@
   <div class="fixed-right" :class="[show ? 'fade-in' : 'fade-out']">
     <Btn :def="true" @click="onTopClick()">
       <template #icon>
-        <Icon icon="fa-solid fa-chevron-up" />
+        <Icon icon="fa-solid fa-chevron-up" class="svg-18" />
       </template>
     </Btn>
   </div>
@@ -53,10 +53,6 @@ onUnmounted(() => {
   bottom: 2.2rem;
   box-shadow: var(--box-shadow);
   border-radius: var(--radius-xl);
-  svg {
-    width: 1.8rem;
-    height: 1.8rem;
-  }
 }
 
 .fade-in {

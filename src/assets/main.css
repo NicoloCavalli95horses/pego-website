@@ -334,3 +334,8 @@ label {
   padding: 1rem 0;
   color: var(--secondary);
 }
+
+.svg-18 {
+  width: 1.8rem;
+  height: 1.8rem;
+}

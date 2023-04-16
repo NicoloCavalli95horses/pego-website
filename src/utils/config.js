@@ -1,15 +1,45 @@
 const config = {
   brand: [
-    { name: "Anselmo Cola", url: "https://www.colastufe.com/"},
-    { name: "Brisach", url: "https://www.brisach.com/"},
-    { name: "Palazzetti", url: "https://palazzetti.it/"},
-    { name: "Cadel", url: "https://www.cadelsrl.com/"},
-    { name: "Freepoint", url: "https://free-point.it/en/home-2/"},
-    { name: "Last Calor", url: "https://www.nonsolocaldaie.it/84_last-calor"},
-    { name: "MCZ", url: "https://www.mcz.it/it/"},
-    { name: "Royal", url: "https://royal1915.it/"},
-    { name: "Red", url: "https://www.redheating.fr/en/"},
-    { name: "Termovana", url: "https://www.termovana.it/"},
+    {
+      name: "Anselmo Cola",
+      url: "https://www.colastufe.com/",
+    },
+    {
+      name: "Brisach",
+      url: "https://www.brisach.com/",
+    },
+    {
+      name: "Palazzetti",
+      url: "https://palazzetti.it/",
+    },
+    {
+      name: "Cadel",
+      url: "https://www.cadelsrl.com/",
+    },
+    {
+      name: "Freepoint",
+      url: "https://free-point.it/en/home-2/",
+    },
+    {
+      name: "Last Calor",
+      url: "https://www.nonsolocaldaie.it/84_last-calor",
+    },
+    {
+      name: "MCZ",
+      url: "https://www.mcz.it/it/",
+    },
+    {
+      name: "Royal",
+      url: "https://royal1915.it/",
+    },
+    {
+      name: "Red",
+      url: "https://www.redheating.fr/en/",
+    },
+    {
+      name: "Termovana",
+      url: "https://www.termovana.it/",
+    },
   ],
   cities: [
     "Altivole",

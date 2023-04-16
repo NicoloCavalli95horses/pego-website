@@ -1,5 +1,14 @@
 <template>
-  <button :type="type" :class="{ 'disabled': disabled, 'default': def, 'shadow' : shadow }">
+  <button
+    :type="type"
+    :class="{ 
+      'active': active,
+      'disabled': disabled,
+      'default': def,
+      'round' : round,
+      'shadow' : shadow,
+    }"
+  >
     <span>{{ text }}</span>
     <slot name="icon" />
   </button>
@@ -15,6 +24,8 @@ const props = defineProps({
   def: Boolean,
   disabled: Boolean,
   shadow: Boolean,
+  round: Boolean,
+  active: Boolean
 });
 </script>
 
@@ -56,6 +67,15 @@ button {
 
   &.shadow {
     box-shadow: var(--box-shadow);
+  }
+
+  &.round {
+    padding: 1.6rem;
+    border-radius: 50%;
+    &:hover, &.active {
+      filter: none;
+      background-color: var(--footer-bg);
+    }
   }
 }
 </style>
