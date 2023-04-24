@@ -3,11 +3,14 @@
     <label> {{ placeholder }}<template v-if="is_required">*</template> </label>
     <div v-if="tooltip"> <Tooltip :text="tooltip" /> </div>
   </div>
-  <label for="file-input" class="file-input" :class="{ active: file }">
-    <Icon icon="fa-solid fa-arrow-up-from-bracket" />
-    <p class="l-12">
-      {{ file ? file[0].name : "Nessun file selezionato (max. 5MB)" }}
-    </p>
+  <label for="file-input" class="file-input" :class="{ 'active': file }">
+    <div class="flex-center">
+      <Icon icon="fa-solid fa-arrow-up-from-bracket" />
+      <p class="l-12"> {{ getFileName }} </p>
+    </div>
+    <div v-if="file" @click="(e) => onFileDelete(e)">
+      <Icon icon="fa-solid fa-trash" />
+    </div>
   </label>
 
   <input
@@ -26,7 +29,7 @@
 // Import
 // ==============================
 import { ref } from "@vue/reactivity";
-import { onMounted } from "@vue/runtime-core";
+import { computed, onMounted } from "@vue/runtime-core";
 import Tooltip from "./Tooltip.vue";
 
 // ==============================
@@ -38,14 +41,31 @@ const props = defineProps({
   tooltip: String,
 });
 
-const emit = defineEmits(["upload"]);
+const emit = defineEmits([
+  "upload",
+  "delete"
+]);
 
 // ==============================
 // Variables
 // ==============================
 const input_ref = ref(undefined);
 const file = ref(null);
+const MAX_NAME_LENGTH = 20;
 
+const getFileName = computed(() => {
+  let name = '';
+  if ( !file.value ) {
+    name = 'Nessun file (max. 5MB)';
+  } else if ( file.value[0] ) {
+    name = file.value[0].name;
+    if ( name.length >= MAX_NAME_LENGTH ) {
+      name = name.substring(0, MAX_NAME_LENGTH ) + '...';
+    }
+  }
+
+  return name;
+}); 
 // ==============================
 // Functions
 // ==============================
@@ -54,6 +74,11 @@ function onFileUpload(e) {
   emit("upload", file.value);
 }
 
+function onFileDelete(e) {
+  e.preventDefault();
+  file.value = undefined;
+  emit('delete');
+}
 //==============================
 // Life cycle
 //==============================
@@ -68,6 +93,7 @@ onMounted(() => {
 .file-input {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   height: 5rem;
   border-radius: var(--radius-m);
   border: 2px solid rgba(255, 255, 255, 0.1);

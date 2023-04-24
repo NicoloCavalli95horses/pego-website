@@ -59,7 +59,7 @@ function onBackgroundClick(e) {
 }
 .floating {
   width: max-content;
-  max-width: 25rem;
+  max-width: 15rem;
   padding: 1.8rem 2.8rem;
   position: absolute;
   z-index: 1;

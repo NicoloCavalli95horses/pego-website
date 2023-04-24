@@ -133,6 +133,7 @@
               placeholder="Carica una foto"
               tooltip="Carica una foto dell'impianto o del libretto per aiutarci ad identificare il problema."
               @upload="(f) => (file = f)"
+              @delete="file = undefined"
             />
             <InputText
               input_type="textarea"
@@ -244,7 +245,7 @@ const OTHER = 'Altro (non incluso)';
 // Consts
 // ==============================
 const device = getViewport();
-const active = ref(2);
+const active = ref(4);
 const steps = [
   { label: "Richiesta" },
   { label: "Nominativo" },
