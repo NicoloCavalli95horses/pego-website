@@ -3,7 +3,7 @@ const config = {
     {
       name: "Anselmo Cola",
       url: "https://www.colastufe.com/",
-      src: "../public/icons/anselmocola.svg"
+      src: "icons/anselmocola.svg"
     },
     {
       name: "Brisach",
