@@ -2,7 +2,7 @@
   <Modal
     title="Contattaci"
     :width="device != 'mobile' ? 80 : undefined"
-    :height="device != 'mobile' ? 70 : undefined"
+    :height="device != 'mobile' ? 60 : undefined"
     :click_out_close="true"
     :full_size="device == 'mobile'"
     @closed="$emit('closed')"
@@ -72,8 +72,12 @@
             <InputText
               placeholder="Comune"
               v-model="city.content"
+              :tips="city.tips.filter(c => c.includes(city.content.toLowerCase()))"
               :is_required="true"
               :error="city.error"
+              :show_tips="city.show_tips"
+              @focus="city.show_tips = true"
+              @selectedtip="onselectedtip"
             />
             <InputText
               placeholder="Indirizzo"
@@ -240,7 +244,7 @@ const OTHER = 'Altro (non incluso)';
 // Consts
 // ==============================
 const device = getViewport();
-const active = ref(4);
+const active = ref(2);
 const steps = [
   { label: "Richiesta" },
   { label: "Nominativo" },
@@ -275,6 +279,8 @@ const tel = reactive({
 });
 const city = reactive({
   content: "",
+  tips: [ ...config.cities ],
+  show_tips: false,
   error: false,
 });
 const address = reactive({
@@ -426,6 +432,10 @@ function onStepThree(e) {
   system.other.error = !system.other.content ? true : false;
 }
 
+function onselectedtip(val){
+  city.content = val;
+  city.show_tips = false;
+}
 // ==============================
 // Watch
 // ==============================

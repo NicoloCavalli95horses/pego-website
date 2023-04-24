@@ -15,9 +15,11 @@
         type="text"
         autocomplete="none"
         :class="{ error: error && !modelValue }"
-        :value="modelValue"
+        :value="modelValue.toUpperCase()"
         :required="is_required"
         :placeholder="getPlaceholder"
+        @focus="$emit('focus')"
+        @blur="$emit('blur')"
         @input="$emit('update:modelValue', $event.target.value)"
       />
       <div
@@ -27,6 +29,9 @@
       >
         <label>{{ error_message || "campo obbligatorio" }}</label>
       </div>
+     <div v-if="show_tips" class="tips">
+      <div class="tip" v-for="t in tips" :key="t" @click="$emit('selectedtip', t)"> <p>{{ t }}</p> </div>
+    </div>
     </div>
   </template>
 
@@ -52,6 +57,8 @@
         :value="modelValue"
         :required="is_required"
         :placeholder="getPlaceholder"
+        @focus="$emit('focus')"
+        @blur="$emit('blur')"
         @input="$emit('update:modelValue', $event.target.value)"
       />
       <div
@@ -81,6 +88,8 @@
         :value="modelValue"
         :required="is_required"
         :placeholder="getPlaceholder"
+        @focus="$emit('focus')"
+        @blur="$emit('blur')"
         @input="$emit('update:modelValue', $event.target.value)"
       >
       </textarea>
@@ -118,18 +127,23 @@ const props = defineProps({
   error: Boolean,
   error_message: String,
   tooltip: String,
+  show_tips: Boolean,
+  tips: Array,
 });
 
-const emit = defineEmits(["update:modelValue"]);
+const emit = defineEmits([
+  "update:modelValue",
+  "selectedtip",
+  "focus",
+  "blur"
+]);
 
 // ==============================
 // Variables
 // ==============================
 const device = getViewport();
-const input_ref = ref(undefined);
-const getPlaceholder = computed(() =>
-  device.value == "mobile" && props.error ? "" : props.placeholder
-);
+const input_ref = ref( undefined );
+const getPlaceholder = computed(() => device.value == "mobile" && props.error ? "" : props.placeholder );
 
 //==============================
 // Life cycle
@@ -215,5 +229,40 @@ onMounted(() => {
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+
+.tips {
+  position: absolute;
+  width: 100%;
+  z-index: 1;
+  max-height: 20rem;
+  cursor: pointer;
+  user-select: none;
+  overflow-y: scroll;
+  box-shadow: var(--box-shadow);
+  .tip {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 5rem;
+      box-sizing: border-box;
+      background-color: var(--background);
+      transition-duration: var(--transition-medium);
+      &:hover {
+        filter: brightness(110%);
+        background-color: var(--primary);
+        transition-duration: var(--transition-medium);
+      }
+      &:nth-of-type(odd):not(:hover) {
+        background-color: var(--footer-bg);
+      }
+      &.active {
+        background-color: var(--primary) !important;
+      }
+      p {
+        margin-left: 1.8rem;
+        text-transform: uppercase;
+      }
+    }
 }
 </style>
