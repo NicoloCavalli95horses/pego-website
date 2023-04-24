@@ -15,7 +15,7 @@
         type="text"
         autocomplete="none"
         :class="{ error: error && !modelValue }"
-        :value="modelValue.toUpperCase()"
+        :value="display_uppercase ? modelValue.toUpperCase() : modelValue"
         :required="is_required"
         :placeholder="getPlaceholder"
         @focus="$emit('focus')"
@@ -122,13 +122,24 @@ const props = defineProps({
     default: "text",
   },
   modelValue: [String, Number],
+
+  // title of the input text
   placeholder: String,
+
+  // mark input field as required (*), bind an error state and an error message
   is_required: Boolean,
   error: Boolean,
   error_message: String,
+
+  // tooltip message (?)
   tooltip: String,
+
+  // tips to help the user choosing between different fixed options (ex., cities)
   show_tips: Boolean,
   tips: Array,
+
+  // force uppercase
+  display_uppercase: Boolean,
 });
 
 const emit = defineEmits([

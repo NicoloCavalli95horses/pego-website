@@ -1,7 +1,7 @@
 <template>
   <label> {{ title }}<template v-if="is_required">*</template> </label>
   <div class="dd-wrapper" :class="{ 'active': modelValue, 'error' : error }" @click="show = !show">
-    <p :class="{ 'error': error }"> {{ modelValue || (error ? "Campo obbligatorio" : "Seleziona una opzione") }} </p>
+    <p :class="{ 'error': error }"> {{ getLabel }} </p>
     <Icon icon="fa-solid fa-chevron-right" :class="{ 'rotate': show }" />
     <template v-if="show">
       <div class="options" :style="{ 'height' :  max_options * 5 + 'rem' }">
@@ -25,8 +25,26 @@
 // ==============================
 // Import
 // ==============================
-import { ref } from "vue";
+import { computed, ref } from "vue";
 
+// ==============================
+// Consts
+// ==============================
+const getLabel = computed(() => {
+  let label = '';
+
+  if ( props.error ) {
+    label = "Campo obbligatorio";
+  } else {
+    if ( !props.modelValue ) {
+      label = "Seleziona una opzione";
+    } else {
+      label = props.display_uppercase ? props.modelValue.toUpperCase() : props.modelValue;
+    }
+  }
+
+  return label;
+});
 // ==============================
 // Props
 // ==============================
@@ -36,6 +54,7 @@ const props = defineProps({
   error: Boolean,
   options: Array,
   is_required: Boolean,
+  display_uppercase: Boolean,
   max_options: {
     type: Number,
     default: 4

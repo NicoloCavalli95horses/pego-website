@@ -36,6 +36,7 @@
               placeholder="Descrivi la tua richiesta"
               v-model="request.content"
               input_type="textarea"
+              tooltip="Descrivi la tua richiesta."
               :is_required="true"
               :error_message="request.error_msg"
               :error="request.error"
@@ -76,6 +77,7 @@
               :is_required="true"
               :error="city.error"
               :show_tips="city.show_tips"
+              :display_uppercase="true"
               @focus="city.show_tips = true"
               @selectedtip="onselectedtip"
             />
@@ -99,6 +101,7 @@
               v-model="system.brand.content"
               :is_required="true"
               :options="system.brand.options"
+              :display_uppercase="true"
               :error="system.brand.error"
               :max_options="5"
             />
@@ -107,6 +110,7 @@
               placeholder="Specificare marchio"
               v-model="system.other.content"
               :is_required="true"
+              :display_uppercase="true"
               :error="system.other.error"
             />
             <InputText
@@ -245,7 +249,7 @@ const OTHER = 'Altro (non incluso)';
 // Consts
 // ==============================
 const device = getViewport();
-const active = ref(4);
+const active = ref(0);
 const steps = [
   { label: "Richiesta" },
   { label: "Nominativo" },
