@@ -33,7 +33,7 @@ import Chip from "./Chip.vue";
 //==============================
 // Const
 //==============================
-const palazzetti_img = 'icons/palazzetti.jpg';
+const palazzetti_img = 'icons/mcz.png';
 const mcz_img = 'icons/mcz.png';
 </script>
 

@@ -2,7 +2,8 @@
   <div class="wrapper">
     <template v-for="(b, i) in config.brand" :key="i">
       <a :href="b.url" class="brand">
-        <span>{{ b.name }}</span>
+        <img v-if="b.src" :src="b.src" :alt="b.name">
+        <span v-else>{{ b.name }}</span>
       </a>
     </template>
   </div>
@@ -34,7 +35,11 @@ const device = getViewport();
     height: 14rem;
     border-radius: var(--radius-s);
     border: 0.1rem solid var(--font-light);
+    background-color: white;
     margin: 0.5rem;
+    box-sizing: border-box;
+    padding: 0.5rem;
+    overflow: hidden;
     cursor: pointer;
     transition-duration: var(--transition-medium);
     &:hover {
@@ -42,9 +47,15 @@ const device = getViewport();
       transition-duration: var(--transition-medium);
     }
     span {
+      color: var(--font-dark);
       text-align: center;
       text-transform: uppercase;
       letter-spacing: 0.4rem;
+    }
+    img {
+      width: 100%;
+      height: auto;
+      object-fit: contain;
     }
   }
 }
