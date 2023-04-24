@@ -14,7 +14,7 @@
 //==================================
 // Import
 //==================================
-import { reactive, ref } from "@vue/reactivity";
+import { ref } from "@vue/reactivity";
 import { getViewport } from "./utils/screen_size";
 import { RouterView } from "vue-router";
 import { onBeforeMount, onUnmounted } from "@vue/runtime-core";

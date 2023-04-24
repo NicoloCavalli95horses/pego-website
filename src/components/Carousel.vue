@@ -2,6 +2,7 @@
   <div
     ref="scroller_ref"
     class="scroller"
+    :style="{ 'width' : width || '100%' }"
     @scroll="(e) => (scrolled = e.target.scrollLeft)"
   >
     <!-- ⚠️ inline-block elements only -->
@@ -28,6 +29,7 @@ import DotNavigator from "../components/DotNavigator.vue";
 // Props
 // ==============================
 const props = defineProps({
+  width: String,
   show_dots: Boolean,
 });
 
@@ -40,7 +42,6 @@ const scroller_ref = ref(undefined);
 
 <style lang="scss" scoped>
 .scroller {
-  width: 100%;
   text-align: center;
   overflow: auto;
   white-space: nowrap;

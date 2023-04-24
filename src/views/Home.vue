@@ -62,13 +62,15 @@
   
   <div class="separator" />
   
+  <!-- 
   <h3 class="bottom-24">Possiamo aiutarti?</h3>
   <h4>La manutenzione è obbligatoria per legge e aumenta l'efficienza dell'impianto, migliorandone la resa e riducendone i consumi.</h4>
   <div class="w-100 flex-column top-24">
     <Btn text="contattaci" :def="true" @click="show.modal = true" />
-  </div>
-  
+  </div> 
   <div class="separator" />
+   -->
+  
 
   <!-- Contact modal -->
   <ContactModal v-if="show.modal" @closed="show.modal = false" />

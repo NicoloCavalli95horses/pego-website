@@ -1,74 +1,184 @@
 <template>
   <footer>
-    <div class="text-wrapper">
-      <h4>Pegorer S.T.A.</h4>
-      <h5 class="top-12">
-        Manutenzione e assistenza tecnica autorizzata per impianti a biomassa
-      </h5>
-      <div class="top-12">
-        <div class="partners-wrapper">
-          <img class="partner-img" :src=palazzetti_img />
-          <img class="partner-img" :src="mcz_img" />
+    <template v-if="device == 'desktop'">
+      <div class="flex">
+        <div class="col r-24">
+          <h3>Pegorer S.T.A.</h3>
+          <h5 class="top-12">
+            Manutenzione e assistenza tecnica autorizzata <br />
+            per impianti a biomassa
+          </h5>
+          <Btn
+            class="top-24"
+            text="contattaci"
+            :def="true"
+            @click="show.modal = true"
+          />
+        </div>
+
+        <div class="col">
+          <h4>Contatti</h4>
+          <div class="contacts-wrapper">
+            <div>
+              <Icon icon="fa-solid fa-phone" class="svg-18" />
+              <h6>+346 xxx xxxx</h6>
+            </div>
+            <div>
+              <Icon icon="fa-solid fa-envelope" class="svg-18" />
+              <h6>pegorersta@gmail.com</h6>
+            </div>
+            <div>
+              <Icon icon="fa-solid fa-money-check" class="svg-18" />
+              <h6>P. IVA xxx xxx xxxx xxx</h6>
+            </div>
+            <div>
+              <Icon icon="fa-solid fa-location-dot" class="svg-18" />
+              <h6>Carbonera, TV (31030)</h6>
+            </div>
+          </div>
+
+          <h4 class="top-24">Partner</h4>
+          <Carousel>
+            <template v-for="(b, i) in config.brand" :key="i">
+              <a :href="b.url" class="brand">
+                <img v-if="b.src" :src="b.src" :alt="b.name" />
+                <span v-else>{{ b.name }}</span>
+              </a>
+            </template>
+          </Carousel>
         </div>
       </div>
-      <div class="top-12">
-        <div class="contacts-wrapper">
-          <h6>+346 xxx xxxx</h6>
-          <h6>pegorersta@gmail.com</h6>
-          <h6>P. IVA xxx xxx xxxx xxx</h6>
-          <h6>Carbonera, TV (31030)</h6>
-        </div>
+    </template>
+    <template v-else>
+      <div class="mobile">
+        <h3>Pegorer S.T.A.</h3>
+        <h5 class="top-12">
+          Manutenzione e assistenza tecnica autorizzata <br />
+          per impianti a biomassa
+        </h5>
+        <Btn
+          class="btn"
+          text="contattaci"
+          :def="true"
+          @click="show.modal = true"
+        />
       </div>
-    </div>
+    </template>
   </footer>
+
+  <!-- Contact modal -->
+  <ContactModal v-if="show.modal" @closed="show.modal = false" />
 </template>
 
 <script setup>
 // ==============================
 // Import
 // ==============================
-import { defineAsyncComponent } from "vue";
-import Chip from "./Chip.vue";
+import { config } from "../utils/config.js";
+import { getViewport } from "../utils/screen_size";
+import { reactive } from "vue";
+import Btn from "./Btn.vue";
+import Carousel from "./Carousel.vue";
+import ContactModal from "./ContactModal.vue";
 
-//==============================
-// Const
-//==============================
-const palazzetti_img = 'icons/mcz.png';
-const mcz_img = 'icons/mcz.png';
+// ==============================
+// Consts
+// ==============================
+const device = getViewport();
+const show = reactive({
+  modal: false,
+});
 </script>
 
 <style lang="scss" scoped>
 footer {
   width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
   background-color: var(--footer-bg);
   box-shadow: var(--box-shadow-footer);
-  .text-wrapper {
-    padding: 4rem;
-    max-width: 300px;
-    text-align: center;
-  }
-
-  .partners-wrapper {
-    height: 100px;
-    width: 100%;
+  .flex {
+    width: 90rem;
+    height: 50rem;
+    margin: 0 auto;
+    overflow: hidden;
     display: flex;
     align-items: center;
-    justify-content: center;
-    .partner-img {
-      width: 100px;
-      height: 60px;
+    justify-content: space-between;
+    .col {
+      width: 50%;
+      height: 30rem;
+    }
+    h3 {
+      font-size: 3rem;
+    }
+    h4 {
+      width: 100%;
+      margin: 0 0 1.2rem 0;
+      color: var(--secondary);
+    }
+
+    .partners-wrapper {
+      height: 100px;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      .partner-img {
+        width: 100px;
+        height: 60px;
+        opacity: 90%;
+      }
+    }
+    .contacts-wrapper {
+      display: flex;
+      flex-direction: column;
+      margin: 0.5rem 0 1.5rem 0;
+      div {
+        display: flex;
+        margin: 0.2rem 0;
+        svg {
+          margin-right: 1rem;
+        }
+      }
+    }
+    .brand {
+      display: inline-block;
+      width: 10rem;
+      height: 10rem;
+      border-radius: var(--radius-s);
+      border: 0.1rem solid var(--font-light);
+      background-color: white;
       margin: 0.5rem;
-      opacity: 90%;
+      box-sizing: border-box;
+      padding: 0.5rem;
+      overflow: hidden;
+      cursor: pointer;
+      span {
+        color: var(--font-dark);
+        text-align: center;
+        text-transform: uppercase;
+        letter-spacing: 0.4rem;
+        display: grid;
+        place-content: center;
+        height: 100%;
+        font-size: 0.8rem;
+      }
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
     }
   }
-  .contacts-wrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+}
+.mobile {
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
+  h3 {
+    padding-top: 5rem;
+  }
+  .btn {
+    margin: 1.5rem auto;
   }
 }
 </style>
