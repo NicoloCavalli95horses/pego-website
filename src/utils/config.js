@@ -8,22 +8,22 @@ const config = {
     {
       name: "Brisach",
       url: "https://www.brisach.com/",
-      src: "../public/icons/brisach.png"
+      src: "icons/brisach.png"
     },
     {
       name: "Palazzetti",
       url: "https://palazzetti.it/",
-      src: "../public/icons/palazzetti.svg"
+      src: "icons/palazzetti.svg"
     },
     {
       name: "Cadel",
       url: "https://www.cadelsrl.com/",
-      src: "../public/icons/cadel.svg"
+      src: "icons/cadel.svg"
     },
     {
       name: "Freepoint",
       url: "https://free-point.it/en/home-2/",
-      src: "../public/icons/freepoint.png"
+      src: "icons/freepoint.png"
     },
     {
       name: "Last Calor",
@@ -32,22 +32,22 @@ const config = {
     {
       name: "MCZ",
       url: "https://www.mcz.it/it/",
-      src: "../public/icons/mcz.svg"
+      src: "icons/mcz.svg"
     },
     {
       name: "Royal",
       url: "https://royal1915.it/",
-      src: "../public/icons/royal.png"
+      src: "icons/royal.png"
     },
     {
       name: "Red",
       url: "https://www.redheating.fr/en/",
-      src: "../public/icons/red.png"
+      src: "icons/red.png"
     },
     {
       name: "Termovana",
       url: "https://www.termovana.it/",
-      src: "../public/icons/termovana.svg"
+      src: "icons/termovana.svg"
     },
   ],
   cities: [
