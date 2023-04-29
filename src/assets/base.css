@@ -88,7 +88,7 @@ nav {
 }
 
 /* Font */
-h1, h2, h3, h5, h6, p, ul, li, a, span, input, textarea, label, summary, details {
+h1, h2, h3, h5, p, ul, li, a, span, input, textarea, label, summary, details {
   font-family: 'Quicksand', monospace;
 }
 
@@ -103,6 +103,10 @@ h2, h3, h4, p, ul, li, a, span, label, summary, details {
 
 h5, h6 {
   color: var(--font-light);
+}
+
+h6 {
+  font-family: monospace;
 }
 
 /* Size */

@@ -98,6 +98,7 @@
         </div>
       </div>
     </template>
+    <div class="sign">Nicolò Cavalli &copy; ({{ new Date().getFullYear() }})</div>
   </footer>
 </template>
 
@@ -107,7 +108,6 @@
 // ==============================
 import { config } from "../utils/config.js";
 import { getViewport } from "../utils/screen_size";
-import { reactive } from "vue";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fas } from "@fortawesome/free-solid-svg-icons";
 
@@ -209,5 +209,14 @@ h4 {
     height: 100%;
     object-fit: contain;
   }
+}
+
+.sign {
+  width: 100%;
+  text-align: center;
+  padding: 0 0 8rem 0;
+  font-size: 0.8rem;
+  color: var(--font-light);
+  font-family: monospace;
 }
 </style>
