@@ -1,6 +1,6 @@
 <template>
   <footer>
-    <template v-if="device == 'desktop'">
+    <template v-if="device != 'mobile'">
       <div class="flex">
         <div class="col r-24">
           <h3>Pegorer S.T.A.</h3>
@@ -62,6 +62,38 @@
           :def="true"
           @click="show.modal = true"
         />
+        
+        <div class="top-32">
+          <h4 class="l-text">Partner</h4>
+          <Carousel>
+            <template v-for="(b, i) in config.brand" :key="i">
+              <a :href="b.url" class="brand">
+                <img v-if="b.src" :src="b.src" :alt="b.name" />
+                <span v-else>{{ b.name }}</span>
+              </a>
+            </template>
+          </Carousel>
+        </div>
+
+        <div class="contacts-wrapper top-32">
+          <h4 class="l-text">Contatti</h4>
+          <div class="flex-center start bottom-6">
+            <Icon icon="fa-solid fa-phone" class="svg-18 r-12" />
+            <h6>+346 xxx xxxx</h6>
+          </div>
+          <div class="flex-center start bottom-6">
+            <Icon icon="fa-solid fa-envelope" class="svg-18 r-12" />
+            <h6>pegorersta@gmail.com</h6>
+          </div>
+          <div class="flex-center start bottom-6">
+            <Icon icon="fa-solid fa-money-check" class="svg-18 r-12" />
+            <h6>P. IVA xxx xxx xxxx xxx</h6>
+          </div>
+          <div class="flex-center start">
+            <Icon icon="fa-solid fa-location-dot" class="svg-18 r-12" />
+            <h6>Carbonera, TV (31030)</h6>
+          </div>
+        </div>
       </div>
     </template>
   </footer>
@@ -92,30 +124,20 @@ const show = reactive({
 
 <style lang="scss" scoped>
 footer {
-  width: 100%;
   background-color: var(--footer-bg);
   box-shadow: var(--box-shadow-footer);
+  padding: 0 2.3rem;
   .flex {
-    width: 90rem;
     height: 50rem;
     margin: 0 auto;
     overflow: hidden;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     .col {
-      width: 50%;
+      max-width: 50%;
       height: 30rem;
     }
-    h3 {
-      font-size: 3rem;
-    }
-    h4 {
-      width: 100%;
-      margin: 0 0 1.2rem 0;
-      color: var(--secondary);
-    }
-
     .partners-wrapper {
       height: 100px;
       width: 100%;
@@ -140,38 +162,11 @@ footer {
         }
       }
     }
-    .brand {
-      display: inline-block;
-      width: 10rem;
-      height: 10rem;
-      border-radius: var(--radius-s);
-      border: 0.1rem solid var(--font-light);
-      background-color: white;
-      margin: 0.5rem;
-      box-sizing: border-box;
-      padding: 0.5rem;
-      overflow: hidden;
-      cursor: pointer;
-      span {
-        color: var(--font-dark);
-        text-align: center;
-        text-transform: uppercase;
-        letter-spacing: 0.4rem;
-        display: grid;
-        place-content: center;
-        height: 100%;
-        font-size: 0.8rem;
-      }
-      img {
-        width: 100%;
-        height: 100%;
-        object-fit: contain;
-      }
-    }
   }
 }
 .mobile {
   width: 100%;
+  height: 60rem;
   margin: 0 auto;
   text-align: center;
   h3 {
@@ -179,6 +174,44 @@ footer {
   }
   .btn {
     margin: 1.5rem auto;
+  }
+}
+
+h3 {
+  font-size: 3rem;
+}
+h4 {
+  width: 100%;
+  margin: 0 0 1.2rem 0;
+  color: var(--secondary);
+}
+
+.brand {
+  display: inline-block;
+  width: 10rem;
+  height: 10rem;
+  border-radius: var(--radius-s);
+  border: 0.1rem solid var(--font-light);
+  background-color: white;
+  margin: 0.5rem;
+  box-sizing: border-box;
+  padding: 0.5rem;
+  overflow: hidden;
+  cursor: pointer;
+  span {
+    color: var(--font-dark);
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 0.4rem;
+    display: grid;
+    place-content: center;
+    height: 100%;
+    font-size: 0.8rem;
+  }
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
   }
 }
 </style>

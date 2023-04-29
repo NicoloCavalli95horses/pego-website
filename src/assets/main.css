@@ -97,6 +97,13 @@ svg {
   justify-content: center;
 }
 
+.flex-center.start {
+  justify-content: flex-start;
+}
+.flex-center.end {
+  justify-content: flex-end;
+}
+
 .flex-wrap {
   flex-wrap: wrap;
 }
@@ -291,6 +298,12 @@ svg {
 
 .c-text {
   text-align: center;
+}
+.l-text {
+  text-align: left;
+}
+.r-text {
+  text-align: right;
 }
 
 /* display */
