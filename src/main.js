@@ -1,9 +1,9 @@
+import "./assets/main.css";
 import { createApp } from "vue";
 import { createPinia } from "pinia";
+import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import App from "./App.vue";
 import router from "./router";
-import "./assets/main.css";
-import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import SvgIcons from "./components/SvgIcons.vue";
 
 const app = createApp(App);

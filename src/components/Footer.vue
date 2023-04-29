@@ -3,7 +3,7 @@
     <template v-if="device != 'mobile'">
       <div class="flex">
         <div class="col r-24">
-          <h3>Pegorer S.T.A.</h3>
+          <h3>S.T.A. di Pegorer</h3>
           <h5 class="top-12">
             Manutenzione e assistenza tecnica autorizzata <br />
             per impianti a biomassa
@@ -12,7 +12,7 @@
             class="top-24"
             text="contattaci"
             :def="true"
-            @click="show.modal = true"
+            @click="$router.push('/contact')"
           />
         </div>
 
@@ -51,7 +51,7 @@
     </template>
     <template v-else>
       <div class="mobile">
-        <h3>Pegorer S.T.A.</h3>
+        <h3>S.T.A. di Pegorer</h3>
         <h5 class="top-12">
           Manutenzione e assistenza <br />
           tecnica autorizzata <br />
@@ -61,7 +61,7 @@
           class="btn"
           text="contattaci"
           :def="true"
-          @click="show.modal = true"
+          @click="$router.push('/contact')"
         />
 
         <div class="top-32">
@@ -98,9 +98,6 @@
       </div>
     </template>
   </footer>
-
-  <!-- Contact modal -->
-  <ContactModal v-if="show.modal" @closed="show.modal = false" />
 </template>
 
 <script setup>
@@ -115,16 +112,12 @@ import { fas } from "@fortawesome/free-solid-svg-icons";
 
 import Btn from "./Btn.vue";
 import Carousel from "./Carousel.vue";
-import ContactModal from "./ContactModal.vue";
 
 // ==============================
 // Consts
 // ==============================
 library.add( fas );
 const device = getViewport();
-const show = reactive({
-  modal: false,
-});
 </script>
 
 <style lang="scss" scoped>

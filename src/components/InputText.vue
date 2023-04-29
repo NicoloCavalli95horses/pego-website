@@ -1,104 +1,156 @@
 <template>
   <!-- text input -->
   <template v-if="input_type == 'text'">
-    <div class="label-wrapper">
-      <label>
-        {{ placeholder }}<template v-if="is_required">*</template>
-      </label>
-      <div v-if="tooltip">
-        <Tooltip :text="tooltip" />
+    <div :class="{ focus: isFocusMode }">
+      <div class="wrapper">
+        <div class="label-wrapper">
+          <label>
+            {{ placeholder }}<template v-if="is_required">*</template></label
+          >
+          <div v-if="tooltip && !isFocusMode">
+            <Tooltip :text="tooltip" />
+          </div>
+        </div>
+        <div class="input-wrapper">
+          <input
+            ref="input_ref"
+            type="text"
+            autocomplete="none"
+            :class="{ error: error && !modelValue }"
+            :value="display_uppercase ? modelValue.toUpperCase() : modelValue"
+            :required="is_required"
+            :placeholder="getPlaceholder"
+            @focus="
+              () => {
+                $emit('focus');
+                is_focused = true;
+              }
+            "
+            @blur="
+              () => {
+                $emit('blur');
+                is_focused = false;
+              }
+            "
+            @input="$emit('update:modelValue', $event.target.value)"
+          />
+          <div
+            v-if="error && !modelValue"
+            class="warning-text"
+            :class="{ mobile: device == 'mobile' }"
+          >
+            <label>{{ error_message || "campo obbligatorio" }}</label>
+          </div>
+          <div v-if="show_tips" class="tips">
+            <div
+              class="tip"
+              v-for="t in tips"
+              :key="t"
+              @click="$emit('selectedtip', t)"
+            >
+              <p>{{ t }}</p>
+            </div>
+          </div>
+        </div>
+        <Btn v-if="isFocusMode" text="Conferma" />
       </div>
-    </div>
-    <div class="input-wrapper">
-      <input
-        ref="input_ref"
-        type="text"
-        autocomplete="none"
-        :class="{ error: error && !modelValue }"
-        :value="display_uppercase ? modelValue.toUpperCase() : modelValue"
-        :required="is_required"
-        :placeholder="getPlaceholder"
-        @focus="$emit('focus')"
-        @blur="$emit('blur')"
-        @input="$emit('update:modelValue', $event.target.value)"
-      />
-      <div
-        v-if="error && !modelValue"
-        class="warning-text"
-        :class="{ mobile: device == 'mobile' }"
-      >
-        <label>{{ error_message || "campo obbligatorio" }}</label>
-      </div>
-     <div v-if="show_tips" class="tips">
-      <div class="tip" v-for="t in tips" :key="t" @click="$emit('selectedtip', t)"> <p>{{ t }}</p> </div>
-    </div>
     </div>
   </template>
 
   <!-- tel input -->
   <template v-else-if="input_type == 'tel'">
-    <div class="label-wrapper">
-      <label>
-        {{ placeholder }}<template v-if="is_required">*</template>
-      </label>
-      <div v-if="tooltip">
-        <Tooltip :text="tooltip" />
-      </div>
-    </div>
-    <div class="input-wrapper">
-      <input
-        ref="input_ref"
-        type="tel"
-        size="10"
-        minlength="10"
-        maxlength="10"
-        autocomplete="none"
-        :class="{ error: error && !modelValue }"
-        :value="modelValue"
-        :required="is_required"
-        :placeholder="getPlaceholder"
-        @focus="$emit('focus')"
-        @blur="$emit('blur')"
-        @input="$emit('update:modelValue', $event.target.value)"
-      />
-      <div
-        v-if="error && !modelValue"
-        class="warning-text"
-        :class="{ mobile: device == 'mobile' }"
-      >
-        <label>{{ error_message || "campo obbligatorio" }}</label>
+    <div :class="{ focus: isFocusMode }">
+      <div class="wrapper">
+        <div class="label-wrapper">
+          <label
+            >{{ placeholder }}<template v-if="is_required">*</template></label
+          >
+          <div v-if="tooltip && !isFocusMode">
+            <Tooltip :text="tooltip" />
+          </div>
+        </div>
+        <div class="input-wrapper">
+          <input
+            ref="input_ref"
+            type="tel"
+            size="10"
+            minlength="10"
+            maxlength="10"
+            autocomplete="none"
+            :class="{ error: error && !modelValue }"
+            :value="modelValue"
+            :required="is_required"
+            :placeholder="getPlaceholder"
+            @focus="
+              () => {
+                $emit('focus');
+                is_focused = true;
+              }
+            "
+            @blur="
+              () => {
+                $emit('blur');
+                is_focused = false;
+              }
+            "
+            @input="$emit('update:modelValue', $event.target.value)"
+          />
+          <div
+            v-if="error && !modelValue"
+            class="warning-text"
+            :class="{ mobile: device == 'mobile' }"
+          >
+            <label>{{ error_message || "campo obbligatorio" }}</label>
+          </div>
+        </div>
+        <Btn v-if="isFocusMode" text="Conferma" />
       </div>
     </div>
   </template>
 
   <!-- textarea -->
   <template v-else-if="input_type == 'textarea'">
-    <div class="label-wrapper">
-      <label>
-        {{ placeholder }}<template v-if="is_required">*</template>
-      </label>
-      <div v-if="tooltip">
-        <Tooltip :text="tooltip" />
-      </div>
-    </div>
-    <div class="input-wrapper">
-      <textarea
-        autocomplete="none"
-        :class="{ error: error && !modelValue }"
-        :value="modelValue"
-        :required="is_required"
-        :placeholder="getPlaceholder"
-        @focus="$emit('focus')"
-        @blur="$emit('blur')"
-        @input="$emit('update:modelValue', $event.target.value)"
-      >
-      </textarea>
-      <div
-        v-if="error && !modelValue"
-        class="warning-text textarea"
-        :class="{ mobile: device == 'mobile' }"
-      >
-        <label>{{ error_message || "campo obbligatorio" }}</label>
+    <div :class="{ focus: isFocusMode }">
+      <div class="wrapper">
+        <div class="label-wrapper">
+          <label
+            >{{ placeholder }}<template v-if="is_required">*</template></label
+          >
+          <div v-if="tooltip && !isFocusMode">
+            <Tooltip :text="tooltip" />
+          </div>
+        </div>
+        <div class="input-wrapper">
+          <textarea
+            autocomplete="none"
+            :class="{ error: error && !modelValue }"
+            :value="modelValue"
+            :required="is_required"
+            :placeholder="getPlaceholder"
+            @focus="
+              () => {
+                $emit('focus');
+                is_focused = true;
+              }
+            "
+            @blur="
+              () => {
+                $emit('blur');
+                is_focused = false;
+              }
+            "
+            @input="$emit('update:modelValue', $event.target.value)"
+          >
+          </textarea>
+          <div
+            v-if="error && !modelValue"
+            class="warning-text textarea"
+            :class="{ mobile: device == 'mobile' }"
+          >
+            <label>{{ error_message || "campo obbligatorio" }}</label>
+          </div>
+        </div>
+        <Btn v-if="isFocusMode" text="Conferma" />
       </div>
     </div>
   </template>
@@ -112,6 +164,7 @@ import { ref } from "@vue/reactivity";
 import { getViewport } from "../utils/screen_size.js";
 import { computed, onMounted } from "@vue/runtime-core";
 import Tooltip from "./Tooltip.vue";
+import Btn from "./Btn.vue";
 
 // ==============================
 // Props
@@ -142,19 +195,20 @@ const props = defineProps({
   display_uppercase: Boolean,
 });
 
-const emit = defineEmits([
-  "update:modelValue",
-  "selectedtip",
-  "focus",
-  "blur"
-]);
+const emit = defineEmits(["update:modelValue", "selectedtip", "focus", "blur"]);
 
 // ==============================
 // Variables
 // ==============================
 const device = getViewport();
-const input_ref = ref( undefined );
-const getPlaceholder = computed(() => device.value == "mobile" && props.error ? "" : props.placeholder );
+const input_ref = ref(undefined);
+const is_focused = ref(false);
+const getPlaceholder = computed(() =>
+  device.value == "mobile" && props.error ? "" : props.placeholder
+);
+const isFocusMode = computed(
+  () => is_focused.value && device.value == "mobile"
+);
 
 //==============================
 // Life cycle
@@ -167,6 +221,26 @@ onMounted(() => {
 </script>
 
 <style lang="scss" scoped>
+.focus {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: var(--background);
+  z-index: 10;
+  .wrapper {
+    position: fixed;
+    width: calc(100% - 4.4rem);
+    height: 100vh;
+    padding: 0 2.2rem;
+    &:deep(button) {
+      margin-top: 2rem;
+      width: 100%;
+      justify-content: flex-end;
+    }
+  }
+}
 .input-wrapper {
   position: relative;
   input,
@@ -252,28 +326,28 @@ onMounted(() => {
   overflow-y: scroll;
   box-shadow: var(--box-shadow);
   .tip {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      height: 5rem;
-      box-sizing: border-box;
-      background-color: var(--background);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 5rem;
+    box-sizing: border-box;
+    background-color: var(--background);
+    transition-duration: var(--transition-medium);
+    &:hover {
+      filter: brightness(110%);
+      background-color: var(--primary);
       transition-duration: var(--transition-medium);
-      &:hover {
-        filter: brightness(110%);
-        background-color: var(--primary);
-        transition-duration: var(--transition-medium);
-      }
-      &:nth-of-type(odd):not(:hover) {
-        background-color: var(--footer-bg);
-      }
-      &.active {
-        background-color: var(--primary) !important;
-      }
-      p {
-        margin-left: 1.8rem;
-        text-transform: uppercase;
-      }
     }
+    &:nth-of-type(odd):not(:hover) {
+      background-color: var(--footer-bg);
+    }
+    &.active {
+      background-color: var(--primary) !important;
+    }
+    p {
+      margin-left: 1.8rem;
+      text-transform: uppercase;
+    }
+  }
 }
 </style>

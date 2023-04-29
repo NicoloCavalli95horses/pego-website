@@ -1,5 +1,5 @@
 <template>
-  <div class="wrapper">
+  <div class="wrapper" :style="{ 'justify-content' : device == 'mobile' ? 'center' : 'flex-start' }">
     <template v-for="(b, i) in config.brand" :key="i">
       <a :href="b.url" class="brand">
         <img v-if="b.src" :src="b.src" :alt="b.name">
@@ -28,7 +28,6 @@ const device = getViewport();
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  justify-content: center;
   .brand {
     display: grid;
     place-content: center;

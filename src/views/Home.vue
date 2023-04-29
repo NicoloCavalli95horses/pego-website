@@ -3,7 +3,7 @@
   <div class="w-100 h-100 flex-column">
     <h1 class="spacing">S.T.A. di Pegorer</h1>
     <h2 class="top-32 c-text" :class="{'spacing' : device != 'mobile' }">Manutenzione e assistenza tecnica autorizzata <br />per impianti a biomassa</h2>
-    <Btn class="top-32" text="contattaci" :def="true" @click="show.modal = true" />
+    <Btn class="top-32" text="contattaci" :def="true" @click="$router.push('/contact')" />
   </div>
 
   <!-- What we do -->
@@ -63,19 +63,6 @@
   
   <div class="separator" />
   
-  <!-- 
-  <h3 class="bottom-24">Possiamo aiutarti?</h3>
-  <h4>La manutenzione è obbligatoria per legge e aumenta l'efficienza dell'impianto, migliorandone la resa e riducendone i consumi.</h4>
-  <div class="w-100 flex-column top-24">
-    <Btn text="contattaci" :def="true" @click="show.modal = true" />
-  </div> 
-  <div class="separator" />
-   -->
-  
-
-  <!-- Contact modal -->
-  <ContactModal v-if="show.modal" @closed="show.modal = false" />
-
   <!-- Go back on top button -->
   <OnTopBtn />
 </template>
@@ -96,7 +83,6 @@ import Partners from "./Partners.vue";
 import Btn from "../components/Btn.vue";
 import OnTopBtn from "../components/OnTopBtn.vue";
 import Counter from "../components/Counter.vue";
-import ContactModal from "../components/ContactModal.vue";
 
 //==============================
 // Consts

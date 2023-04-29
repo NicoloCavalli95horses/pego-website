@@ -2,13 +2,13 @@
   <Modal
     title="Contattaci"
     :width="device != 'mobile' ? 80 : undefined"
-    :height="device != 'mobile' ? 60 : undefined"
+    :height="device != 'mobile' ? 65 : undefined"
     :click_out_close="true"
     :full_size="device == 'mobile'"
-    @closed="$emit('closed')"
+    @closed="$router.push('/')"
   >
     <template #default>
-      <LineProgression :steps="steps" :active="active" />
+      <LineProgression :steps="steps" :active="active" class="top-12" />
 
       <!-- User info -->
       <form
@@ -179,7 +179,7 @@
     <!-- Footer buttons -->
     <template #footer>
       <template v-if="active == 0">
-        <Btn :bg="false" text="chiudi" @click="$emit('closed')" />
+        <Btn :bg="false" text="chiudi" @click="$router.push('/')" />
         <Btn
           class="l-12"
           text="avanti"
@@ -241,8 +241,6 @@ import LineProgression from "./LineProgression.vue";
 // ==============================
 // Props, emits
 // ==============================
-const emit = defineEmits(["closed"]);
-
 const OTHER = 'Altro (non incluso)';  
 
 // ==============================
@@ -250,6 +248,7 @@ const OTHER = 'Altro (non incluso)';
 // ==============================
 const device = getViewport();
 const active = ref(0);
+const input_is_focused = ref( false );
 const steps = [
   { label: "Richiesta" },
   { label: "Nominativo" },

@@ -5,12 +5,12 @@
         ref="modal_ref"
         class="modal"
         :class="{ 'full-size': full_size }"
-        :style="{ 'width': `${width}rem`, 'height': `${height}rem` }"
+        :style="{ width: `${width}rem`, height: `${height}rem` }"
         @click="(e) => e.stopPropagation()"
       >
-      <div v-if="close_btn" class="top-right-corner" @click="emit('closed')">
-        <Icon icon="fa-solid fa-xmark" class="svg-24" />
-      </div>
+        <div v-if="close_btn" class="top-right-corner" @click="emit('closed')">
+          <Icon icon="fa-solid fa-xmark" class="svg-24" />
+        </div>
 
         <!-- header -->
         <header>
@@ -22,14 +22,12 @@
         <!-- content -->
         <div class="content">
           <!-- body -->
-          <div class="body">
-            <slot />
-          </div>
-          <!-- footer -->
-          <footer>
-            <slot name="footer" />
-          </footer>
+          <slot />
         </div>
+        <!-- footer -->
+        <footer>
+          <slot name="footer" />
+        </footer>
       </div>
     </div>
   </teleport>
@@ -61,7 +59,7 @@ const emit = defineEmits(["closed"]);
 //==================================
 // Consts
 //==================================
-library.add( fas );
+library.add(fas);
 const screen = reactive({
   width: window.innerWidth,
   height: window.innerHeight,
@@ -95,7 +93,7 @@ onUnmounted(() => {
 
 <style lang="scss" scoped>
 $header-h: 6rem;
-$footer-h: 6rem;
+$footer-h: 8rem;
 $gap: 2.2rem;
 .backdrop {
   .modal {
@@ -109,42 +107,40 @@ $gap: 2.2rem;
     left: 50%;
     transform: translate(-50%, -50%);
     box-shadow: var(--box-shadow);
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     header {
       width: 100%;
+      min-height: $header-h;
       height: $header-h;
     }
     .content {
       width: 100%;
-      height: calc(100% - $header-h - $gap );
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
+      flex-grow: 1;
+      max-height: calc(100% - $header-h - $footer-h);
+      height: calc(100% - $header-h - $footer-h);
+    }
 
-      .body {
-        width: 100%;
-        flex-grow: 1;
-        padding: $gap 0;
-      }
-      footer {
-        width: 100%;
-        height: $footer-h;
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: flex-end;
-      }
+    footer {
+      width: 100%;
+      min-height: $footer-h;
+      height: $footer-h;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: flex-end;
     }
 
     &.full-size {
       width: 100%;
-      height: 100%;
+      min-height: 100%;
       top: 0;
       left: 0;
       transform: none;
       box-sizing: border-box;
-      footer {
-        margin: 2.2rem 0 3.2rem 0;
-      }
     }
   }
 }
