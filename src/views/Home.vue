@@ -30,7 +30,7 @@
     />
     <Counter
       label="comuni coperti"
-      :value="96"
+      :value="config.cities.length"
       :animation_time="3000"
       icon="fa-solid fa-map-location-dot"
     />
@@ -86,6 +86,7 @@
 //==============================
 import { reactive } from "@vue/reactivity";
 import { getViewport } from "../utils/screen_size.js";
+import { config } from "../utils/config.js";
 
 import FAQ from "./FAQ.vue";
 import About from "./About.vue";

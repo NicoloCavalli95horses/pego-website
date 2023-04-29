@@ -28,6 +28,7 @@ const device = getViewport();
   display: flex;
   flex-wrap: wrap;
   align-items: center;
+  justify-content: center;
   .brand {
     display: grid;
     place-content: center;

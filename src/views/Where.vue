@@ -2,7 +2,7 @@
   <template v-if="device != 'mobile'">
     <div class="wrapper">
       <div class="text-wrapper">
-        <h4> Raggiungiamo la maggior parte dei comuni in provincia di Treviso, e
+        <h4> Raggiungiamo tutti i comuni in provincia di Treviso, e
           alcuni comuni in provincia di Venezia. </h4>
         <div class="w-100 top-32">
           <Btn
@@ -28,7 +28,7 @@
 
   <template v-else>
     <div class="flex-column">
-      <h4> Raggiungiamo la maggior parte dei comuni in provincia di Treviso, e alcuni comuni in provincia di Venezia. </h4>
+      <h4> Raggiungiamo tutti i comuni in provincia di Treviso, e alcuni comuni in provincia di Venezia. </h4>
       <div class="w-100 top-32">
         <Btn
           class="c-margin"

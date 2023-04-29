@@ -28,10 +28,10 @@
         <a href="#about"><h3>Chi siamo</h3></a>
      </div>
       <div @click="show.mobile_menu = false">
-        <a href="#where"><h3>Dove</h3></a>
+        <a href="#where"><h3>Dove operiamo</h3></a>
      </div>
       <div @click="show.mobile_menu = false">
-        <a href="#faq"><h3>FAQ</h3></a>
+        <a href="#faq"><h3>Domande frequenti</h3></a>
      </div>
     </div>
   </Modal>
