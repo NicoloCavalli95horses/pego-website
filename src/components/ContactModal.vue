@@ -252,7 +252,7 @@ const OTHER = 'Altro (non incluso)';
 // Consts
 // ==============================
 const device = getViewport();
-const active = ref(3);
+const active = ref(0);
 const steps = [
   { label: "Richiesta" },
   { label: "Nominativo" },

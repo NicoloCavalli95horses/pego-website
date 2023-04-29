@@ -4,9 +4,7 @@
     <div :class="[ext_class, isFocusMode ? 'focus': '']">
       <div class="wrapper">
         <div class="label-wrapper">
-          <label>
-            {{ placeholder }}<template v-if="is_required">*</template></label
-          >
+          <label> {{ placeholder }}<template v-if="is_required">*</template></label>
           <div v-if="tooltip && !isFocusMode">
             <Tooltip :text="tooltip" :direction="tooltip_dir" />
           </div>
@@ -20,34 +18,15 @@
             :value="display_uppercase ? modelValue.toUpperCase() : modelValue"
             :required="is_required"
             :placeholder="getPlaceholder"
-            @focus="
-              () => {
-                $emit('focus');
-                is_focused = true;
-              }
-            "
-            @blur="
-              () => {
-                $emit('blur');
-                is_focused = false;
-              }
-            "
+            @focus="() => { $emit('focus'); is_focused = true; }"
+            @blur="() => { $emit('blur'); is_focused = false; }"
             @input="$emit('update:modelValue', $event.target.value)"
           />
-          <div
-            v-if="error && !modelValue"
-            class="warning-text"
-            :class="{ mobile: device == 'mobile' }"
-          >
+          <div v-if="error && !modelValue" class="warning-text" :class="{ mobile: device == 'mobile' }">
             <label>{{ error_message || "campo obbligatorio" }}</label>
           </div>
           <div v-if="show_tips" class="tips">
-            <div
-              class="tip"
-              v-for="t in tips"
-              :key="t"
-              @click="$emit('selectedtip', t)"
-            >
+            <div class="tip" v-for="t in tips" :key="t" @click="$emit('selectedtip', t)">
               <p>{{ t }}</p>
             </div>
           </div>
@@ -61,9 +40,7 @@
     <div :class="[ext_class, isFocusMode ? 'focus': '']">
       <div class="wrapper">
         <div class="label-wrapper">
-          <label
-            >{{ placeholder }}<template v-if="is_required">*</template></label
-          >
+          <label>{{ placeholder }}<template v-if="is_required">*</template></label>
           <div v-if="tooltip && !isFocusMode">
             <Tooltip :text="tooltip" :direction="tooltip_dir" />
           </div>
@@ -80,25 +57,11 @@
             :value="modelValue"
             :required="is_required"
             :placeholder="getPlaceholder"
-            @focus="
-              () => {
-                $emit('focus');
-                is_focused = true;
-              }
-            "
-            @blur="
-              () => {
-                $emit('blur');
-                is_focused = false;
-              }
-            "
+            @focus="() => { $emit('focus'); is_focused = true; }"
+            @blur="() => { $emit('blur'); is_focused = false; }"
             @input="$emit('update:modelValue', $event.target.value)"
           />
-          <div
-            v-if="error && !modelValue"
-            class="warning-text"
-            :class="{ mobile: device == 'mobile' }"
-          >
+          <div v-if="error && !modelValue" class="warning-text" :class="{ mobile: device == 'mobile' }">
             <label>{{ error_message || "campo obbligatorio" }}</label>
           </div>
         </div>
@@ -111,9 +74,7 @@
     <div :class="[ext_class, isFocusMode ? 'focus': '']">
       <div class="wrapper">
         <div class="label-wrapper">
-          <label
-            >{{ placeholder }}<template v-if="is_required">*</template></label
-          >
+          <label>{{ placeholder }}<template v-if="is_required">*</template></label>
           <div v-if="tooltip && !isFocusMode">
             <Tooltip :text="tooltip" :direction="tooltip_dir" />
           </div>
@@ -125,26 +86,12 @@
             :value="modelValue"
             :required="is_required"
             :placeholder="getPlaceholder"
-            @focus="
-              () => {
-                $emit('focus');
-                is_focused = true;
-              }
-            "
-            @blur="
-              () => {
-                $emit('blur');
-                is_focused = false;
-              }
-            "
+            @focus="() => { $emit('focus'); is_focused = true; }"
+            @blur="() => { $emit('blur'); is_focused = false; }"
             @input="$emit('update:modelValue', $event.target.value)"
           >
           </textarea>
-          <div
-            v-if="error && !modelValue"
-            class="warning-text textarea"
-            :class="{ mobile: device == 'mobile' }"
-          >
+          <div v-if="error && !modelValue" class="warning-text textarea" :class="{ mobile: device == 'mobile' }">
             <label>{{ error_message || "campo obbligatorio" }}</label>
           </div>
         </div>
@@ -194,11 +141,18 @@ const props = defineProps({
   display_uppercase: Boolean,
 
   // take external classes
-  ext_class: String
+  ext_class: String,
 
+  // prevent focus mode (input is not in a multistep form)
+  prevent_focus_mode: Boolean,
 });
 
-const emit = defineEmits(["update:modelValue", "selectedtip", "focus", "blur"]);
+const emit = defineEmits([
+  "update:modelValue",
+  "selectedtip",
+  "focus",
+  "blur"
+]);
 
 // ==============================
 // Variables
@@ -206,10 +160,16 @@ const emit = defineEmits(["update:modelValue", "selectedtip", "focus", "blur"]);
 const device = getViewport();
 const input_ref = ref(undefined);
 const is_focused = ref(false);
-const getPlaceholder = computed(() => device.value == "mobile" && props.error ? "" : props.placeholder );
-const isFocusMode = computed(() => is_focused.value && device.value == "mobile" && isKeyboardOpen.value );
 const windowH = ref( window.innerHeight );
 const isKeyboardOpen = ref( false );
+
+const getPlaceholder = computed(() => device.value == "mobile" && props.error ? "" : props.placeholder );
+const isFocusMode = computed(() => 
+  is_focused.value &&
+  device.value == "mobile"
+  && isKeyboardOpen.value &&
+  !props.prevent_focus_mode
+);
 
 //==============================
 // Functions

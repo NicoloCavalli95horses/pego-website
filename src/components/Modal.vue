@@ -21,7 +21,6 @@
         </header>
         <!-- content -->
         <div class="content">
-          <!-- body -->
           <slot />
         </div>
         <!-- footer -->
@@ -141,6 +140,12 @@ $gap: 2.2rem;
       left: 0;
       transform: none;
       box-sizing: border-box;
+      footer {
+        position: absolute;
+        bottom: 3.2rem;
+        right: 2.2rem;
+        transform: translate(0%, -50%);
+      }
     }
   }
 }

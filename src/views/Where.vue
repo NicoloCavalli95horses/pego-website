@@ -2,8 +2,10 @@
   <template v-if="device != 'mobile'">
     <div class="wrapper">
       <div class="text-wrapper">
-        <h4> Raggiungiamo tutti i comuni in provincia di Treviso, e
-          alcuni comuni in provincia di Venezia. </h4>
+        <h4>
+          Raggiungiamo tutti i comuni in provincia di Treviso, e alcuni comuni
+          in provincia di Venezia.
+        </h4>
         <div class="w-100 top-32">
           <Btn
             class="c-margin"
@@ -28,7 +30,10 @@
 
   <template v-else>
     <div class="flex-column">
-      <h4> Raggiungiamo tutti i comuni in provincia di Treviso, e alcuni comuni in provincia di Venezia. </h4>
+      <h4>
+        Raggiungiamo tutti i comuni in provincia di Treviso, e alcuni comuni in
+        provincia di Venezia.
+      </h4>
       <div class="w-100 top-32">
         <Btn
           class="c-margin"
@@ -60,10 +65,7 @@
   >
     <div class="flex-column w-100">
       <div class="input">
-        <InputText
-          placeholder="Il mio comune"
-          v-model="filter"
-        />
+        <InputText placeholder="Il mio comune" v-model="filter" :prevent_focus_mode="true" />
       </div>
 
       <div class="city-list top-12">
@@ -74,12 +76,21 @@
             </div>
           </template>
         </template>
-        <p v-else> Ci dispiace, ma attualmente non raggiumgiamo questo comune. </p>
+        <p v-else>
+          Ci dispiace, ma attualmente non raggiungiamo questo comune.
+        </p>
       </div>
     </div>
 
     <template #footer>
-      <Btn :bg="false" text="chiudi" @click="show.modal = false; filter = ''; "/>
+      <Btn
+        :bg="false"
+        text="chiudi"
+        @click="
+          show.modal = false;
+          filter = '';
+        "
+      />
     </template>
   </Modal>
 </template>
@@ -109,7 +120,7 @@ const show = reactive({
   modal: false,
 });
 
-const cities = [ ...config.cities ];
+const cities = [...config.cities];
 
 const filteredCities = computed(() =>
   cities.filter((city) =>
@@ -144,12 +155,10 @@ const filteredCities = computed(() =>
   }
 }
 
-
 .city-list {
   width: 100%;
   height: 35rem;
   overflow-y: auto;
-  box-shadow: inset 0 0 1.5rem rgba(0, 0, 0, 0.3);
   .city {
     display: flex;
     align-items: center;

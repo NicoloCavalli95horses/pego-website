@@ -51,6 +51,7 @@
     </template>
     <template v-else>
       <div class="mobile">
+        <div class="separator" />
         <h3>S.T.A. di Pegorer</h3>
         <h5 class="top-12">
           Manutenzione e assistenza <br />
@@ -164,12 +165,9 @@ footer {
 }
 .mobile {
   width: 100%;
-  height: 65rem;
+  height: 70rem;
   margin: 0 auto;
   text-align: center;
-  h3 {
-    padding-top: 5rem;
-  }
   .btn {
     margin: 1.5rem auto;
   }
