@@ -25,11 +25,14 @@
 // ==============================
 // Import
 // ==============================
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { fas } from "@fortawesome/free-solid-svg-icons";
 import { computed, ref } from "vue";
 
 // ==============================
 // Consts
 // ==============================
+library.add( fas );
 const getLabel = computed(() => {
   let label = '';
 

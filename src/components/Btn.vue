@@ -16,6 +16,12 @@
 
 <script setup>
 // ==============================
+// Import
+// ==============================
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { fas } from "@fortawesome/free-solid-svg-icons";
+
+// ==============================
 // Props
 // ==============================
 const props = defineProps({
@@ -27,6 +33,9 @@ const props = defineProps({
   round: Boolean,
   active: Boolean
 });
+
+library.add( fas );
+
 </script>
 
 <style lang="scss" scoped>

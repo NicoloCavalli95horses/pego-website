@@ -8,6 +8,10 @@
         :style="{ 'width': `${width}rem`, 'height': `${height}rem` }"
         @click="(e) => e.stopPropagation()"
       >
+      <div v-if="close_btn" class="top-right-corner" @click="emit('closed')">
+        <Icon icon="fa-solid fa-xmark" class="svg-24" />
+      </div>
+
         <!-- header -->
         <header>
           <h3>{{ title }}</h3>
@@ -37,6 +41,8 @@
 // ==============================
 import { reactive } from "@vue/reactivity";
 import { onMounted, onUnmounted } from "@vue/runtime-core";
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { fas } from "@fortawesome/free-solid-svg-icons";
 
 // ==============================
 // Props
@@ -47,6 +53,7 @@ const props = defineProps({
   height: Number,
   click_out_close: Boolean,
   full_size: Boolean,
+  close_btn: Boolean,
 });
 
 const emit = defineEmits(["closed"]);
@@ -54,6 +61,7 @@ const emit = defineEmits(["closed"]);
 //==================================
 // Consts
 //==================================
+library.add( fas );
 const screen = reactive({
   width: window.innerWidth,
   height: window.innerHeight,

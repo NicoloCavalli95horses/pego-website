@@ -28,6 +28,8 @@
 // ==============================
 // Import
 // ==============================
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { fas } from "@fortawesome/free-solid-svg-icons";
 import { ref } from "@vue/reactivity";
 import { computed, onMounted } from "@vue/runtime-core";
 import Tooltip from "./Tooltip.vue";
@@ -49,6 +51,7 @@ const emit = defineEmits([
 // ==============================
 // Variables
 // ==============================
+library.add( fas );
 const input_ref = ref(undefined);
 const file = ref(null);
 const MAX_NAME_LENGTH = 20;

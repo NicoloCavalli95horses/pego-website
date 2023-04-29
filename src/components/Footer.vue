@@ -63,7 +63,7 @@
           :def="true"
           @click="show.modal = true"
         />
-        
+
         <div class="top-32">
           <h4 class="l-text">Partner</h4>
           <Carousel>
@@ -110,6 +110,9 @@
 import { config } from "../utils/config.js";
 import { getViewport } from "../utils/screen_size";
 import { reactive } from "vue";
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { fas } from "@fortawesome/free-solid-svg-icons";
+
 import Btn from "./Btn.vue";
 import Carousel from "./Carousel.vue";
 import ContactModal from "./ContactModal.vue";
@@ -117,6 +120,7 @@ import ContactModal from "./ContactModal.vue";
 // ==============================
 // Consts
 // ==============================
+library.add( fas );
 const device = getViewport();
 const show = reactive({
   modal: false,

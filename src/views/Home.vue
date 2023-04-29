@@ -18,7 +18,8 @@
       label="clienti fidelizzati"
       :value="2000"
       :plus="true"
-      :animation_time="2000"
+      :animation_time="3000"
+      :multiplier="4"
       icon="fa-solid fa-users"
     />
     <Counter

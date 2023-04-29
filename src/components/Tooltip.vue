@@ -16,7 +16,10 @@
 // ==============================
 // Import
 // ==============================
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { fas } from "@fortawesome/free-solid-svg-icons";
 import { ref } from "vue";
+
 import Btn from "./Btn.vue";
 
 // ==============================
@@ -29,6 +32,7 @@ const props = defineProps({
 // ==============================
 // Props
 // ==============================
+library.add( fas );
 const show_tip = ref(false);
 
 // ==============================

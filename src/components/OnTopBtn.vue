@@ -14,10 +14,13 @@
 // ==============================
 import { onBeforeMount, onUnmounted, ref } from "vue";
 import Btn from "./Btn.vue";
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { fas } from "@fortawesome/free-solid-svg-icons";
 
 // ==============================
 // Props
 // ==============================
+library.add( fas );
 const show = ref(false);
 const emit = defineEmits(["ontop"]);
 

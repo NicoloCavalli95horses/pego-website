@@ -16,7 +16,6 @@
 //==============================
 import { ref } from "@vue/reactivity";
 import { onMounted } from "@vue/runtime-core";
-import DotNavigator from "../components/DotNavigator.vue";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fas } from "@fortawesome/free-solid-svg-icons";
 
@@ -29,6 +28,10 @@ const props = defineProps({
   animation_time: Number,
   icon: String,
   plus: Boolean,
+  multiplier: {
+    type: Number,
+    default: 1,
+  },
 });
 
 //==============================
@@ -58,8 +61,8 @@ function onIntersect( el ){
 
 function startCounter(){
   interval = setInterval(() => {
-    if ( counter.value < props.value ) {
-      counter.value++;
+    if ( counter.value <= (props.value - props.multiplier)) {
+      counter.value += props.multiplier;
     } else {
       clearInterval( interval );
     }

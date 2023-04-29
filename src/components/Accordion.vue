@@ -14,6 +14,8 @@
 // ==============================
 // Import
 // ==============================
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { fas } from "@fortawesome/free-solid-svg-icons";
 import { ref } from "vue";
 
 // ==============================
@@ -27,6 +29,7 @@ const props = defineProps({
 // ==============================
 // Consts
 // ==============================
+library.add( fas );
 const show = ref(false);
 </script>
 
