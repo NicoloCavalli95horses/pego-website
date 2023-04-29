@@ -53,7 +53,8 @@
       <div class="mobile">
         <h3>Pegorer S.T.A.</h3>
         <h5 class="top-12">
-          Manutenzione e assistenza tecnica autorizzata <br />
+          Manutenzione e assistenza <br />
+          tecnica autorizzata <br />
           per impianti a biomassa
         </h5>
         <Btn
@@ -166,7 +167,7 @@ footer {
 }
 .mobile {
   width: 100%;
-  height: 60rem;
+  height: 65rem;
   margin: 0 auto;
   text-align: center;
   h3 {
