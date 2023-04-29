@@ -130,6 +130,10 @@ svg {
   justify-content: space-between;
 }
 
+.grow-1 {
+  flex-grow: 1;
+}
+
 .top-6 {
   margin-top: 0.6rem;
 }

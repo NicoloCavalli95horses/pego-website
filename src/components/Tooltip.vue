@@ -1,7 +1,7 @@
 <template>
   <div v-if="show_tip" class="hidden-bg" @click="onBackgroundClick" />
   <div class="relative">
-    <div v-if="show_tip" class="floating fadein">
+    <div v-if="show_tip" class="floating fadein" :class="{ 'up' : direction == 'up'}">
       <p>{{ text }}</p>
     </div>
   </div>
@@ -27,6 +27,7 @@ import Btn from "./Btn.vue";
 // ==============================
 const props = defineProps({
   text: String,
+  direction: String,
 });
 
 // ==============================
@@ -72,5 +73,10 @@ function onBackgroundClick(e) {
   transform: translate(-6rem, 0%);
   background-color: var(--footer-bg);
   border-radius: var(--radius-m);
+  &.up {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, calc(-100% - 0.5rem));
+  }
 }
 </style>

@@ -1,14 +1,14 @@
 <template>
   <!-- text input -->
   <template v-if="input_type == 'text'">
-    <div :class="{ focus: isFocusMode }">
+    <div :class="[ext_class, isFocusMode ? 'focus': '']">
       <div class="wrapper">
         <div class="label-wrapper">
           <label>
             {{ placeholder }}<template v-if="is_required">*</template></label
           >
           <div v-if="tooltip && !isFocusMode">
-            <Tooltip :text="tooltip" />
+            <Tooltip :text="tooltip" :direction="tooltip_dir" />
           </div>
         </div>
         <div class="input-wrapper">
@@ -52,21 +52,20 @@
             </div>
           </div>
         </div>
-        <Btn v-if="isFocusMode" text="Conferma" />
       </div>
     </div>
   </template>
 
   <!-- tel input -->
   <template v-else-if="input_type == 'tel'">
-    <div :class="{ focus: isFocusMode }">
+    <div :class="[ext_class, isFocusMode ? 'focus': '']">
       <div class="wrapper">
         <div class="label-wrapper">
           <label
             >{{ placeholder }}<template v-if="is_required">*</template></label
           >
           <div v-if="tooltip && !isFocusMode">
-            <Tooltip :text="tooltip" />
+            <Tooltip :text="tooltip" :direction="tooltip_dir" />
           </div>
         </div>
         <div class="input-wrapper">
@@ -103,21 +102,20 @@
             <label>{{ error_message || "campo obbligatorio" }}</label>
           </div>
         </div>
-        <Btn v-if="isFocusMode" text="Conferma" />
       </div>
     </div>
   </template>
 
   <!-- textarea -->
   <template v-else-if="input_type == 'textarea'">
-    <div :class="{ focus: isFocusMode }">
+    <div :class="[ext_class, isFocusMode ? 'focus': '']">
       <div class="wrapper">
         <div class="label-wrapper">
           <label
             >{{ placeholder }}<template v-if="is_required">*</template></label
           >
           <div v-if="tooltip && !isFocusMode">
-            <Tooltip :text="tooltip" />
+            <Tooltip :text="tooltip" :direction="tooltip_dir" />
           </div>
         </div>
         <div class="input-wrapper">
@@ -150,7 +148,6 @@
             <label>{{ error_message || "campo obbligatorio" }}</label>
           </div>
         </div>
-        <Btn v-if="isFocusMode" text="Conferma" />
       </div>
     </div>
   </template>
@@ -162,9 +159,8 @@
 // ==============================
 import { ref } from "@vue/reactivity";
 import { getViewport } from "../utils/screen_size.js";
-import { computed, onMounted } from "@vue/runtime-core";
+import { computed, onMounted, onUnmounted } from "@vue/runtime-core";
 import Tooltip from "./Tooltip.vue";
-import Btn from "./Btn.vue";
 
 // ==============================
 // Props
@@ -187,12 +183,19 @@ const props = defineProps({
   // tooltip message (?)
   tooltip: String,
 
+  // tooltip position
+  tooltip_dir: String,
+
   // tips to help the user choosing between different fixed options (ex., cities)
   show_tips: Boolean,
   tips: Array,
 
   // force uppercase
   display_uppercase: Boolean,
+
+  // take external classes
+  ext_class: String
+
 });
 
 const emit = defineEmits(["update:modelValue", "selectedtip", "focus", "blur"]);
@@ -203,12 +206,17 @@ const emit = defineEmits(["update:modelValue", "selectedtip", "focus", "blur"]);
 const device = getViewport();
 const input_ref = ref(undefined);
 const is_focused = ref(false);
-const getPlaceholder = computed(() =>
-  device.value == "mobile" && props.error ? "" : props.placeholder
-);
-const isFocusMode = computed(
-  () => is_focused.value && device.value == "mobile"
-);
+const getPlaceholder = computed(() => device.value == "mobile" && props.error ? "" : props.placeholder );
+const isFocusMode = computed(() => is_focused.value && device.value == "mobile" && isKeyboardOpen.value );
+const windowH = ref( window.innerHeight );
+const isKeyboardOpen = ref( false );
+
+//==============================
+// Functions
+//==============================
+function onKeyboard(){
+  isKeyboardOpen.value =  windowH.value != window.innerHeight ? true : false;
+}
 
 //==============================
 // Life cycle
@@ -217,7 +225,13 @@ onMounted(() => {
   if (props.focus) {
     input_ref.value.focus();
   }
+  window.addEventListener('resize', onKeyboard);
 });
+
+onUnmounted(() => {
+  window.removeEventListener('resize', onKeyboard);
+})
+
 </script>
 
 <style lang="scss" scoped>

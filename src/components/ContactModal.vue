@@ -114,23 +114,28 @@
               :error="system.other.error"
             />
             <InputText
-              placeholder="Modello"
-              tooltip="L'indicazione del modello dell'impianto si trova su una apposita etichetta."
-              v-model="system.model.content"
-              :error="system.model.error"
-            />
-            <InputText
-              placeholder="Matricola"
-              tooltip="La matricola identificativa dell'impianto si trova su una apposita etichetta."
-              v-model="system.register.content"
-              :error="system.register.error"
-            />
-            <InputText
               placeholder="Anno installazione"
               v-model="system.year.content"
               input_type="tel"
               :error="system.year.error"
             />
+            <div class="flex-center">
+              <InputText
+                placeholder="Matricola"
+                tooltip="La matricola identificativa dell'impianto si trova su una apposita etichetta."
+                tooltip_dir="up"
+                v-model="system.register.content"
+                :error="system.register.error"
+                ext_class="w-50 r-12"
+              />
+              <InputText
+                placeholder="Modello"
+                tooltip="L'indicazione del modello dell'impianto si trova su una apposita etichetta."
+                v-model="system.model.content"
+                :error="system.model.error"
+                ext_class="w-50"
+              />
+            </div>
           </template>
           <template v-if="active == 4">
             <InputFile
@@ -247,8 +252,7 @@ const OTHER = 'Altro (non incluso)';
 // Consts
 // ==============================
 const device = getViewport();
-const active = ref(0);
-const input_is_focused = ref( false );
+const active = ref(3);
 const steps = [
   { label: "Richiesta" },
   { label: "Nominativo" },
