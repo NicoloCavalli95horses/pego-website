@@ -1,5 +1,6 @@
 <template>
   <button
+    :data-cy="`btn-${text}`"
     :type="type"
     :class="{ 
       'active': active,

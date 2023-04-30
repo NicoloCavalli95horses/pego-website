@@ -1,7 +1,7 @@
 <template>
   <label> {{ placeholder }}<template v-if="is_required">*</template> </label>
   <div class="wrapper">
-    <div v-for="(opt, i) in options" :key="i" class="option" @click="$emit('update:modelValue', opt)">
+    <div v-for="(opt, i) in options" :key="i" :data-cy="`opt-${opt}`" class="option" @click="$emit('update:modelValue', opt)">
       <div class="dot" :class="{ 'active' : modelValue == opt, 'error' : error && !modelValue }" />
       <label :class="{ 'error' : error && !modelValue }">{{ opt }}</label>
     </div>

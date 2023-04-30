@@ -4,8 +4,9 @@
       <div
         ref="modal_ref"
         class="modal"
+        data-cy="modal"
         :class="{ 'full-size': full_size }"
-        :style="{ width: `${width}rem`, height: `${height}rem` }"
+        :style="{ 'width': `${width}rem`, 'height': `${height}rem` }"
         @click="(e) => e.stopPropagation()"
       >
         <div v-if="close_btn" class="top-right-corner" @click="emit('closed')">

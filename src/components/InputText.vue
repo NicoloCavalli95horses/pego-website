@@ -86,6 +86,7 @@
             :value="modelValue"
             :required="is_required"
             :placeholder="getPlaceholder"
+            data-cy="textarea"
             @focus="() => { $emit('focus'); is_focused = true; }"
             @blur="() => { $emit('blur'); is_focused = false; }"
             @input="$emit('update:modelValue', $event.target.value)"
