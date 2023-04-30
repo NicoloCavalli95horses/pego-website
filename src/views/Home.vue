@@ -56,9 +56,11 @@
 
   <div class="separator" />
 
-    <!-- FAQ section -->
-  <h3 v-if="device != 'mobile'" class="bottom-12" id="faq">Domande frequenti (FAQ)</h3>
-  <h3 v-else class="bottom-36">Domande frequenti</h3>
+  <!-- FAQ section -->
+  <div id="faq">
+    <h3 v-if="device != 'mobile'" class="bottom-12">Domande frequenti (FAQ)</h3>
+    <h3 v-else class="bottom-36">Domande frequenti</h3>
+  </div>
   <FAQ />
   
   <div class="separator" />

@@ -96,10 +96,11 @@ nav {
   }
 }
 .mobile-nav-options {
-  height: 100%;
+  width: 100%;
+  height: 40vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: space-between;
 }
 </style>

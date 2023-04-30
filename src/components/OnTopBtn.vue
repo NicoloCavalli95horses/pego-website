@@ -13,9 +13,10 @@
 // Import
 // ==============================
 import { onBeforeMount, onUnmounted, ref } from "vue";
-import Btn from "./Btn.vue";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fas } from "@fortawesome/free-solid-svg-icons";
+
+import Btn from "./Btn.vue";
 
 // ==============================
 // Props
@@ -33,18 +34,18 @@ function onTopClick() {
   emit("ontop");
 }
 
-function onScroll() {
-  show.value = document.documentElement.scrollTop >= 50 ? true : false;
+function onScroll(e) {
+  show.value = e.target.scrollTop >= 50 ? true : false;
 }
 // ==============================
 // Life cycle
 // ==============================
 onBeforeMount(() => {
-  document.addEventListener("scroll", onScroll);
+  document.querySelector('body').addEventListener("scroll", onScroll);
 });
 
 onUnmounted(() => {
-  document.removeEventListener("scroll", onScroll);
+  document.querySelector('body').removeEventListener("scroll", onScroll);
 });
 </script>
 
