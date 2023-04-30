@@ -299,10 +299,6 @@ const houseNumber = reactive({
   content: "",
   error: false,
 });
-const date = reactive({
-  content: "",
-  error: false,
-});
 const file = reactive({
   content: "",
   error: false,
@@ -338,7 +334,7 @@ const system = reactive({
 const emailReg = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const telReg = /^(?:(?:\+|00)39)?\s*(?:\d{2}\s*){2}\d{6,7}$/;
 const houseNumberReg = /^\d+(\s*[a-zA-Z]?)$/;
-const yearReg = /^(19|20)\d{2}$/;
+// const yearReg = /^(19|20)\d{2}$/;
 
 const isEmailValid = computed(
   () => email.content.length && emailReg.test(email.content)
@@ -349,9 +345,9 @@ const isTelValid = computed(
 const isHouseNumberValid = computed(
   () => houseNumber.content && houseNumberReg.test(houseNumber.content)
 );
-const isValidSystemYear = computed(
-  () => system.year.content && yearReg.test(system.year.content)
-);
+// const isValidSystemYear = computed(
+//   () => system.year.content && yearReg.test(system.year.content)
+// );
 
 const isStepZeroValid = computed(
   () => request.selected.length && request.content.length

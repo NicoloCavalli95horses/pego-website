@@ -14,10 +14,10 @@
 //==================================
 // Import
 //==================================
-import { ref } from "@vue/reactivity";
+import { ref } from "vue";
 import { getViewport } from "./utils/screen_size";
 import { RouterView } from "vue-router";
-import { onBeforeMount, onUnmounted } from "@vue/runtime-core";
+import { onBeforeMount, onUnmounted } from "vue";
 import LoadingSpinner from "./components/LoadingSpinner.vue";
 import NavBar from "./components/NavBar.vue";
 import Footer from "./components/Footer.vue";

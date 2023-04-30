@@ -70,7 +70,6 @@ const emit = defineEmits(["update:modelValue"]);
 // ==============================
 // Consts
 // ==============================
-const selection = ref("Seleziona un'opzione");
 const show = ref(false);
 
 // ==============================

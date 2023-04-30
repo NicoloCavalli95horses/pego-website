@@ -19,7 +19,7 @@ import { getViewport } from "../utils/screen_size.js";
 // ==============================
 // Props
 // ==============================
-const props = defineProps({
+defineProps({
   title: String,
   description: String,
   img_src: String,

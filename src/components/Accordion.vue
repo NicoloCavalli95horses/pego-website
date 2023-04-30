@@ -21,7 +21,7 @@ import { ref } from "vue";
 // ==============================
 // Props
 // ==============================
-const props = defineProps({
+defineProps({
   question: String,
   answer: String,
 });

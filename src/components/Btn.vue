@@ -25,7 +25,7 @@ import { fas } from "@fortawesome/free-solid-svg-icons";
 // ==============================
 // Props
 // ==============================
-const props = defineProps({
+defineProps({
   text: String,
   type: String,
   def: Boolean,

@@ -1,4 +1,4 @@
-import { computed, onMounted, onUnmounted, reactive, ref } from "vue";
+import { computed, onMounted, onUnmounted, ref } from "vue";
 
 export function getViewport(){
   // const
@@ -22,7 +22,7 @@ export function getViewport(){
   // function
   function onResize(){
     width.value = window.innerWidth;
-  };
+  }
 
   return device;
-};
+}

@@ -116,3 +116,15 @@ npm run build
 ```sh
 npm run lint
 ```
+
+### Cypress E2E
+
+```sh
+npx cypress open
+```
+
+### Cypress E2E (headless)
+
+```sh
+npx cypress run
+```

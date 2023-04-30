@@ -105,9 +105,9 @@
 // ==============================
 // Import
 // ==============================
-import { ref } from "@vue/reactivity";
+import { ref } from "vue";
 import { getViewport } from "../utils/screen_size.js";
-import { computed, onMounted, onUnmounted } from "@vue/runtime-core";
+import { computed, onMounted, onUnmounted } from "vue";
 import Tooltip from "./Tooltip.vue";
 
 // ==============================
@@ -148,7 +148,7 @@ const props = defineProps({
   prevent_focus_mode: Boolean,
 });
 
-const emit = defineEmits([
+defineEmits([
   "update:modelValue",
   "selectedtip",
   "focus",

@@ -13,7 +13,7 @@
 // ==============================
 // Props
 // ==============================
-const props = defineProps({
+defineProps({
   steps: Array,
   active: Number
 });

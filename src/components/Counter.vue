@@ -14,8 +14,8 @@
 //==============================
 // Import
 //==============================
-import { ref } from "@vue/reactivity";
-import { onMounted } from "@vue/runtime-core";
+import { ref } from "vue";
+import { onMounted } from "vue";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fas } from "@fortawesome/free-solid-svg-icons";
 

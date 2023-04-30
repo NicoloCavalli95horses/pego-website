@@ -30,8 +30,8 @@
 // ==============================
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fas } from "@fortawesome/free-solid-svg-icons";
-import { ref } from "@vue/reactivity";
-import { computed, onMounted } from "@vue/runtime-core";
+import { ref } from "vue";
+import { computed, onMounted } from "vue";
 import Tooltip from "./Tooltip.vue";
 
 // ==============================

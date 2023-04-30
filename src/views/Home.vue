@@ -73,7 +73,6 @@
 //==============================
 // Import
 //==============================
-import { reactive } from "@vue/reactivity";
 import { getViewport } from "../utils/screen_size.js";
 import { config } from "../utils/config.js";
 
@@ -90,9 +89,6 @@ import Counter from "../components/Counter.vue";
 // Consts
 //==============================
 const device = getViewport();
-const show = reactive({
-  modal: false,
-});
 
 </script>
 

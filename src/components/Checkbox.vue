@@ -12,7 +12,7 @@
 // ==============================
 // Props
 // ==============================
-const props = defineProps({
+defineProps({
   modelValue: [String, Number],
   placeholder: String,
   type: String,
@@ -21,7 +21,7 @@ const props = defineProps({
   options: Array,
 });
 
-const emit = defineEmits(["update:modelValue"]);
+defineEmits(["update:modelValue"]);
 </script>
 
 <style lang="scss" scoped>

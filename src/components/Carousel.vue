@@ -22,13 +22,13 @@
 //==============================
 // Import
 //==============================
-import { ref } from "@vue/reactivity";
+import { ref } from "vue";
 import DotNavigator from "../components/DotNavigator.vue";
 
 // ==============================
 // Props
 // ==============================
-const props = defineProps({
+defineProps({
   width: String,
   show_dots: Boolean,
 });

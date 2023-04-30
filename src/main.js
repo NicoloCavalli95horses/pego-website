@@ -10,10 +10,10 @@ const app = createApp(App);
 app.use(createPinia());
 
 app.directive("prevent-body-overflow", {
-  beforeMount(el, binding) {
+  beforeMount() {
     document.querySelector("body").style.overflow = "hidden";
   },
-  beforeUnmount(el, binding) {
+  beforeUnmount() {
     document.querySelector("body").style.overflow = "auto";
   },
 });
@@ -30,7 +30,7 @@ app.directive("focus", {
 });
 
 app.directive('click-outside', {
-  mounted(el, binding, vnode) {
+  mounted(el, binding) {
     el.clickOutsideEvent = function(event) {
       if (!(el === event.target || el.contains(event.target))) {
         binding.value(event, el);

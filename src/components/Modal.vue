@@ -37,8 +37,8 @@
 // ==============================
 // Import
 // ==============================
-import { reactive } from "@vue/reactivity";
-import { onMounted, onUnmounted } from "@vue/runtime-core";
+import { reactive } from "vue";
+import { onMounted, onUnmounted } from "vue";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fas } from "@fortawesome/free-solid-svg-icons";
 

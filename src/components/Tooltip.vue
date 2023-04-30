@@ -25,7 +25,7 @@ import Btn from "./Btn.vue";
 // ==============================
 // Props
 // ==============================
-const props = defineProps({
+defineProps({
   text: String,
   direction: String,
 });

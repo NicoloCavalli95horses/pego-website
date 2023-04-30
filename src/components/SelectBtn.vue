@@ -16,7 +16,7 @@
 // ==============================
 // Props
 // ==============================
-const props = defineProps({
+defineProps({
   modelValue: [String, Number],
   placeholder: String,
   is_required: Boolean,
