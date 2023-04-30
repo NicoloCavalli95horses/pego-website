@@ -214,7 +214,7 @@ h4 {
 .sign {
   width: 100%;
   text-align: center;
-  padding: 0 0 8rem 0;
+  padding: 0 0 10rem 0;
   font-size: 0.8rem;
   color: var(--font-light);
   font-family: monospace;

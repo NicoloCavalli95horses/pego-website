@@ -29,8 +29,9 @@ const device = getViewport();
   flex-wrap: wrap;
   align-items: center;
   .brand {
-    display: grid;
-    place-content: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 14rem;
     height: 14rem;
     border-radius: var(--radius-s);
@@ -54,7 +55,7 @@ const device = getViewport();
     }
     img {
       width: 100%;
-      height: auto;
+      height: 100%;
       object-fit: contain;
     }
   }

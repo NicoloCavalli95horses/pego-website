@@ -142,7 +142,7 @@ $gap: 2.2rem;
       box-sizing: border-box;
       footer {
         position: absolute;
-        bottom: 3.2rem;
+        bottom: 4rem;
         right: 2.2rem;
         transform: translate(0%, -50%);
       }
