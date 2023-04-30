@@ -1,6 +1,8 @@
 <template>
   <div class="card" :style="{ 'width' : device == 'mobile' ? '25rem': '35rem' }">
-    <img :src="img_src" :alt="title" />
+    <div class="img-wrapper" :style="{ 'height' : device == 'mobile' ? '18rem' : '25rem' }">
+      <img :src="img_src" :alt="title" />
+    </div>
     <div class="text-wrapper" :style="{ 'height' : device == 'mobile' ? '22rem' : '18rem' }">
       <h4>{{ title }}</h4>
       <p>{{ description }}</p>
@@ -33,8 +35,14 @@ const device = getViewport();
   margin: 0 0.8rem;
   background-color: var(--white);
   border-radius: var(--radius-m);
-  img {
+  box-sizing: border-box;
+  .img-wrapper {
     width: 100%;
+    object-fit: cover;
+    img {
+      width: 100%;
+      height: 100%;
+    }
   }
   .text-wrapper {
     margin: 1.5rem;
@@ -44,7 +52,12 @@ const device = getViewport();
       color: var(--font-dark);
     }
     h4 {
+      letter-spacing: 0.1rem;
+      text-transform: uppercase;
       border-bottom: 1px solid var(--font-dark);
+    }
+    p {
+      text-align: left;
     }
   }
 }

@@ -2,10 +2,10 @@
   <template v-if="device == 'desktop'">
     <div class="wrapper desktop">
       <div class="img-wrapper">
-        <img src="/img/about.jpg" alt="repairs" />
+        <img :src="about_src" alt="chi siamo" />
       </div>
       <div class="text-wrapper">
-        <h4>Un'attività a gestione familiare che ha a cuore il cliente.</h4>
+        <h4>Lorem ipsum dolor sit.</h4>
         <p>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem nemo
           rerum numquam deserunt dolor optio odio nesciunt necessitatibus hic
@@ -25,7 +25,7 @@
 
   <template v-else>
     <div class="wrapper mobile">
-      <img src="/img/about.jpg" alt="repairs" />
+      <img :src="about_src" alt="chi siamo" />
       <div class="text-wrapper">
         <h4>Lorem ipsum dolor sit</h4>
         <p>
@@ -49,6 +49,7 @@ import { getViewport } from "../utils/screen_size.js";
 // Consts
 //==============================
 const device = getViewport();
+const about_src = '/img/about/img_1.jpeg';
 </script>
 
 <style lang="scss" scoped>
