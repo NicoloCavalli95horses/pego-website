@@ -381,7 +381,7 @@ function validate(e){
       system.brand.error = !system.brand.content ? true : false;
       system.other.error = !system.other.content ? true : false;
       break;
-  };
+  }
 }
 
 function onselectedtip(val){

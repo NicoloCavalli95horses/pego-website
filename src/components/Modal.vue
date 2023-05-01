@@ -143,9 +143,16 @@ $gap: 2.2rem;
       box-sizing: border-box;
       footer {
         position: absolute;
-        bottom: 4rem;
-        right: 2.2rem;
-        transform: translate(0%, -50%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        bottom: 5rem;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        &:deep(button) {
+          width: 50%;
+          margin: 0 1.2rem;
+        }
       }
     }
   }
