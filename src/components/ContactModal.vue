@@ -154,7 +154,7 @@
           </template>
         </div>
 
-        <input type="hidden" name="_next" value="https://192.168.73.63:5173/thanks" />
+        <input type="hidden" name="_next" value="https://pegorersta.netlify.app/thanks" />
         <input type="hidden" name="_subject" :value="getEmailObject" />
         <input type="hidden" name="_template" value="table" />
 
@@ -185,39 +185,19 @@
     <template #footer>
       <template v-if="active == 0">
         <Btn :bg="false" text="chiudi" @click="$router.push('/')" />
-        <Btn
-          class="l-12"
-          text="avanti"
-          :def="true"
-          @click="(e) => onStepZero(e)"
-        />
+        <Btn class="l-12" text="avanti" :def="true" @click="validate" />
       </template>
       <template v-if="active == 1">
         <Btn :bg="false" text="indietro" @click="active--" />
-        <Btn
-          class="l-12"
-          text="avanti"
-          :def="true"
-          @click="(e) => onStepOne(e)"
-        />
+        <Btn class="l-12" text="avanti" :def="true" @click="validate" />
       </template>
       <template v-if="active == 2">
         <Btn :bg="false" text="indietro" @click="active--" />
-        <Btn
-          class="l-12"
-          text="avanti"
-          :def="true"
-          @click="(e) => onStepTwo(e)"
-        />
+        <Btn class="l-12" text="avanti" :def="true" @click="validate" />
       </template>
       <template v-else-if="active == 3">
         <Btn :bg="false" text="indietro" @click="active--" />
-        <Btn
-          class="l-12"
-          text="avanti"
-          :def="true"
-          @click="(e) => onStepThree(e)"
-        />
+        <Btn class="l-12" text="avanti" :def="true" @click="validate" />
       </template>
       <template v-else-if="active == 4">
         <Btn :bg="false" text="indietro" @click="active--" />
@@ -331,115 +311,84 @@ const system = reactive({
   },
 });
 
+// RegEx
 const emailReg = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const telReg = /^(?:(?:\+|00)39)?\s*(?:\d{2}\s*){2}\d{6,7}$/;
 const houseNumberReg = /^\d+(\s*[a-zA-Z]?)$/;
-// const yearReg = /^(19|20)\d{2}$/;
 
-const isEmailValid = computed(
-  () => email.content.length && emailReg.test(email.content)
-);
-const isTelValid = computed(
-  () => tel.content.length && telReg.test(tel.content)
-);
-const isHouseNumberValid = computed(
-  () => houseNumber.content && houseNumberReg.test(houseNumber.content)
-);
-// const isValidSystemYear = computed(
-//   () => system.year.content && yearReg.test(system.year.content)
-// );
+const isEmailValid = computed(() => email.content.length && emailReg.test(email.content));
+const isTelValid = computed(() => tel.content.length && telReg.test(tel.content));
+const isHouseNumberValid = computed(() => houseNumber.content && houseNumberReg.test(houseNumber.content));
+const isStepZeroValid = computed(() => request.selected.length && request.content.length);
+const isStepOneValid = computed(() => name.content && surname.content && ((email.content && isEmailValid.value) || (tel.content && isTelValid.value)));
+const isStepTwoValid = computed(() => address.content && city.content && isHouseNumberValid.value);
+const isStepThreeValid = computed(() => ( system.brand.content.length && system.brand.content != OTHER ) || ( system.brand.content == OTHER && system.other.content.length ));
 
-const isStepZeroValid = computed(
-  () => request.selected.length && request.content.length
-);
-const isStepOneValid = computed(
-  () =>
-    name.content &&
-    surname.content &&
-    ((email.content && isEmailValid.value) || (tel.content && isTelValid.value))
-);
-const isStepTwoValid = computed(
-  () => address.content && city.content && isHouseNumberValid.value
-);
-const isStepThreeValid = computed(() => 
-  ( system.brand.content.length && system.brand.content != OTHER )
-  || ( system.brand.content == OTHER && system.other.content.length )
-);
-
-const getEmailObject = computed(
-  () => request.selected + " - " + name.content + " " + surname.content
-);
+const getEmailObject = computed(() => request.selected + " - " + name.content + " " + surname.content);
 const getSystemYear = computed(() => {
   let year = parseInt(system.year.content);
   return `${year}, (${new Date().getFullYear() - year} anni fa)`;
 });
+
 // ==============================
 // Functions
 // ==============================
-function onStepZero(e) {
+function validate(e){
   // Prevent default browser error message
   e.preventDefault();
 
-  if (isStepZeroValid.value) {
-    active.value++;
-    return;
-  }
+  switch (active.value) {
+    case 0:
+      if (isStepZeroValid.value) {
+        active.value++;
+        return;
+      }
+      request.error = !request.content || !request.selected ? true : false;
+      break;
+    case 1:
+      if (isStepOneValid.value) {
+        active.value++;
+        return;
+      }
 
-  request.error = !request.content ? true : false;
-}
+      name.error = !name.content ? true : false;
+      surname.error = !surname.content ? true : false;
+      tel.error = !isTelValid.value;
+      email.error = !isEmailValid.value;
 
-function onStepOne(e) {
-  // Prevent default browser error message
-  e.preventDefault();
+      if (!isEmailValid.value && !isTelValid.value) {
+        email.error_msg = "Fornire una email o un telefono valido";
+        tel.error_msg = "Fornire una email o un telefono valido";
+        return;
+      }
+      break;
+    case 2:
+      if (isStepTwoValid.value) {
+      active.value++;
+      return;
+      }
 
-  if (isStepOneValid.value) {
-    active.value++;
-    return;
-  }
+      address.error = !address.content ? true : false;
+      city.error = !city.content ? true : false;
+      houseNumber.error = !isHouseNumberValid.value ? true : false;
+      break;
+    case 3:
+      if (isStepThreeValid.value) {
+        active.value++;
+        return;
+      }
 
-  name.error = !name.content ? true : false;
-  surname.error = !surname.content ? true : false;
-  tel.error = !isTelValid.value;
-  email.error = !isEmailValid.value;
-
-  if (!isEmailValid.value && !isTelValid.value) {
-    email.error_msg = "Fornire una email o un telefono valido";
-    tel.error_msg = "Fornire una email o un telefono valido";
-    return;
-  }
-}
-
-function onStepTwo(e) {
-  // Prevent default browser error message
-  e.preventDefault();
-
-  if (isStepTwoValid.value) {
-    active.value++;
-    return;
-  }
-
-  address.error = !address.content ? true : false;
-  city.error = !city.content ? true : false;
-  houseNumber.error = !isHouseNumberValid.value ? true : false;
-}
-
-function onStepThree(e) {
-  // Prevent default browser error message
-  e.preventDefault();
-
-  if (isStepThreeValid.value) {
-    active.value++;
-    return;
-  }
-
-  system.brand.error = !system.brand.content ? true : false;
-  system.other.error = !system.other.content ? true : false;
+      system.brand.error = !system.brand.content ? true : false;
+      system.other.error = !system.other.content ? true : false;
+      break;
+  };
 }
 
 function onselectedtip(val){
   city.content = val;
   city.show_tips = false;
 }
+
 // ==============================
 // Watch
 // ==============================

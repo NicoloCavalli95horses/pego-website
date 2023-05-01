@@ -23,7 +23,7 @@
             @input="$emit('update:modelValue', $event.target.value)"
           />
           <div v-if="error && !modelValue" class="warning-text" :class="{ mobile: device == 'mobile' }">
-            <label>{{ error_message || "campo obbligatorio" }}</label>
+            <label>{{ error_message || "Campo obbligatorio" }}</label>
           </div>
           <div v-if="show_tips" class="tips">
             <div class="tip" v-for="t in tips" :key="t" @click="$emit('selectedtip', t)">
@@ -62,7 +62,7 @@
             @input="$emit('update:modelValue', $event.target.value)"
           />
           <div v-if="error && !modelValue" class="warning-text" :class="{ mobile: device == 'mobile' }">
-            <label>{{ error_message || "campo obbligatorio" }}</label>
+            <label>{{ error_message || "Campo obbligatorio" }}</label>
           </div>
         </div>
       </div>
@@ -93,7 +93,7 @@
           >
           </textarea>
           <div v-if="error && !modelValue" class="warning-text textarea" :class="{ mobile: device == 'mobile' }">
-            <label>{{ error_message || "campo obbligatorio" }}</label>
+            <label>{{ error_message || "Campo obbligatorio" }}</label>
           </div>
         </div>
       </div>
