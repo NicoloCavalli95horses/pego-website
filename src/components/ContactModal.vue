@@ -154,7 +154,7 @@
           </template>
         </div>
 
-        <input type="hidden" name="_next" value="http://pegorersta.netlify.app/index.html/thanks" />
+        <input type="hidden" name="_next" value="/thanks" />
         <input type="hidden" name="_subject" :value="getEmailObject" />
         <input type="hidden" name="_template" value="table" />
 
