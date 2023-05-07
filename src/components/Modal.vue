@@ -141,19 +141,6 @@ $gap: 2.2rem;
       left: 0;
       transform: none;
       box-sizing: border-box;
-      footer {
-        position: absolute;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        bottom: 5rem;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        &:deep(button) {
-          width: 50%;
-          margin: 0 1.2rem;
-        }
-      }
     }
   }
 }

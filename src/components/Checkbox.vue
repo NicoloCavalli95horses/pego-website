@@ -1,9 +1,17 @@
 <template>
   <label> {{ placeholder }}<template v-if="is_required">*</template> </label>
   <div class="wrapper">
-    <div v-for="(opt, i) in options" :key="i" :data-cy="`opt-${opt}`" class="option" @click="$emit('update:modelValue', opt)">
-      <div class="dot" :class="{ 'active' : modelValue == opt, 'error' : error && !modelValue }" />
-      <label :class="{ 'error' : error && !modelValue }">{{ opt }}</label>
+    <div
+      v-for="(opt, i) in options"
+      :key="i"
+      :data-cy="`opt-${opt}`"
+      class="option"
+      @click="$emit('update:modelValue', opt)"
+    >
+      <div class="dot" :class="{ 'active': modelValue == opt, 'error': error && !modelValue }" />
+      <label :class="{ 'error': error && !modelValue }">
+        {{ opt }}
+      </label>
     </div>
   </div>
 </template>
@@ -41,14 +49,24 @@ defineEmits(["update:modelValue"]);
       }
     }
     .dot {
-      width: 1.8rem;
-      height: 1.8rem;
+      width: 2rem;
+      height: 2rem;
       border-radius: 50%;
       background-color: var(--font-light);
       box-sizing: border-box;
       &.active {
+        position: relative;
         background-color: var(--primary);
         transition-duration: var(--transition-medium);
+        &::after {
+          content: '\2713';
+          position: absolute;
+          left: 50%;
+          top: 50%;
+          transform: translate(-50%, -50%);
+          font-size: 1.5rem;
+          color: var(--footer-bg);
+        }
       }
       &.error {
         border: 0.2rem solid var(--error-color);

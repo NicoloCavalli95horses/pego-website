@@ -1,10 +1,8 @@
 <template>
   <div class="counter-wrapper" ref="counter_ref">
     <Icon :icon="icon" />
-    <h2>
-      <code>{{ counter }}</code>
-      <template v-if="plus">+</template>
-    </h2>
+      <h2 v-if="isAPIsupported"> <code>{{ counter }}</code><template v-if="plus">+</template> </h2>
+      <h2 v-else> <code>{{ value }}</code><template v-if="plus">+</template> </h2>
     <div class="line" />
     <label>{{ label }}</label>
   </div>
@@ -14,7 +12,7 @@
 //==============================
 // Import
 //==============================
-import { ref } from "vue";
+import { computed, ref } from "vue";
 import { onMounted } from "vue";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fas } from "@fortawesome/free-solid-svg-icons";
@@ -47,7 +45,11 @@ let options = {
   rootMargin: '0px',
   threshold: 0.5  // trigger onIntersect() if at least half of the counter_ref is visible
 }
-
+const isAPIsupported = computed(() =>
+  ('IntersectionObserver' in window) ||
+  ('IntersectionObserverEntry' in window) ||
+  ('intersectionRatio' in window.IntersectionObserverEntry.prototype)
+);
 //==============================
 // Function
 //==============================
