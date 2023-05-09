@@ -12,7 +12,7 @@
 
       <!-- User info -->
       <form
-        action="https://formsubmit.co/1384cf3d2204cf8365f1091212d3525e"
+        action="https://formsubmit.co/1384cf3d2204cf8365f1091212d3525e?success=true"
         method="POST"
         class="form"
         id="form"
