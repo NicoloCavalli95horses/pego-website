@@ -112,8 +112,6 @@ $gap: 2.2rem;
     align-items: center;
     header {
       width: 100%;
-      min-height: $header-h;
-      height: $header-h;
     }
     .content {
       width: 100%;
@@ -141,6 +139,9 @@ $gap: 2.2rem;
       left: 0;
       transform: none;
       box-sizing: border-box;
+      footer {
+        margin-top: 1.2rem;
+      }
     }
   }
 }

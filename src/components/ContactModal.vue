@@ -1,4 +1,5 @@
 <template>
+  <div class="w-100 h-100" />
   <Modal
     title="Contattaci"
     :width="device != 'mobile' ? 80 : undefined"

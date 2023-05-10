@@ -1,7 +1,7 @@
 <template>
   <div class="wrapper">
-    <h3 class="bottom-12">404 not found</h3>
-    <p class="bottom-24">Questa pagina non esiste o non è al momento raggiungibile.</p>
+    <h3 class="bottom-12 c-text">404 not found</h3>
+    <p class="bottom-24 c-text">Questa pagina non esiste o non è al momento raggiungibile.</p>
     <div class="flex-center">
       <Btn text="homepage" :def="true" @click="$router.push('/')" />
     </div>
@@ -24,7 +24,6 @@ import Btn from "../components/Btn.vue";
   height: 100vh;
   h3 {
     text-transform: uppercase;
-    text-align: center;
   }
 }
 </style>

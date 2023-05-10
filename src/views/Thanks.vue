@@ -1,4 +1,5 @@
 <template>
+  <div class="w-100 h-100" />
   <Modal
     title="Grazie per averci contattato"
     :width="device != 'mobile' ? 50 : undefined"
