@@ -29,7 +29,7 @@ const cards = [
   },
   {
    title: "Rilascio libretto impianti",
-   description: "Se ne sei sprovvisto, chiedici informazioni. Possiamo inserire e gestire il tuo libretto impianto nel catasto C.I.R.C.E.",
+   description: "Se ne sei sprovvisto, chiedici informazioni. Possiamo inserire e gestire il libretto di impianto nel catasto C.I.R.C.E.",
   },
   {
     title: "Prove di ventilazione",
