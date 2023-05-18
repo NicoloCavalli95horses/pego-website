@@ -248,7 +248,7 @@ onUnmounted(() => {
   }
 
   textarea {
-    height: 18rem;
+    height: 10rem;
     padding: 1rem 1.2rem;
     resize: none;
     &::placeholder {

@@ -3,7 +3,7 @@
   <Modal
     title="Contattaci"
     :width="device != 'mobile' ? 80 : undefined"
-    :height="device != 'mobile' ? 65 : undefined"
+    :height="device != 'mobile' ? 60 : undefined"
     :click_out_close="true"
     :full_size="device == 'mobile'"
     @closed="$router.push('/')"
