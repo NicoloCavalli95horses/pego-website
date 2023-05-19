@@ -45,7 +45,8 @@ let options = {
   rootMargin: '0px',
   threshold: 0.5  // trigger onIntersect() if at least half of the counter_ref is visible
 }
-const isAPIsupported = computed(() =>
+const isAPIsupported = computed(() => 
+  isSafariBrowser() ||
   ('IntersectionObserver' in window) ||
   ('IntersectionObserverEntry' in window) ||
   ('intersectionRatio' in window.IntersectionObserverEntry.prototype)
@@ -53,6 +54,10 @@ const isAPIsupported = computed(() =>
 //==============================
 // Function
 //==============================
+function isSafariBrowser() {
+  return /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+}
+
 function onIntersect( el ){
   if ( el.at(0).isIntersecting ) {
     startCounter();

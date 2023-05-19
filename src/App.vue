@@ -32,7 +32,7 @@ const device = getViewport();
 // Function
 //==================================
 function onLoad() {
-  setTimeout(() => isLoaded.value = true, 300)
+  isLoaded.value = true;
 }
 
 //==================================

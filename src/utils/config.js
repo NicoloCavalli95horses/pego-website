@@ -27,7 +27,7 @@ const config = {
     },
     {
       name: "Last Calor",
-      url: "https://www.nonsolocaldaie.it/84_last-calor",
+      url: "https://www.colastufe.com/",
     },
     {
       name: "MCZ",
