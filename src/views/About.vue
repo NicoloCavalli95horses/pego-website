@@ -1,9 +1,6 @@
 <template>
-  <template v-if="device == 'desktop'">
-    <div class="wrapper desktop">
-      <div class="img-wrapper">
-        <img :src="about_src" alt="chi siamo" />
-      </div>
+    <div class="grid" :class="{ 'mobile' : device == 'mobile' }">
+      <img :src="about_src" alt="chi siamo" />
       <div class="text-wrapper">
         <h4>Lorem ipsum dolor sit.</h4>
         <p>
@@ -21,22 +18,6 @@
         </p>
       </div>
     </div>
-  </template>
-
-  <template v-else>
-    <div class="wrapper mobile">
-      <img :src="about_src" alt="chi siamo" />
-      <div class="text-wrapper">
-        <h4>Lorem ipsum dolor sit</h4>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem nemo
-          rerum numquam deserunt dolor optio odio nesciunt necessitatibus hic
-          unde? Dolores ipsam blanditiis magni laborum facere error non debitis
-          ducimus! Ad veritatis aperiam magnam suscipit.
-        </p>
-      </div>
-    </div>
-  </template>
 </template>
 
 <script setup>
@@ -50,49 +31,30 @@ import { getViewport } from "../utils/screen_size.js";
 //==============================
 const device = getViewport();
 const about_src = '/img/about/img_1.jpeg';
+
 </script>
 
 <style lang="scss" scoped>
-.responsive-text {
-  max-width: 50%;
-  min-height: 100%;
-  margin: 0 0 0 5rem;
-}
-
-.wrapper {
-  &.desktop {
-    width: 100%;
-    display: flex;
-    .img-wrapper {
-      width: 50%;
-      img {
-        width: 100%;
-        max-width: 500px;
-        height: auto;
-      }
+ .grid {
+    display: grid;
+    place-content: center;
+    grid-template-columns: repeat(auto-fill, minmax(35rem, 1fr));
+    gap: 4rem;
+    margin: 0 auto;
+    &.mobile {
+      grid-template-columns: 1fr;
+    }
+    img {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+      max-height: 40rem;
+      margin: 0 auto;
     }
     .text-wrapper {
-      width: calc(50% - 2.2rem);
-      margin-left: 2.2rem;
-      h4 {
-        margin-bottom: 2.2rem;
-        padding-bottom: 1.4rem;
-      }
-    }
-  }
-  &.mobile {
-    display: flex;
-    flex-direction: column;
-    img {
       width: 100%;
       max-width: 500px;
       height: auto;
     }
-    .text-wrapper {
-      h4 {
-        padding: 2.2rem 0;
-      }
-    }
-  }
-}
+ }
 </style>

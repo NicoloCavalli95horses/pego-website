@@ -1,7 +1,7 @@
 <template>
   <!-- Hero section -->
   <div class="w-100 h-100 flex-column">
-    <h1 class="spacing">S.T.A. di Pegorer</h1>
+    <h1 class="spacing c-text">S.T.A. di Pegorer</h1>
     <h2 class="top-32 c-text" :class="{'spacing' : device != 'mobile' }">Manutenzione e assistenza tecnica autorizzata <br />per impianti a biomassa</h2>
     <Btn class="top-32" text="contattaci" :def="true" @click="$router.push('/contact')" />
   </div>

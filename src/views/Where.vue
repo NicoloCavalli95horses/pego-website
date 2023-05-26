@@ -1,10 +1,10 @@
 <template>
-  <div class="grid">
+  <div class="grid" :class="{ 'mobile' : device == 'mobile' }"> 
     <div class="btn-wrapper">
-      <h4>Raggiungiamo tutti i comuni in provincia di Treviso, e alcuni comuni in provincia di Venezia.</h4>
-      <div class="w-100 top-32">
-        <Btn class="c-margin" text="scopri tutti i comuni" :def="true" @click="show.modal = true" />
-      </div>
+      <h4 class="bottom-36">
+        Raggiungiamo tutti i comuni in provincia di Treviso, e alcuni comuni in provincia di Venezia.
+      </h4>
+      <Btn class="c-margin top-32" text="scopri tutti i comuni" :def="true" @click="show.modal = true" />
     </div>
     
     <div class="map-wrapper">
@@ -91,8 +91,23 @@ const filteredCities = computed(() =>
   grid-template-columns: repeat(auto-fill, minmax(40rem, 1fr));
   place-content: center;
   gap: 2rem;
+  &.mobile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    .map-wrapper {
+      margin-top: 2rem;
+    }
+  }
   .map-wrapper {
     overflow: hidden;
+  }
+  .btn-wrapper {
+    width: 100%;
+    &:deep( button ) {
+      width: auto;
+    }
   }
   .placeholder-map {
     width: 100%;
