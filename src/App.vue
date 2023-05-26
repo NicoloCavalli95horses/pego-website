@@ -25,14 +25,19 @@ import Footer from "./components/Footer.vue";
 //==================================
 // Const
 //==================================
-const isLoaded = ref(false);
+const isLoaded = ref( false );
 const device = getViewport();
+const timeout = ref( undefined );
 
 //==================================
 // Function
 //==================================
 function onLoad() {
-  isLoaded.value = true;
+  timeout.value = setTimeout(() => {
+    isLoaded.value = true;
+    clearTimeout( timeout.value );
+  }, 200);
+
 }
 
 //==================================

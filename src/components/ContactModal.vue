@@ -13,7 +13,7 @@
 
       <!-- User info -->
       <form
-        action="https://formsubmit.co/1384cf3d2204cf8365f1091212d3525e"
+        action="https://formsubmit.co/n.pego94@gmail.com"
         method="POST"
         class="form"
         id="form"
@@ -155,7 +155,7 @@
           </template>
         </div>
 
-        <input type="hidden" name="_next" value="https://pegorersta.netlify.app/thanks" />
+        <input type="hidden" name="_next" value="https://www.pegorersta.it/thanks" />
         <input type="hidden" name="_subject" :value="getEmailObject" />
         <input type="hidden" name="_template" value="table" />
 

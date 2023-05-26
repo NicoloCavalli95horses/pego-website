@@ -4,8 +4,8 @@
       <h4>{{ question }}</h4>
       <Icon :icon="show ? 'fa-solid fa-chevron-down' : 'fa-solid fa-chevron-right'" />
     </div>
-    <div v-if="show" class="answer">
-      <h4 :class="{ 'show': show }">{{ answer }}</h4>
+    <div class="answer" :class="{ 'active' : show }">
+      <h4>{{ answer }}</h4>
     </div>
   </div>
 </template>
@@ -55,7 +55,20 @@ const show = ref(false);
     }
   }
   .answer {
-    padding: 15px;
+    padding: 0 1.5rem;
+    opacity: 0;
+    transition-duration: var(--transition-medium);
+    h4 {
+      height: 0;
+    }
+    &.active {
+      padding: 1.5rem;
+      opacity: 1;
+      transition-duration: var(--transition-medium);
+      h4 {
+        height: 100%;
+      }
+    }
   }
 }
 </style>

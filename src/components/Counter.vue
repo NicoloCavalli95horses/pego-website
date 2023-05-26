@@ -46,16 +46,17 @@ let options = {
   threshold: 0.5  // trigger onIntersect() if at least half of the counter_ref is visible
 }
 const isAPIsupported = computed(() => 
-  isSafariBrowser() ||
-  ('IntersectionObserver' in window) ||
-  ('IntersectionObserverEntry' in window) ||
+  !isSafariBrowser() &&
+  ('IntersectionObserver' in window) &&
+  ('IntersectionObserverEntry' in window) &&
   ('intersectionRatio' in window.IntersectionObserverEntry.prototype)
 );
 //==============================
 // Function
 //==============================
 function isSafariBrowser() {
-  return /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+  const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+  return isSafari;
 }
 
 function onIntersect( el ){

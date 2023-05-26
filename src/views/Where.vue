@@ -1,59 +1,27 @@
 <template>
-  <template v-if="device != 'mobile'">
-    <div class="wrapper">
-      <div class="text-wrapper">
-        <h4>
-          Raggiungiamo tutti i comuni in provincia di Treviso, e alcuni comuni
-          in provincia di Venezia.
-        </h4>
-        <div class="w-100 top-32">
-          <Btn
-            class="c-margin"
-            text="scopri tutti i comuni"
-            :def="true"
-            @click="show.modal = true"
-          />
-        </div>
-      </div>
-      <div class="map-wrapper desktop">
-        <iframe
-          :src="iframe.src"
-          width="100%"
-          height="500"
-          style="border: 0; margin-top: -100px"
-          loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade"
-        />
-      </div>
-    </div>
-  </template>
-
-  <template v-else>
-    <div class="flex-column">
-      <h4>
-        Raggiungiamo tutti i comuni in provincia di Treviso, e alcuni comuni in
-        provincia di Venezia.
-      </h4>
+  <div class="grid">
+    <div class="btn-wrapper">
+      <h4>Raggiungiamo tutti i comuni in provincia di Treviso, e alcuni comuni in provincia di Venezia.</h4>
       <div class="w-100 top-32">
-        <Btn
-          class="c-margin"
-          text="scopri tutti i comuni"
-          :def="true"
-          @click="show.modal = true"
-        />
-      </div>
-      <div class="map-wrapper top-24">
-        <iframe
-          :src="iframe.src"
-          width="100%"
-          height="500"
-          style="border: 0; margin-top: -100px"
-          loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade"
-        />
+        <Btn class="c-margin" text="scopri tutti i comuni" :def="true" @click="show.modal = true" />
       </div>
     </div>
-  </template>
+    
+    <div class="map-wrapper">
+      <div v-if="!show.iframe" class="placeholder-map">
+        <LoadingSpinner />
+      </div>
+      <iframe
+        :src="iframe.src"
+        width="100%"
+        height="500"
+        style="border: 0; margin-top: -100px"
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        @load="show.iframe = true"
+      />
+    </div>
+  </div>
 
   <Modal
     v-if="show.modal"
@@ -64,33 +32,19 @@
     @closed="show.modal = false"
   >
     <div class="flex-column w-100">
-      <div class="input">
-        <InputText placeholder="Il mio comune" v-model="filter" :prevent_focus_mode="true" />
-      </div>
-
+      <InputText class="input" placeholder="Il mio comune" v-model="filter" :prevent_focus_mode="true" />
       <div class="city-list top-12">
         <template v-if="filteredCities.length">
-          <template v-for="(city, i) in filteredCities" :key="i">
-            <div class="city">
-              <p>{{ city }}</p>
-            </div>
-          </template>
+          <div v-for="(city, i) in filteredCities" :key="i" class="city">
+            <p>{{ city }}</p>
+          </div>
         </template>
-        <p v-else>
-          Ci dispiace, ma attualmente non raggiungiamo questo comune.
-        </p>
+        <p v-else> Ci dispiace, ma attualmente non raggiungiamo questo comune.</p>
       </div>
     </div>
 
     <template #footer>
-      <Btn
-        :bg="false"
-        text="chiudi"
-        @click="
-          show.modal = false;
-          filter = '';
-        "
-      />
+      <Btn :bg="false" text="chiudi" @click="() => { show.modal = false; filter = ''; }" />
     </template>
   </Modal>
 </template>
@@ -106,6 +60,7 @@ import { config } from "../utils/config.js";
 import Btn from "../components/Btn.vue";
 import Modal from "../components/Modal.vue";
 import InputText from "../components/InputText.vue";
+import LoadingSpinner from "../components/LoadingSpinner.vue";
 
 //==============================
 // Consts
@@ -117,6 +72,7 @@ const iframe = reactive({
 });
 
 const show = reactive({
+  iframe: false,
   modal: false,
 });
 
@@ -130,22 +86,20 @@ const filteredCities = computed(() =>
 </script>
 
 <style lang="scss" scoped>
-.wrapper {
-  display: flex;
-  .text-wrapper {
-    width: calc(50% - 2.2rem);
-    margin-right: 4.4rem;
-    h4 {
-      padding-bottom: 2.2rem;
-    }
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(40rem, 1fr));
+  place-content: center;
+  gap: 2rem;
+  .map-wrapper {
+    overflow: hidden;
   }
-}
-
-.map-wrapper {
-  &.desktop {
-    width: 50%;
+  .placeholder-map {
+    width: 100%;
+    height: 40rem;
+    background-color: var(--footer-bg-05);
+    position: relative;
   }
-  overflow: hidden;
 }
 
 .input {
