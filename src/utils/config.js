@@ -3,27 +3,27 @@ const config = {
     {
       name: "Anselmo Cola",
       url: "https://www.colastufe.com/",
-      src: "icons/anselmocola.svg"
+      src: "icons/anselmocola.svg",
     },
     {
       name: "Brisach",
       url: "https://www.brisach.com/",
-      src: "icons/brisach.png"
+      src: "icons/brisach.png",
     },
     {
       name: "Palazzetti",
       url: "https://palazzetti.it/",
-      src: "icons/palazzetti.svg"
+      src: "icons/palazzetti.svg",
     },
     {
       name: "Cadel",
       url: "https://www.cadelsrl.com/",
-      src: "icons/cadel.svg"
+      src: "icons/cadel.svg",
     },
     {
       name: "Freepoint",
       url: "https://free-point.it/en/home-2/",
-      src: "icons/freepoint.png"
+      src: "icons/freepoint.png",
     },
     {
       name: "Last Calor",
@@ -32,22 +32,44 @@ const config = {
     {
       name: "MCZ",
       url: "https://www.mcz.it/it/",
-      src: "icons/mcz.svg"
+      src: "icons/mcz.svg",
     },
     {
       name: "Royal",
       url: "https://royal1915.it/",
-      src: "icons/royal.png"
+      src: "icons/royal.png",
     },
     {
       name: "Red",
       url: "https://www.redheating.fr/en/",
-      src: "icons/red.png"
+      src: "icons/red.png",
     },
     {
       name: "Termovana",
       url: "https://www.termovana.it/",
-      src: "icons/termovana.svg"
+      src: "icons/termovana.svg",
+    },
+  ],
+  cards: [
+    {
+      title: "Manutenzione straordinaria",
+      description:
+        "Su stufe a pellet Palazzetti, MCZ, Cadel, Anselmo Cola, Last Calor, Royal, Freepoint, Termovana, Red, Brisach. Una regolare manutenzione garantisce la sicurezza e diminuisce i consumi.",
+    },
+    {
+      title: "Assistenza tecnica autorizzata",
+      description:
+        "Nelle riparazioni utilizziamo ricambi originali e offriamo la garanzia prevista dalla legislazione vigente.",
+    },
+    {
+      title: "Rilascio libretto impianti",
+      description:
+        "Se ne sei sprovvisto, chiedici informazioni. Possiamo inserire e gestire il libretto di impianto nel catasto C.I.R.C.E.",
+    },
+    {
+      title: "Prove di ventilazione",
+      description:
+        "La prova di ventilazione certifica che gli ambienti di installazione non superino la soglia di 4 Pascal di pressione negativa, laddove non è possibile effettuare un foro di aerazione permanente secondo la norma tecnica vigente.",
     },
   ],
   cities: [
@@ -145,6 +167,50 @@ const config = {
     "volpago del montello",
     "zenson di piave",
     "zero branco",
+  ],
+  counters: [
+    {
+      label: "Clienti fidelizzati",
+      value: 2000,
+      plus: true,
+      animation_time: 3000,
+      multiplier: 4,
+      icon: "fa-solid fa-users",
+    },
+    {
+      label: "Anni di esperienza",
+      value: new Date().getFullYear() - 2004,
+      plus: false,
+      animation_time: 3000,
+      multiplier: 1,
+      icon: "fa-solid fa-cake-candles",
+    },
+    {
+      label: "Comuni coperti",
+      value: 92,
+      plus: false,
+      animation_time: 3000,
+      multiplier: 1,
+      icon: "fa-solid fa-map-location-dot",
+    },
+  ],
+  faq: [
+    {
+      question: "Siete aperti il weekend?",
+      answer: "Solo per emergenze dalle 8:30 alle 13:00",
+    },
+    {
+      question: "Dove trovo la matricola del mio impianto?",
+      answer: "La matricola dell'impianto si trova su un adesivo posto generalmente...",
+    },
+    {
+      question: "Entro quanto sarò ricontattato?",
+      answer: "Richiameremo appena possibile",
+    },
+    {
+      question: "La manutenzione è obbligatoria?",
+      answer: "Sì, la manutenzione è obbligatoria per legge (DPR n.74/2013)",
+    },
   ],
 };
 

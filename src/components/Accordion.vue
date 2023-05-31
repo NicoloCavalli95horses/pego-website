@@ -1,11 +1,11 @@
 <template>
-  <div class="accordion" @click="show = !show">
-    <div class="question" :class="{ 'active': show }">
-      <h4>{{ question }}</h4>
-      <Icon :icon="show ? 'fa-solid fa-chevron-down' : 'fa-solid fa-chevron-right'" />
+  <div class="accordion" v-for="(item, i) in items" :key="i" @click="toggleOption(i)">
+    <div class="question" :class="{ 'active': actives.has(i) }">
+      <h4>{{ item.question }}</h4>
+      <Icon :icon="actives.has(i) ? 'fa-solid fa-chevron-down' : 'fa-solid fa-chevron-right'" />
     </div>
-    <div class="answer" :class="{ 'active' : show }">
-      <h4>{{ answer }}</h4>
+    <div class="answer" :class="{ 'active' : actives.has(i) }">
+      <p>{{ item.answer }}</p>
     </div>
   </div>
 </template>
@@ -14,28 +14,39 @@
 // ==============================
 // Import
 // ==============================
-import { library } from "@fortawesome/fontawesome-svg-core";
-import { fas } from "@fortawesome/free-solid-svg-icons";
 import { ref } from "vue";
+import { fas } from "@fortawesome/free-solid-svg-icons";
+import { library } from "@fortawesome/fontawesome-svg-core";
 
 // ==============================
 // Props
 // ==============================
 defineProps({
-  question: String,
-  answer: String,
+  items: Object,
 });
 
 // ==============================
 // Consts
 // ==============================
 library.add( fas );
-const show = ref(false);
+const actives = ref( new Set() );
+
+// ==============================
+// Consts
+// ==============================
+function toggleOption(i) {
+  actives.value.has(i) ? actives.value.delete(i) : actives.value.add(i);
+}
+
 </script>
 
 <style lang="scss" scoped>
 .accordion {
   cursor: pointer;
+  -webkit-user-select: none; /* Safari */
+  -ms-user-select: none; /* IE 10 and IE 11 */
+  user-select: none; /* Standard syntax */
+  
   .question {
     display: flex;
     padding: 15px;
@@ -58,14 +69,14 @@ const show = ref(false);
     padding: 0 1.5rem;
     opacity: 0;
     transition-duration: var(--transition-medium);
-    h4 {
+    p {
       height: 0;
     }
     &.active {
       padding: 1.5rem;
       opacity: 1;
       transition-duration: var(--transition-medium);
-      h4 {
+      p {
         height: 100%;
       }
     }

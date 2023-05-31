@@ -24,15 +24,12 @@
     <div class="nav-options">
       <a class="option" href="#about" @click="show.mobile_menu = false">
         <h4>Chi siamo</h4>
-        <Icon icon="fa-solid fa-solid fa-chevron-right" class="svg-24" />
       </a>
       <a class="option" href="#where" @click="show.mobile_menu = false">
         <h4>Dove operiamo</h4>
-        <Icon icon="fa-solid fa-solid fa-chevron-right" class="svg-24" />
       </a>
       <a class="option" href="#faq" @click="show.mobile_menu = false">
         <h4>Domande frequenti</h4>
-        <Icon icon="fa-solid fa-solid fa-chevron-right" class="svg-24" />
       </a>
       <div class="w-100 flex-center top-48">
         <Btn text="contattaci" :def="true" @click="() => { show.mobile_menu = false; $router.push('/contact'); }" />

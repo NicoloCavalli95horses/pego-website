@@ -1,9 +1,9 @@
 <template>
   <div class="wrapper" :style="{ 'justify-content' : device == 'mobile' ? 'center' : 'flex-start' }">
-    <template v-for="(b, i) in config.brand" :key="i">
-      <a :href="b.url" class="brand">
-        <img v-if="b.src" :src="b.src" :alt="b.name">
-        <span v-else>{{ b.name }}</span>
+    <template v-for="(item, i) in items" :key="i">
+      <a :href="item.url" class="brand">
+        <img v-if="item.src" :src="item.src" :alt="item.name">
+        <span v-else>{{ item.name }}</span>
       </a>
     </template>
   </div>
@@ -14,12 +14,25 @@
 // Import
 //==============================
 import { getViewport } from "../utils/screen_size.js";
-import { config } from "../utils/config.js";
+
+
+
+//==============================
+// Props
+//==============================
+defineProps({
+  items: Object,
+});
+
+
 
 //==============================
 // Consts
 //==============================
 const device = getViewport();
+
+
+
 </script>
 
 <style lang="scss" scoped>
