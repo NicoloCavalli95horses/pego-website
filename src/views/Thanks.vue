@@ -8,10 +8,7 @@
     @closed="$router.push('/')"
   >
     <template #default>
-      <p>
-        Il tuo messaggio è stato inviato con successo, verrai ricontattato nei
-        prossimi giorni.
-      </p>
+      <p> Il tuo messaggio è stato inviato con successo, verrai ricontattato il prima possibile. </p>
     </template>
     <template #footer>
       <div class="btn top-24">
@@ -41,5 +38,4 @@ const device = getViewport();
   display: flex;
   justify-content: flex-end;
 }
-
 </style>

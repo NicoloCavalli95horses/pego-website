@@ -4,7 +4,7 @@
     <div :class="[ext_class, isFocusMode ? 'focus': '']">
       <div class="wrapper">
         <div class="label-wrapper">
-          <label> {{ placeholder }}<template v-if="is_required">*</template></label>
+          <label> {{ label }}<template v-if="is_required">*</template></label>
           <div v-if="tooltip && !isFocusMode">
             <Tooltip :text="tooltip" :direction="tooltip_dir" />
           </div>
@@ -40,7 +40,7 @@
     <div :class="[ext_class, isFocusMode ? 'focus': '']">
       <div class="wrapper">
         <div class="label-wrapper">
-          <label>{{ placeholder }}<template v-if="is_required">*</template></label>
+          <label>{{ label }}<template v-if="is_required">*</template></label>
           <div v-if="tooltip && !isFocusMode">
             <Tooltip :text="tooltip" :direction="tooltip_dir" />
           </div>
@@ -74,7 +74,7 @@
     <div :class="[ext_class, isFocusMode ? 'focus': '']">
       <div class="wrapper">
         <div class="label-wrapper">
-          <label>{{ placeholder }}<template v-if="is_required">*</template></label>
+          <label>{{ label }}<template v-if="is_required">*</template></label>
           <div v-if="tooltip && !isFocusMode">
             <Tooltip :text="tooltip" :direction="tooltip_dir" />
           </div>
@@ -122,6 +122,8 @@ const props = defineProps({
 
   // title of the input text
   placeholder: String,
+  // title of the label
+  label: String,
 
   // mark input field as required (*), bind an error state and an error message
   is_required: Boolean,

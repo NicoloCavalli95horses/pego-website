@@ -21,15 +21,15 @@
           <div class="contacts-wrapper">
             <div>
               <Icon icon="fa-solid fa-phone" class="svg-18" />
-              <h6>+346 xxx xxxx</h6>
+              <h6>+333 423 1991</h6>
             </div>
             <div>
               <Icon icon="fa-solid fa-envelope" class="svg-18" />
-              <h6>pegorersta@gmail.com</h6>
+              <h6>pegorer.ennio@gmail.com</h6>
             </div>
             <div>
               <Icon icon="fa-solid fa-money-check" class="svg-18" />
-              <h6>P. IVA xxx xxx xxxx xxx</h6>
+              <h6>P. IVA 04013850260</h6>
             </div>
             <div>
               <Icon icon="fa-solid fa-location-dot" class="svg-18" />
@@ -81,15 +81,15 @@
           <h4 class="l-text">Contatti</h4>
           <div class="flex-center start bottom-6">
             <Icon icon="fa-solid fa-phone" class="svg-18 r-12" />
-            <h6>+346 xxx xxxx</h6>
+            <h6>+333 423 1991</h6>
           </div>
           <div class="flex-center start bottom-6">
             <Icon icon="fa-solid fa-envelope" class="svg-18 r-12" />
-            <h6>pegorersta@gmail.com</h6>
+            <h6>pegorer.ennio@gmail.com</h6>
           </div>
           <div class="flex-center start bottom-6">
             <Icon icon="fa-solid fa-money-check" class="svg-18 r-12" />
-            <h6>P. IVA xxx xxx xxxx xxx</h6>
+            <h6>P. IVA 04013850260</h6>
           </div>
           <div class="flex-center start">
             <Icon icon="fa-solid fa-location-dot" class="svg-18 r-12" />

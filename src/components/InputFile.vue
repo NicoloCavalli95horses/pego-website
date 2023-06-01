@@ -1,6 +1,6 @@
 <template>
   <div class="label-wrapper">
-    <label> {{ placeholder }}<template v-if="is_required">*</template> </label>
+    <label> {{ label }}<template v-if="is_required">*</template> </label>
     <div v-if="tooltip"> <Tooltip :text="tooltip" /> </div>
   </div>
   <label for="file-input" class="file-input" :class="{ 'active': file }">
@@ -41,6 +41,7 @@ const props = defineProps({
   placeholder: String,
   is_required: Boolean,
   tooltip: String,
+  label: String
 });
 
 const emit = defineEmits([

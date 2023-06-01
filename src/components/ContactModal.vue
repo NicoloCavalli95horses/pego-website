@@ -13,7 +13,7 @@
 
       <!-- User info -->
       <form
-        action="https://formsubmit.co/n.pego94@gmail.com"
+        action="https://formsubmit.co/pegorer.ennio@gmail.com"
         method="POST"
         class="form"
         id="form"
@@ -34,10 +34,10 @@
               :error="request.error"
             />
             <InputText
-              placeholder="Descrivi la tua richiesta"
+              label="Descrivi la tua richiesta"
+              placeholder="Descrivi la tua richiesta o la problematica riscontrata."
               v-model="request.content"
               input_type="textarea"
-              tooltip="Descrivi la tua richiesta."
               :is_required="true"
               :error_message="request.error_msg"
               :error="request.error"
@@ -45,24 +45,28 @@
           </template>
           <template v-if="active == 1">
             <InputText
+              label="Nome"
               placeholder="Nome"
               v-model="name.content"
               :is_required="true"
               :error="name.error"
             />
             <InputText
+              label="Cognome"
               placeholder="Cognome"
               v-model="surname.content"
               :is_required="true"
               :error="surname.error"
             />
             <InputText
+              label="Email"
               placeholder="Email"
               v-model="email.content"
               :error_message="email.error_msg"
               :error="email.error"
             />
             <InputText
+              label="Cellulare"
               placeholder="Cellulare"
               v-model="tel.content"
               input_type="tel"
@@ -72,6 +76,7 @@
           </template>
           <template v-if="active == 2">
             <InputText
+              label="Comune"
               placeholder="Comune"
               v-model="city.content"
               :tips="city.tips.filter(c => c.includes(city.content.toLowerCase()))"
@@ -83,12 +88,14 @@
               @selectedtip="onselectedtip"
             />
             <InputText
+              label="Indirizzo"
               placeholder="Indirizzo"
               v-model="address.content"
               :is_required="true"
               :error="address.error"
             />
             <InputText
+              label="Numero"
               placeholder="Numero"
               v-model="houseNumber.content"
               input_type="tel"
@@ -108,6 +115,7 @@
             />
             <InputText
               v-if="system.brand.content == OTHER"
+              label="Specificare marchio"
               placeholder="Specificare marchio"
               v-model="system.other.content"
               :is_required="true"
@@ -115,6 +123,7 @@
               :error="system.other.error"
             />
             <InputText
+              label="Anno installazione"
               placeholder="Anno installazione"
               v-model="system.year.content"
               input_type="tel"
@@ -122,6 +131,7 @@
             />
             <div class="flex-center">
               <InputText
+                label="Matricola"
                 placeholder="Matricola"
                 tooltip="La matricola identificativa dell'impianto si trova su una apposita etichetta."
                 tooltip_dir="up"
@@ -130,6 +140,7 @@
                 ext_class="w-50 r-12"
               />
               <InputText
+                label="Modello"
                 placeholder="Modello"
                 tooltip="L'indicazione del modello dell'impianto si trova su una apposita etichetta."
                 v-model="system.model.content"
@@ -140,6 +151,7 @@
           </template>
           <template v-if="active == 4">
             <InputFile
+              label="Carica una foto"
               placeholder="Carica una foto"
               tooltip="Carica una foto dell'impianto o del libretto per aiutarci ad identificare il problema."
               @upload="(f) => (file = f)"
@@ -148,6 +160,7 @@
             <InputText
               input_type="textarea"
               v-model="textarea.content"
+              label="Ulteriori informazioni"
               tooltip="Inserire qui ulteriori informazioni utili alla comprensione del problema."
               placeholder="Ulteriori informazioni"
               :error="textarea.error"
@@ -243,7 +256,7 @@ const steps = [
 ];
 
 const request = reactive({
-  options: ["Riparazione", "Manutenzione stagionale", "Informazioni generali"],
+  options: ["Riparazione", "Manutenzione", "Informazioni generali"],
   selected: "",
   content: "",
   error: false,
