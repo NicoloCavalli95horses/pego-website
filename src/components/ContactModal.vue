@@ -699,7 +699,6 @@ watch(
 <style lang="scss" scoped>
 .form {
   .inputs {
-    height: 100%;
     display: flex;
     flex-direction: column;
   }
@@ -710,13 +709,6 @@ watch(
     margin-top: 1.5rem;
     font-size: 1.2rem;
     opacity: 0.5;
-  }
-
-  &.mobile {
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-    justify-content: space-between;
   }
 }
 </style>

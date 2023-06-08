@@ -26,7 +26,7 @@
           </div>
         </header>
         <!-- scrollable-content -->
-        <div class="scrollable-content">
+        <div :class="['scrollable-content', { 'no-padding' : no_scrollable_padding }]">
           <slot />
         </div>
         <!-- footer -->
@@ -59,6 +59,7 @@ const props = defineProps({
   click_out_close: Boolean,
   full_size: Boolean,
   close_btn: Boolean,
+  no_scrollable_padding: Boolean
 });
 
 const emit = defineEmits(["closed"]);
@@ -130,6 +131,9 @@ $gap: 2.2rem;
       height: calc(100% - $header-h - $footer-h);
       overflow-y: auto;
       padding: 0 2rem; // scrollbar padding
+      &.no-padding {
+        padding: 0;
+      }
     }
 
     footer {
