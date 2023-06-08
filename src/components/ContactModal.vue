@@ -12,31 +12,26 @@
   >
     <template #default>
       <LineProgression
-        v-if="device != 'mobile'"
-        :steps="steps"
-        :active="active"
-        class="top-12 bottom-12"
-      />
-      <LineProgression
-        v-else
-        :steps="mobile_steps"
-        :active="active_mobile"
+        :steps="device == 'mobile' ? MOBILE_STEPS : STEPS"
+        :active="device == 'mobile' ? mobile_active : active"
         class="top-12 bottom-12"
       />
 
+      <!-- pegorer.ennio@gmail.com -->
       <!-- User info -->
       <form
-        action="https://formsubmit.co/pegorer.ennio@gmail.com"
+        action="https://formsubmit.co/nicolo.cavalli95@gmail.com"
         method="POST"
-        :class="['form', 'relative', { mobile: device == 'mobile' }]"
+        :class="['form', 'relative', { 'mobile': device == 'mobile' }]"
         id="form"
         autocomplete="off"
         autofill="off"
         enctype="multipart/form-data"
-        @submit="onSubmit()"
         @keydown.enter.prevent="(e) => e.preventDefault()"
       >
         <span>(*) campo obbligatorio</span>
+
+        <!-- DESKTOP/TABLET FORM -->
         <template v-if="device != 'mobile'">
           <div class="inputs top-24">
             <template v-if="active == 0">
@@ -102,11 +97,7 @@
                 label="Comune"
                 placeholder="Comune"
                 v-model="city.content"
-                :tips="
-                  city.tips.filter((c) =>
-                    c.includes(city.content.toLowerCase())
-                  )
-                "
+                :tips="city.tips.filter((c) => c.includes(city.content.toLowerCase()))"
                 :is_required="true"
                 :error="city.error"
                 :show_tips="city.show_tips"
@@ -206,7 +197,7 @@
         <template v-else>
           <div class="inputs top-48">
             <Checkbox
-              v-if="active_mobile == 0"
+              v-if="mobile_active == 0"
               v-model="request.selected"
               placeholder="Tipo di richiesta"
               type="radio"
@@ -215,7 +206,7 @@
               :error="request.error"
             />
             <InputText
-              v-if="active_mobile == 1"
+              v-if="mobile_active == 1"
               label="Descrivi la tua richiesta"
               placeholder="Descrivi la tua richiesta o la problematica riscontrata."
               v-model="request.content"
@@ -224,7 +215,7 @@
               :error_message="request.error_msg"
               :error="request.request_description_error"
             />
-            <div v-if="active_mobile == 2">
+            <div v-if="mobile_active == 2">
               <InputText
                 label="Nome"
                 placeholder="Nome"
@@ -240,7 +231,7 @@
                 :error="surname.error"
               />
             </div>
-            <div v-if="active_mobile == 3">
+            <div v-if="mobile_active == 3">
               <InputText
                 label="Email"
                 placeholder="Email"
@@ -257,7 +248,7 @@
                 :error="tel.error"
               />
             </div>
-            <div v-if="active_mobile == 4">
+            <div v-if="mobile_active == 4">
               <InputText
                 label="Comune"
                 placeholder="Comune"
@@ -286,7 +277,7 @@
                 :error="houseNumber.error"
               />
             </div>
-            <div v-if="active_mobile == 5">
+            <div v-if="mobile_active == 5">
               <div class="top-12">
                 <DropDown
                   title="Seleziona marchio"
@@ -316,7 +307,7 @@
                 :error="system.year.error"
               />
             </div>
-            <div v-if="active_mobile == 6">
+            <div v-if="mobile_active == 6">
               <InputText
                 label="Matricola"
                 placeholder="Matricola"
@@ -332,7 +323,7 @@
                 :error="system.model.error"
               />
             </div>
-            <div v-if="active_mobile == 7">
+            <div v-if="mobile_active == 7">
               <InputFile
                 label="Carica una foto"
                 placeholder="Carica una foto"
@@ -353,10 +344,10 @@
           </div>
 
           <div class="flex-center top-48">
-            <Btn v-if="active_mobile == 0" :bg="false" text="chiudi" @click.prevent="$router.push('/')" class="w-100 r-12" />
-            <Btn v-else :bg="false" text="indietro" @click.prevent="active_mobile--" class="w-100 r-12" />
-            <Btn v-if="active_mobile == 7" text="invia" :def="true" type="submit" form="form" />
-            <Btn v-else class="w-100" text="avanti" :def="true" @click.prevent="validate" />
+            <Btn v-if="mobile_active == 0" :bg="false" text="chiudi" @click.prevent="$router.push('/')" class="w-100 r-12" />
+            <Btn v-else :bg="false" text="indietro" @click.prevent="mobile_active--" class="w-100 r-12" />
+            <Btn v-if="mobile_active == 7" text="invia" :def="true" type="submit" form="form" />
+            <Btn v-else class="w-100" text="avanti" :def="true" @click.prevent="validateMobileForm" />
           </div>
         </template>
 
@@ -365,44 +356,22 @@
         <input type="hidden" name="_subject" :value="getEmailObject" />
         <input type="hidden" name="_template" value="table" />
 
-        <!-- Email cells -->
+        <!-- Email fields -->
         <input type="hidden" name="Richiesta" :value="request.selected" />
         <input type="hidden" name="Descrizione" :value="request.content" />
-
         <input type="hidden" name="Nome" :value="name.content" />
         <input type="hidden" name="Cognome" :value="surname.content" />
         <input type="hidden" name="Email" :value="email.content" />
         <input type="hidden" name="Cellulare" :value="tel.content" />
-
         <input type="hidden" name="Città" :value="city.content" />
         <input type="hidden" name="Via" :value="address.content" />
         <input type="hidden" name="Numero civico" :value="houseNumber.content" />
-
-        <input
-          v-if="system.brand.content != OTHER"
-          type="hidden"
-          name="Marchio"
-          :value="system.brand.content"
-        />
-        <input
-          v-else
-          type="hidden"
-          name="Marchio (altro)"
-          :value="system.other.content"
-        />
+        <input v-if="system.brand.content != OTHER" type="hidden" name="Marchio" :value="system.brand.content" />
+        <input v-else type="hidden" name="Marchio (altro)" :value="system.other.content" />
         <input type="hidden" name="Modello" :value="system.model.content" />
-        <input
-          type="hidden"
-          name="Matricola"
-          :value="system.register.content"
-        />
+        <input type="hidden" name="Matricola" :value="system.register.content" />
         <input type="hidden" name="Anno installazione" :value="getSystemYear" />
-
-        <input
-          type="hidden"
-          name="Ulteriori informazioni"
-          :value="textarea.content"
-        />
+        <input type="hidden" name="Ulteriori informazioni" :value="textarea.content" />
       </form>
     </template>
 
@@ -411,7 +380,7 @@
       <Btn v-if="active == 0" :bg="false" text="chiudi" @click.prevent="$router.push('/')" />
       <Btn v-else :bg="false" text="indietro" @click.prevent="active--" />
       <Btn v-if="active == 4" text="invia" :def="true" type="submit" form="form" />
-      <Btn v-else text="avanti" :def="true" @click.prevent="validate" />
+      <Btn v-else text="avanti" :def="true" @click.prevent="validateDesktopForm" />
     </template>
   </Modal>
 </template>
@@ -425,34 +394,25 @@ import { getViewport } from "../utils/screen_size.js";
 import { config } from "../utils/config.js";
 
 import Btn from "./Btn.vue";
-import Checkbox from "./Checkbox.vue";
 import Modal from "./Modal.vue";
+import Checkbox from "./Checkbox.vue";
 import DropDown from "./DropDown.vue";
 import InputText from "./InputText.vue";
 import InputFile from "./InputFile.vue";
 import LineProgression from "./LineProgression.vue";
 
 // ==============================
-// Props, emits
-// ==============================
-const OTHER = "Altro (non incluso)";
-
-// ==============================
 // Consts
 // ==============================
-const device = getViewport();
-
-const active = ref(0);
-const active_mobile = ref(0);
-
-const steps = [
+const OTHER = "Altro (non incluso)";
+const STEPS = [
   { label: "Richiesta" },
   { label: "Nominativo" },
   { label: "Indirizzo" },
   { label: "Dettagli tecnici" },
   { label: "Opzionale" },
 ];
-const mobile_steps = [
+const MOBILE_STEPS = [
   { label: "Tipo di richiesta" },
   { label: "Descrizione richiesta" },
   { label: "Nominativo" },
@@ -463,12 +423,23 @@ const mobile_steps = [
   { label: "Opzionale" },
 ];
 
+const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const TEL_REGEX = /^(?:(?:\+|00)39)?\s*(?:\d{2}\s*){2}\d{6,7}$/;
+const HOUSE_NUM_REGEX = /^\d+(\s*[a-zA-Z]?)$/;
+
+// ==============================
+// Consts
+// ==============================
+const device = getViewport();
+const active = ref( 0 );
+const mobile_active = ref( 0 );
+
 const request = reactive({
   options: ["Riparazione", "Manutenzione", "Informazioni generali"],
   selected: "",
   content: "",
   error: false,
-  request_description_error: false, //mobile only
+  request_description_error: false, // mobile only
 });
 const name = reactive({
   content: "",
@@ -534,41 +505,10 @@ const system = reactive({
   },
 });
 
-// RegEx
-const emailReg = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-const telReg = /^(?:(?:\+|00)39)?\s*(?:\d{2}\s*){2}\d{6,7}$/;
-const houseNumberReg = /^\d+(\s*[a-zA-Z]?)$/;
-
-const isEmailValid = computed(
-  () => email.content.length && emailReg.test(email.content)
-);
-const isTelValid = computed(
-  () => tel.content.length && telReg.test(tel.content)
-);
-const isHouseNumberValid = computed(
-  () => houseNumber.content && houseNumberReg.test(houseNumber.content)
-);
-const isStepZeroValid = computed(
-  () => request.selected.length && request.content.length
-);
-const isStepOneValid = computed(
-  () =>
-    name.content &&
-    surname.content &&
-    ((email.content && isEmailValid.value) || (tel.content && isTelValid.value))
-);
-const isStepTwoValid = computed(
-  () => address.content && city.content && isHouseNumberValid.value
-);
-const isStepThreeValid = computed(
-  () =>
-    (system.brand.content.length && system.brand.content != OTHER) ||
-    (system.brand.content == OTHER && system.other.content.length)
-);
-
-const getEmailObject = computed(
-  () => request.selected + " - " + name.content + " " + surname.content
-);
+const isEmailValid = computed(() => email.content.length && EMAIL_REGEX.test(email.content));
+const isTelValid = computed(() => tel.content.length && TEL_REGEX.test(tel.content));
+const isHouseNumberValid = computed(() => houseNumber.content && HOUSE_NUM_REGEX.test(houseNumber.content));
+const getEmailObject = computed(() => request.selected + " - " + name.content + " " + surname.content );
 const getSystemYear = computed(() => {
   let year = parseInt(system.year.content);
   return `${year}, (${new Date().getFullYear() - year} anni fa)`;
@@ -577,26 +517,25 @@ const getSystemYear = computed(() => {
 // ==============================
 // Functions
 // ==============================
-function validate() {
-  if (device.value == "mobile") {
-    switch (active_mobile.value) {
+function validateMobileForm() {
+    switch (mobile_active.value) {
       case 0:
         if (request.selected.length) {
-          active_mobile.value++;
+          mobile_active.value++;
           return;
         }
         request.error = true;
         break;
       case 1:
         if (request.content.length) {
-          active_mobile.value++;
+          mobile_active.value++;
           return;
         }
         request.request_description_error = true;
         break;
       case 2:
         if (name.content.length && surname.content.length) {
-          active_mobile.value++;
+          mobile_active.value++;
           return;
         }
         name.error = !name.content ? true : false;
@@ -607,7 +546,7 @@ function validate() {
           (email.content && isEmailValid.value) ||
           (tel.content && isTelValid.value)
         ) {
-          active_mobile.value++;
+          mobile_active.value++;
           return;
         }
         tel.error = !isTelValid.value;
@@ -620,7 +559,7 @@ function validate() {
         break;
       case 4:
         if (address.content && city.content && isHouseNumberValid.value) {
-          active_mobile.value++;
+          mobile_active.value++;
           return;
         }
         address.error = !address.content ? true : false;
@@ -632,32 +571,32 @@ function validate() {
           (system.brand.content.length && system.brand.content != OTHER) ||
           (system.brand.content == OTHER && system.other.content.length)
         ) {
-          active_mobile.value++;
+          mobile_active.value++;
           return;
         }
         system.brand.error = !system.brand.content ? true : false;
         system.other.error = !system.other.content ? true : false;
         break;
       case 6:
-        active_mobile.value++;
+        mobile_active.value++;
         return;
       case 7:
-        active_mobile.value++;
+        mobile_active.value++;
         return;
     }
-    return;
-  }
+}
 
+function validateDesktopForm() {
   switch (active.value) {
     case 0:
-      if (isStepZeroValid.value) {
+      if ( request.selected.length && request.content.length ) {
         active.value++;
         return;
       }
       request.error = !request.content || !request.selected ? true : false;
       break;
     case 1:
-      if (isStepOneValid.value) {
+      if ( name.content && surname.content && ((email.content && isEmailValid.value) || (tel.content && isTelValid.value)) ) {
         active.value++;
         return;
       }
@@ -674,7 +613,7 @@ function validate() {
       }
       break;
     case 2:
-      if (isStepTwoValid.value) {
+      if ( address.content && city.content && isHouseNumberValid.value ) {
         active.value++;
         return;
       }
@@ -684,7 +623,7 @@ function validate() {
       houseNumber.error = !isHouseNumberValid.value ? true : false;
       break;
     case 3:
-      if (isStepThreeValid.value) {
+      if ( (system.brand.content.length && system.brand.content != OTHER) || (system.brand.content == OTHER && system.other.content.length) ) {
         active.value++;
         return;
       }
