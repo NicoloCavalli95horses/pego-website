@@ -1,19 +1,11 @@
 <template>
-  <div
-    class="accordion"
-    v-for="(item, i) in items"
-    :key="i"
-    @click="toggleOption(i)"
-  >
+  <div class="accordion" v-for="(item, i) in items" :key="i" @click="toggleOption(i)">
     <div class="question" :class="{ 'active': actives.has(i) }">
       <h4>{{ item.question }}</h4>
-      <Icon :icon="actives.has(i) ? 'fa-solid fa-chevron-down' : 'fa-solid fa-chevron-right'" />
+      <Icon icon="fa-solid fa-chevron-right" :class="{ 'active' : actives.has(i) }" />
     </div>
     <div class="answer" :class="{ 'active': actives.has(i) }">
-      <p>
-        {{ item.answer }}
-        <a v-if="item.link_src" :href="item.link_src"> {{ item.link_text }}</a>
-      </p>
+      <p> {{ item.answer }} <a v-if="item.link_src" :href="item.link_src"> {{ item.link_text }}</a> </p>
     </div>
   </div>
 </template>
@@ -27,14 +19,12 @@ import { fas } from "@fortawesome/free-solid-svg-icons";
 import { library } from "@fortawesome/fontawesome-svg-core";
 
 
-
 // ==============================
 // Props
 // ==============================
 defineProps({
   items: Object,
 });
-
 
 
 // ==============================
@@ -44,14 +34,12 @@ library.add(fas);
 const actives = ref(new Set());
 
 
-
 // ==============================
 // Consts
 // ==============================
 function toggleOption(i) {
   actives.value.has(i) ? actives.value.delete(i) : actives.value.add(i);
 }
-
 
 
 </script>
@@ -77,8 +65,16 @@ function toggleOption(i) {
     &:hover {
       transition-duration: var(--transition-slow);
     }
+    h4 {
+      max-width: 90%;
+    }
     svg {
       font-size: 22px;
+      transition-duration: var(--transition-medium);
+      &.active {
+        transform: rotate(90deg);
+        transition-duration: var(--transition-medium);
+      }
     }
   }
   .answer {
