@@ -170,6 +170,10 @@ svg {
   margin-bottom: 3.6rem;
 }
 
+.bottom-48 {
+  margin-bottom: 4.8rem;
+}
+
 .r-6 {
   margin-right: 0.6rem;
 }
@@ -213,6 +217,10 @@ svg {
 
 .bold {
   font-weight: bold;
+}
+
+.w-33 {
+  width: 33%;
 }
 
 .w-50 {

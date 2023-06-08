@@ -80,7 +80,7 @@ button {
   }
 
   &.round {
-    padding: 1.6rem;
+    padding: 1.2rem;
     border-radius: 50%;
     &:hover, &.active {
       filter: none;

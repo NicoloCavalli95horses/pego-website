@@ -1,6 +1,6 @@
 <template>
   <label> {{ title }}<template v-if="is_required">*</template> </label>
-  <div class="dd-wrapper" :class="{ 'active': modelValue, 'error' : error }" @click="show = !show">
+  <div class="dd-wrapper" :class="[ ext_class, { 'active': modelValue, 'error' : error }]" @click="show = !show">
     <p :class="{ 'error': error }"> {{ getLabel }} </p>
     <Icon icon="fa-solid fa-chevron-right" :class="{ 'rotate': show }" />
     <template v-if="show">
@@ -58,6 +58,7 @@ const props = defineProps({
   options: Array,
   is_required: Boolean,
   display_uppercase: Boolean,
+  ext_class: String,
   max_options: {
     type: Number,
     default: 4

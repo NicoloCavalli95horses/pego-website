@@ -1,11 +1,11 @@
 <template>
   <!-- text input -->
   <template v-if="input_type == 'text'">
-    <div :class="[ext_class, isFocusMode ? 'focus': '']">
+    <div :class="[ext_class]">
       <div class="wrapper">
-        <div class="label-wrapper">
+        <div :class="[ 'label-wrapper', { 'mobile' : device == 'mobile' }]">
           <label> {{ label }}<template v-if="is_required">*</template></label>
-          <div v-if="tooltip && !isFocusMode">
+          <div v-if="tooltip">
             <Tooltip :text="tooltip" :direction="tooltip_dir" />
           </div>
         </div>
@@ -37,11 +37,11 @@
 
   <!-- tel input -->
   <template v-else-if="input_type == 'tel'">
-    <div :class="[ext_class, isFocusMode ? 'focus': '']">
+    <div :class="[ext_class]">
       <div class="wrapper">
-        <div class="label-wrapper">
+        <div :class="[ 'label-wrapper', { 'mobile' : device == 'mobile' }]">
           <label>{{ label }}<template v-if="is_required">*</template></label>
-          <div v-if="tooltip && !isFocusMode">
+          <div v-if="tooltip">
             <Tooltip :text="tooltip" :direction="tooltip_dir" />
           </div>
         </div>
@@ -71,11 +71,11 @@
 
   <!-- textarea -->
   <template v-else-if="input_type == 'textarea'">
-    <div :class="[ext_class, isFocusMode ? 'focus': '']">
+    <div :class="[ext_class]">
       <div class="wrapper">
-        <div class="label-wrapper">
+        <div :class="[ 'label-wrapper', { 'mobile' : device == 'mobile' }]">
           <label>{{ label }}<template v-if="is_required">*</template></label>
-          <div v-if="tooltip && !isFocusMode">
+          <div v-if="tooltip">
             <Tooltip :text="tooltip" :direction="tooltip_dir" />
           </div>
         </div>
@@ -145,9 +145,6 @@ const props = defineProps({
 
   // take external classes
   ext_class: String,
-
-  // prevent focus mode (input is not in a multistep form)
-  prevent_focus_mode: Boolean,
 });
 
 defineEmits([
@@ -166,13 +163,7 @@ const is_focused = ref(false);
 const windowH = ref( window.innerHeight );
 const isKeyboardOpen = ref( false );
 
-const getPlaceholder = computed(() => device.value == "mobile" && props.error ? "" : props.placeholder );
-const isFocusMode = computed(() => 
-  is_focused.value &&
-  device.value == "mobile"
-  && isKeyboardOpen.value &&
-  !props.prevent_focus_mode
-);
+const getPlaceholder = computed(() => props.error ? "" : props.placeholder );
 
 //==============================
 // Functions
@@ -198,26 +189,6 @@ onUnmounted(() => {
 </script>
 
 <style lang="scss" scoped>
-.focus {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100vh;
-  background-color: var(--background);
-  z-index: 10;
-  .wrapper {
-    position: fixed;
-    width: calc(100% - 4.4rem);
-    height: 100vh;
-    padding: 0 2.2rem;
-    &:deep(button) {
-      margin-top: 2rem;
-      width: 100%;
-      justify-content: flex-end;
-    }
-  }
-}
 .input-wrapper {
   position: relative;
   input,
@@ -291,6 +262,9 @@ onUnmounted(() => {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  &.mobile {
+    height: 4rem;
+  }
 }
 
 .tips {

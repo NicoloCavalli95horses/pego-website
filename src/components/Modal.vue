@@ -6,7 +6,12 @@
         class="modal"
         data-cy="modal"
         :class="{ 'full-size': full_size }"
-        :style="{ 'width': `${width}rem`, 'height': `${height}rem` }"
+        :style="{ 
+          'max-width': `${ max_width }`,
+          'min-width': `${ min_width }`,
+          'max-height': `${ max_height }`,
+          'min-height': `${ min_height }`
+        }"
         @click="(e) => e.stopPropagation()"
       >
         <div v-if="close_btn" class="top-right-corner" @click="emit('closed')">
@@ -20,8 +25,8 @@
             <slot name="header" />
           </div>
         </header>
-        <!-- content -->
-        <div class="content">
+        <!-- scrollable-content -->
+        <div class="scrollable-content">
           <slot />
         </div>
         <!-- footer -->
@@ -47,8 +52,10 @@ import { fas } from "@fortawesome/free-solid-svg-icons";
 // ==============================
 const props = defineProps({
   title: String,
-  width: Number,
-  height: Number,
+  max_width: String,  // em or %
+  min_width: String,
+  max_height: String,
+  min_height: String,
   click_out_close: Boolean,
   full_size: Boolean,
   close_btn: Boolean,
@@ -110,16 +117,19 @@ $gap: 2.2rem;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    width: 100%;
+    height: 100%;
     header {
       width: 100%;
     }
-    .content {
-      width: 100%;
+    .scrollable-content {
       display: flex;
       flex-direction: column;
       flex-grow: 1;
       max-height: calc(100% - $header-h - $footer-h);
       height: calc(100% - $header-h - $footer-h);
+      overflow-y: auto;
+      padding: 0 2rem; // scrollbar padding
     }
 
     footer {
@@ -139,9 +149,6 @@ $gap: 2.2rem;
       left: 0;
       transform: none;
       box-sizing: border-box;
-      footer {
-        margin-top: 1.2rem;
-      }
     }
   }
 }

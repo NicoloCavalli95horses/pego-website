@@ -32,7 +32,7 @@
     @closed="show.modal = false"
   >
     <div class="flex-column w-100">
-      <InputText class="input" placeholder="Il mio comune" v-model="filter" :prevent_focus_mode="true" />
+      <InputText class="input" placeholder="Il mio comune" v-model="filter" />
       <div class="city-list top-12">
         <template v-if="filteredCities.length">
           <div v-for="(city, i) in filteredCities" :key="i" class="city">

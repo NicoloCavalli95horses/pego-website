@@ -1,5 +1,5 @@
 <template>
-  <div class="label-wrapper">
+  <div :class="[ 'label-wrapper', { 'mobile' : device == 'mobile' }]">
     <label> {{ label }}<template v-if="is_required">*</template> </label>
     <div v-if="tooltip"> <Tooltip :text="tooltip" /> </div>
   </div>
@@ -32,6 +32,8 @@ import { library } from "@fortawesome/fontawesome-svg-core";
 import { fas } from "@fortawesome/free-solid-svg-icons";
 import { ref } from "vue";
 import { computed, onMounted } from "vue";
+import { getViewport } from "../utils/screen_size.js";
+
 import Tooltip from "./Tooltip.vue";
 
 // ==============================
@@ -56,6 +58,7 @@ library.add( fas );
 const input_ref = ref(undefined);
 const file = ref(null);
 const MAX_NAME_LENGTH = 20;
+const device = getViewport();
 
 const getFileName = computed(() => {
   let name = '';
@@ -121,5 +124,8 @@ onMounted(() => {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  &.mobile {
+    height: 4rem;
+  }
 }
 </style>

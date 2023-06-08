@@ -70,7 +70,7 @@ function onBackgroundClick(e) {
   z-index: 1;
   top: 0%;
   right: 0%;
-  transform: translate(-6rem, 0%);
+  transform: translate(-5rem, 0%);
   background-color: var(--footer-bg);
   border-radius: var(--radius-m);
   &.up {
