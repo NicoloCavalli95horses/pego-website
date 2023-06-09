@@ -272,7 +272,7 @@
                 />
                 <InputText
                  label="Numero"
-                 placeholder="Numero"
+                 placeholder="N"
                  v-model="houseNumber.content"
                  input_type="tel"
                  :is_required="true"
@@ -450,7 +450,7 @@ const HOUSE_NUM_REGEX = /^\d+(\s*[a-zA-Z]?)$/;
 // ==============================
 const device = getViewport();
 const active = ref( 0 );
-const mobile_active = ref( 5 );
+const mobile_active = ref( 0 );
 
 const request = reactive({
   options: ["Riparazione", "Manutenzione", "Informazioni generali"],
