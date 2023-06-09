@@ -25,17 +25,21 @@
 
   <Modal
     v-if="show.modal"
-    title="Copertura dei comuni"
+    title="Comuni raggiunti"
     :max_width="device != 'mobile' ? '70%' : undefined"
     :min_width="device != 'mobile' ? '40rem' : undefined"
     :min_height="device != 'mobile' ? '40rem' : undefined"
     :max_height="device != 'mobile' ? '65rem' : undefined"
     :full_size="device == 'mobile'"
     :click_out_close="true"
-    @closed="show.modal = false"
+    :close_btn="device == 'mobile'"
+    @closed="() => { show.modal = false; filter = ''; }"
   >
-    <div class="flex-column w-100">
+    <template v-if="device == 'mobile'" #header>
       <InputText class="input" placeholder="Il mio comune" v-model="filter" />
+    </template>
+    <div class="flex-column w-100">
+      <InputText v-if="device != 'mobile'" class="input" placeholder="Il mio comune" v-model="filter" />
       <div class="city-list top-12" :class="{ 'mobile' : device == 'mobile' }">
         <template v-if="filteredCities.length">
           <div v-for="(city, i) in filteredCities" :key="i" class="city">
@@ -44,10 +48,6 @@
         </template>
         <p v-else> Ci dispiace, ma attualmente non raggiungiamo questo comune.</p>
       </div>
-    </div>
-    
-    <div v-if="device == 'mobile'" class="flex-center end top-24">
-      <Btn :def="true" text="chiudi" @click="() => { show.modal = false; filter = ''; }" />
     </div>
 
     <template v-if="device != 'mobile'" #footer>
@@ -137,7 +137,7 @@ const filteredCities = computed(() =>
   overflow-y: auto;
   &.mobile {
     height: 100%;
-    max-height: 30rem;
+    margin-bottom: 10rem;
   }
   .city {
     display: flex;

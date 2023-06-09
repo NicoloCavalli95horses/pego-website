@@ -2,16 +2,16 @@
   <div class="main">
     <template v-if="device == 'mobile'">
       <div class="mobile-label">
-        <p class="larger">{{ steps.at(active).label }}</p>
+        <p class="larger">{{ steps[active].label }}</p>
       </div>
     </template>
 
     <template v-else>
       <div class="label">
         <p v-if="prev">{{ prev }}</p>
-        <p class="larger">{{ steps.at(active).label }}</p>
+        <p class="larger">{{ steps[active].label }}</p>
         <p>{{ succ }}</p>
-        <p v-if="!prev && steps.at(2).label">{{ steps.at(2).label }}</p>
+        <p v-if="!prev && steps[2].label">{{ steps[2].label }}</p>
       </div>
     </template>
 
@@ -40,8 +40,8 @@ const props = defineProps({
 // Consts
 // ==============================
 const device = getViewport();
-const prev = computed(() => props.active - 1 >= 0 ? props.steps.at(props.active - 1).label : false );
-const succ = computed(() => props.active + 1 < props.steps.length ? props.steps.at(props.active + 1).label : "invia" );
+const prev = computed(() => props.active - 1 >= 0 ? props.steps[props.active - 1].label : false );
+const succ = computed(() => props.active + 1 < props.steps.length ? props.steps[props.active + 1].label : "invia" );
 </script>
 
 <style lang="scss" scoped>

@@ -7,6 +7,7 @@
     :max_height="device != 'mobile' ? '80%' : undefined"
     :min_height="device != 'mobile' ? '40em' : undefined"
     :click_out_close="true"
+    :close_btn="device == 'mobile'"
     :full_size="device == 'mobile'"
     @closed="$router.push('/')"
   >
@@ -157,8 +158,7 @@
                 <InputText
                   label="Matricola"
                   placeholder="Matricola"
-                  tooltip="La matricola identificativa dell'impianto si trova su una apposita etichetta."
-                  tooltip_dir="up"
+                  :tooltip="TOOLTIP.matricola"
                   v-model="system.register.content"
                   :error="system.register.error"
                   ext_class="w-33 r-12"
@@ -166,7 +166,7 @@
                 <InputText
                   label="Modello"
                   placeholder="Modello"
-                  tooltip="L'indicazione del modello dell'impianto si trova su una apposita etichetta."
+                  :tooltip="TOOLTIP.modello"
                   v-model="system.model.content"
                   :error="system.model.error"
                   ext_class="w-33"
@@ -177,7 +177,7 @@
               <InputFile
                 label="Carica una foto"
                 placeholder="Carica una foto"
-                tooltip="Carica una foto dell'impianto o del libretto per aiutarci ad identificare il problema."
+                :tooltip="TOOLTIP.foto"
                 @upload="(f) => (file = f)"
                 @delete="file = undefined"
               />
@@ -185,7 +185,7 @@
                 input_type="textarea"
                 v-model="textarea.content"
                 label="Ulteriori informazioni"
-                tooltip="Inserire qui ulteriori informazioni utili alla comprensione del problema."
+                :tooltip="TOOLTIP.ulteriori"
                 placeholder="Ulteriori informazioni"
                 :error="textarea.error"
               />
@@ -261,21 +261,25 @@
                 @focus="city.show_tips = true"
                 @selectedtip="onselectedtip"
               />
-              <InputText
-                label="Indirizzo"
-                placeholder="Indirizzo"
-                v-model="address.content"
-                :is_required="true"
-                :error="address.error"
-              />
-              <InputText
-                label="Numero"
-                placeholder="Numero"
-                v-model="houseNumber.content"
-                input_type="tel"
-                :is_required="true"
-                :error="houseNumber.error"
-              />
+              <div class="flex-center">
+                <InputText
+                 label="Indirizzo"
+                 placeholder="Indirizzo"
+                 v-model="address.content"
+                 :is_required="true"
+                 :error="address.error"
+                 ext_class="r-12"
+                />
+                <InputText
+                 label="Numero"
+                 placeholder="Numero"
+                 v-model="houseNumber.content"
+                 input_type="tel"
+                 :is_required="true"
+                 :error="houseNumber.error"
+                 ext_class="w-33"
+                />
+              </div>
             </div>
             <div v-if="mobile_active == 5">
               <div class="top-12">
@@ -299,6 +303,9 @@
                 :display_uppercase="true"
                 :error="system.other.error"
               />
+            </div>
+
+            <div v-if="mobile_active == 6">
               <InputText
                 label="Anno installazione"
                 placeholder="Anno installazione"
@@ -307,46 +314,48 @@
                 :error="system.year.error"
               />
             </div>
-            <div v-if="mobile_active == 6">
+            <div v-if="mobile_active == 7">
               <InputText
                 label="Matricola"
                 placeholder="Matricola"
-                tooltip="La matricola identificativa dell'impianto si trova su una apposita etichetta."
+                :tooltip="TOOLTIP.matricola"
                 v-model="system.register.content"
                 :error="system.register.error"
               />
               <InputText
                 label="Modello"
                 placeholder="Modello"
-                tooltip="L'indicazione del modello dell'impianto si trova su una apposita etichetta."
+                :tooltip="TOOLTIP.modello"
                 v-model="system.model.content"
                 :error="system.model.error"
               />
             </div>
-            <div v-if="mobile_active == 7">
+            <div v-if="mobile_active == 8">
               <InputFile
                 label="Carica una foto"
                 placeholder="Carica una foto"
-                tooltip="Carica una foto dell'impianto o del libretto per aiutarci ad identificare il problema."
+                :tooltip="TOOLTIP.foto"
                 @upload="(f) => (file = f)"
                 @delete="file = undefined"
               />
+            </div>
+            <div v-if="mobile_active == 9">
               <InputText
                 ext_class="top-12"
                 input_type="textarea"
                 v-model="textarea.content"
                 label="Ulteriori informazioni"
-                tooltip="Inserire qui ulteriori informazioni utili alla comprensione del problema."
+                :tooltip="TOOLTIP.ulteriori"
                 placeholder="Ulteriori informazioni"
                 :error="textarea.error"
               />
             </div>
           </div>
 
-          <div class="flex-center top-48">
+          <div class="flex-center top-32">
             <Btn v-if="mobile_active == 0" :bg="false" text="chiudi" @click.prevent="$router.push('/')" class="w-100 r-12" />
             <Btn v-else :bg="false" text="indietro" @click.prevent="mobile_active--" class="w-100 r-12" />
-            <Btn v-if="mobile_active == 7" text="invia" :def="true" type="submit" form="form" />
+            <Btn v-if="mobile_active == 9" text="invia" :def="true" type="submit" form="form" />
             <Btn v-else class="w-100" text="avanti" :def="true" @click.prevent="validateMobileForm" />
           </div>
         </template>
@@ -420,8 +429,17 @@ const MOBILE_STEPS = [
   { label: "Indirizzo" },
   { label: "Dettagli tecnici" },
   { label: "Dettagli tecnici" },
+  { label: "Dettagli tecnici" },
+  { label: "Opzionale" },
   { label: "Opzionale" },
 ];
+
+const TOOLTIP = {
+  matricola: "La matricola è un codice che si trova generalmente dietro la stufa, sulle pareti interne del serbatoio pellet e allegato al libretto istruzioni.",
+  modello: "Il modello è il nome della tua stufa, solitamente posto nella targhetta matricola o nel libretto di istruzioni.",
+  foto: "Carica una foto dell'impianto o del guasto per aiutarci ad identificare il problema.",
+  ulteriori: "Hai richieste o altro che volevi comunicarci? Siamo a disposizione."
+}
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const TEL_REGEX = /^(?:(?:\+|00)39)?\s*(?:\d{2}\s*){2}\d{6,7}$/;
@@ -432,7 +450,7 @@ const HOUSE_NUM_REGEX = /^\d+(\s*[a-zA-Z]?)$/;
 // ==============================
 const device = getViewport();
 const active = ref( 0 );
-const mobile_active = ref( 0 );
+const mobile_active = ref( 5 );
 
 const request = reactive({
   options: ["Riparazione", "Manutenzione", "Informazioni generali"],
@@ -511,7 +529,7 @@ const isHouseNumberValid = computed(() => houseNumber.content && HOUSE_NUM_REGEX
 const getEmailObject = computed(() => request.selected + " - " + name.content + " " + surname.content );
 const getSystemYear = computed(() => {
   let year = parseInt(system.year.content);
-  return `${year}, (${new Date().getFullYear() - year} anni fa)`;
+  return year ? `${year}, (${new Date().getFullYear() - year} anni fa)` : 'non disponibile';
 });
 
 // ==============================
@@ -542,10 +560,7 @@ function validateMobileForm() {
         surname.error = !surname.content ? true : false;
         break;
       case 3:
-        if (
-          (email.content && isEmailValid.value) ||
-          (tel.content && isTelValid.value)
-        ) {
+        if ((email.content && isEmailValid.value) || (tel.content && isTelValid.value)) {
           mobile_active.value++;
           return;
         }
@@ -581,6 +596,12 @@ function validateMobileForm() {
         mobile_active.value++;
         return;
       case 7:
+        mobile_active.value++;
+        return;
+      case 8:
+        mobile_active.value++;
+        return;
+      case 9:
         mobile_active.value++;
         return;
     }
