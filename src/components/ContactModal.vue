@@ -178,8 +178,8 @@
                 label="Carica una foto"
                 placeholder="Carica una foto"
                 :tooltip="TOOLTIP.foto"
-                @upload="(f) => (file = f)"
-                @delete="file = undefined"
+                @upload="(f) => (file.content = f)"
+                @delete="file.content = undefined"
               />
               <InputText
                 input_type="textarea"
@@ -331,15 +331,6 @@
               />
             </div>
             <div v-if="mobile_active == 8">
-              <InputFile
-                label="Carica una foto"
-                placeholder="Carica una foto"
-                :tooltip="TOOLTIP.foto"
-                @upload="(f) => (file = f)"
-                @delete="file = undefined"
-              />
-            </div>
-            <div v-if="mobile_active == 9">
               <InputText
                 ext_class="top-12"
                 input_type="textarea"
@@ -348,6 +339,16 @@
                 :tooltip="TOOLTIP.ulteriori"
                 placeholder="Ulteriori informazioni"
                 :error="textarea.error"
+              />
+            </div>
+            <!-- input type="file" to be the last one for security reasons -->
+            <div v-if="mobile_active == 9">
+              <InputFile
+                label="Carica una foto"
+                placeholder="Carica una foto"
+                :tooltip="TOOLTIP.foto"
+                @upload="(f) => (file.content = f)"
+                @delete="file.content = undefined"
               />
             </div>
           </div>
