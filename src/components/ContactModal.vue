@@ -4,7 +4,7 @@
     title="Contattaci"
     :max_width="device != 'mobile' ? '50%' : undefined"
     :min_width="device != 'mobile' ? '60em' : undefined"
-    :max_height="device != 'mobile' ? '80%' : undefined"
+    :max_height="device != 'mobile' ? '90%' : undefined"
     :min_height="device != 'mobile' ? '40em' : undefined"
     :click_out_close="true"
     :close_btn="device == 'mobile'"
