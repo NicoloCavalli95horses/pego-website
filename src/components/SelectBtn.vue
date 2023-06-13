@@ -5,7 +5,7 @@
       v-for="(opt, i) in options"
       :key="i"
       class="option"
-      :class="{ active: modelValue == opt }"
+      :class="{ 'active': modelValue == opt }"
     >
       <span @click="emit('update:modelValue', opt)">{{ opt }}</span>
     </div>

@@ -4,7 +4,7 @@
     <div :class="[ext_class]">
       <div class="wrapper">
         <div :class="[ 'label-wrapper', { 'mobile' : device == 'mobile' }]">
-          <label> {{ label }}<template v-if="is_required">*</template></label>
+          <label>{{ label }}<template v-if="is_required">*</template></label>
           <div v-if="tooltip">
             <Tooltip :text="tooltip" :direction="tooltip_dir" />
           </div>
@@ -98,9 +98,6 @@
             @input="$emit('update:modelValue', $event.target.value)"
           >
           </textarea>
-          <div v-if="modelValue.length" class="reset" @click="$emit('reset')">
-            <Icon icon="fa-solid fa-close" class="svg-24" />
-          </div>
           <div v-if="error && !modelValue" class="warning-text textarea" :class="{ 'mobile': device == 'mobile' }">
             <label>{{ error_message || "Campo obbligatorio" }}</label>
           </div>
@@ -253,6 +250,7 @@ onUnmounted(() => {
     right: 0;
     transform: translate(-50%, -50%);
     position: absolute;
+    background-color: rgba(255, 255, 255, 0.6);
     cursor: pointer;
     svg {
       color: var(--primary);

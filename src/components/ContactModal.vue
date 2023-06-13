@@ -18,10 +18,9 @@
         class="top-12 bottom-12"
       />
 
-      <!-- pegorer.ennio@gmail.com -->
       <!-- User info -->
       <form
-        action="https://formsubmit.co/nicolo.cavalli95@gmail.com"
+        action="https://formsubmit.co/pegorer.ennio@gmail.com"
         method="POST"
         :class="['form', 'relative', { 'mobile': device == 'mobile' }]"
         id="form"
