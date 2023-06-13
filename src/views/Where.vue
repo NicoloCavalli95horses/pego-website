@@ -37,10 +37,21 @@
     @closed="() => { show.modal = false; filter = ''; }"
   >
     <template v-if="device == 'mobile'" #header>
-      <InputText class="input" placeholder="Il mio comune" v-model="filter" />
+      <InputText
+        class="input"
+        placeholder="Il mio comune"
+        v-model="filter"
+        @reset="filter = ''"
+      />
     </template>
     <div class="flex-column w-100">
-      <InputText v-if="device != 'mobile'" class="input" placeholder="Il mio comune" v-model="filter" />
+      <InputText
+        v-if="device != 'mobile'"
+        class="input"
+        placeholder="Il mio comune"
+        v-model="filter"
+        @reset="filter = ''"
+      />
       <div class="city-list top-12" :class="{ 'mobile' : device == 'mobile' }">
         <template v-if="filteredCities.length">
           <div v-for="(city, i) in filteredCities" :key="i" class="city">
@@ -128,9 +139,6 @@ const filteredCities = computed(() => cities.filter(
 
 .input {
   width: 100%;
-  &:deep(input) {
-    margin-top: 0.6rem;
-  }
 }
 
 .city-list {
