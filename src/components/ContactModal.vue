@@ -52,6 +52,7 @@
                 :is_required="true"
                 :error_message="request.error_msg"
                 :error="request.error"
+                @reset="request.content = ''"
               />
             </template>
             <template v-if="active == 1">
@@ -63,6 +64,7 @@
                   :is_required="true"
                   :error="name.error"
                   ext_class="w-50 r-12"
+                  @reset="name.content = ''"
                 />
                 <InputText
                   label="Cognome"
@@ -71,6 +73,7 @@
                   :is_required="true"
                   :error="surname.error"
                   ext_class="w-50"
+                  @reset="surname.content = ''"
                 />
               </div>
               <div class="flex-center">
@@ -81,15 +84,18 @@
                   :error_message="email.error_msg"
                   :error="email.error"
                   ext_class="w-50 r-12"
+                  @reset="email.content = ''"
                 />
                 <InputText
                   label="Cellulare"
                   placeholder="Cellulare"
                   v-model="tel.content"
                   input_type="tel"
+                  :length="10"
                   :error_message="tel.error_msg"
                   :error="tel.error"
                   ext_class="w-50"
+                  @reset="tel.content = ''"
                 />
               </div>
             </template>
@@ -105,6 +111,7 @@
                 :display_uppercase="true"
                 @focus="city.show_tips = true"
                 @selectedtip="onselectedtip"
+                @reset="city.content = ''"
               />
 
               <div class="flex-center">
@@ -115,15 +122,17 @@
                   :is_required="true"
                   :error="address.error"
                   ext_class="w-50 r-12"
+                  @reset="address.content = ''"
                 />
                 <InputText
                   label="Numero"
                   placeholder="Numero"
-                  v-model="houseNumber.content"
+                  v-model="house_number.content"
                   input_type="tel"
                   :is_required="true"
-                  :error="houseNumber.error"
+                  :error="house_number.error"
                   ext_class="w-50"
+                  @reset="house_number.content = ''"
                 />
               </div>
             </template>
@@ -145,6 +154,7 @@
                 :is_required="true"
                 :display_uppercase="true"
                 :error="system.other.error"
+                @reset="system.other.content = ''"
               />
               <div class="flex-center">
                 <InputText
@@ -152,8 +162,10 @@
                   placeholder="Anno installazione"
                   v-model="system.year.content"
                   input_type="tel"
+                  :length="4"
                   :error="system.year.error"
                   ext_class="w-33 r-12"
+                  @reset="system.year.content = ''"
                 />
                 <InputText
                   label="Matricola"
@@ -162,6 +174,7 @@
                   v-model="system.register.content"
                   :error="system.register.error"
                   ext_class="w-33 r-12"
+                  @reset="system.register.content = ''"
                 />
                 <InputText
                   label="Modello"
@@ -170,6 +183,7 @@
                   v-model="system.model.content"
                   :error="system.model.error"
                   ext_class="w-33"
+                  @reset="system.model.content = ''"
                 />
               </div>
             </template>
@@ -183,11 +197,12 @@
               />
               <InputText
                 input_type="textarea"
-                v-model="textarea.content"
+                v-model="further.content"
                 label="Ulteriori informazioni"
                 :tooltip="TOOLTIP.ulteriori"
                 placeholder="Ulteriori informazioni"
-                :error="textarea.error"
+                :error="further.error"
+                @reset="further.content = ''"
               />
             </template>
           </div>
@@ -214,6 +229,7 @@
               :is_required="true"
               :error_message="request.error_msg"
               :error="request.request_description_error"
+              @reset="request.content = ''"
             />
             <div v-if="mobile_active == 2">
               <InputText
@@ -222,6 +238,7 @@
                 v-model="name.content"
                 :is_required="true"
                 :error="name.error"
+                @reset="name.content = ''"
               />
               <InputText
                 label="Cognome"
@@ -229,6 +246,7 @@
                 v-model="surname.content"
                 :is_required="true"
                 :error="surname.error"
+                @reset="surname.content = ''"
               />
             </div>
             <div v-if="mobile_active == 3">
@@ -238,14 +256,17 @@
                 v-model="email.content"
                 :error_message="email.error_msg"
                 :error="email.error"
+                @reset="email.content = ''"
               />
               <InputText
                 label="Cellulare"
                 placeholder="Cellulare"
                 v-model="tel.content"
                 input_type="tel"
+                :length="10"
                 :error_message="tel.error_msg"
                 :error="tel.error"
+                @reset="tel.content = ''"
               />
             </div>
             <div v-if="mobile_active == 4">
@@ -260,6 +281,7 @@
                 :display_uppercase="true"
                 @focus="city.show_tips = true"
                 @selectedtip="onselectedtip"
+                @reset="city.content = ''"
               />
               <div class="flex-center">
                 <InputText
@@ -269,15 +291,17 @@
                  :is_required="true"
                  :error="address.error"
                  ext_class="r-12"
+                 @reset="address.content = ''"
                 />
                 <InputText
                  label="Numero"
                  placeholder="N"
-                 v-model="houseNumber.content"
+                 v-model="house_number.content"
                  input_type="tel"
                  :is_required="true"
-                 :error="houseNumber.error"
+                 :error="house_number.error"
                  ext_class="w-33"
+                 @reset="house_number.content = ''"
                 />
               </div>
             </div>
@@ -302,6 +326,7 @@
                 :is_required="true"
                 :display_uppercase="true"
                 :error="system.other.error"
+                @reset="system.other.content = ''"
               />
             </div>
 
@@ -311,7 +336,9 @@
                 placeholder="Anno installazione"
                 v-model="system.year.content"
                 input_type="tel"
+                :length="4"
                 :error="system.year.error"
+                @reset="system.year.content = ''"
               />
             </div>
             <div v-if="mobile_active == 7">
@@ -321,6 +348,7 @@
                 :tooltip="TOOLTIP.matricola"
                 v-model="system.register.content"
                 :error="system.register.error"
+                @reset="system.register.content = ''"
               />
               <InputText
                 label="Modello"
@@ -328,17 +356,19 @@
                 :tooltip="TOOLTIP.modello"
                 v-model="system.model.content"
                 :error="system.model.error"
+                @reset="system.model.content = ''"
               />
             </div>
             <div v-if="mobile_active == 8">
               <InputText
                 ext_class="top-12"
                 input_type="textarea"
-                v-model="textarea.content"
+                v-model="further.content"
                 label="Ulteriori informazioni"
                 :tooltip="TOOLTIP.ulteriori"
                 placeholder="Ulteriori informazioni"
-                :error="textarea.error"
+                :error="further.error"
+                @reset="further.content = ''"
               />
             </div>
             <!-- input type="file" to be the last one for security reasons -->
@@ -375,13 +405,13 @@
         <input type="hidden" name="Cellulare" :value="tel.content" />
         <input type="hidden" name="Città" :value="city.content" />
         <input type="hidden" name="Via" :value="address.content" />
-        <input type="hidden" name="Numero civico" :value="houseNumber.content" />
+        <input type="hidden" name="Numero civico" :value="house_number.content" />
         <input v-if="system.brand.content != OTHER" type="hidden" name="Marchio" :value="system.brand.content" />
         <input v-else type="hidden" name="Marchio (altro)" :value="system.other.content" />
         <input type="hidden" name="Modello" :value="system.model.content" />
         <input type="hidden" name="Matricola" :value="system.register.content" />
         <input type="hidden" name="Anno installazione" :value="getSystemYear" />
-        <input type="hidden" name="Ulteriori informazioni" :value="textarea.content" />
+        <input type="hidden" name="Ulteriori informazioni" :value="further.content" />
       </form>
     </template>
 
@@ -490,7 +520,7 @@ const address = reactive({
   content: "",
   error: false,
 });
-const houseNumber = reactive({
+const house_number = reactive({
   content: "",
   error: false,
 });
@@ -498,7 +528,7 @@ const file = reactive({
   content: "",
   error: false,
 });
-const textarea = reactive({
+const further = reactive({
   content: "",
   error: false,
 });
@@ -528,7 +558,8 @@ const system = reactive({
 
 const isEmailValid = computed(() => email.content.length && EMAIL_REGEX.test(email.content));
 const isTelValid = computed(() => tel.content.length && TEL_REGEX.test(tel.content));
-const isHouseNumberValid = computed(() => houseNumber.content && HOUSE_NUM_REGEX.test(houseNumber.content));
+const isHouseNumberValid = computed(() => house_number.content.length );
+
 const getEmailObject = computed(() => request.selected + " - " + name.content + " " + surname.content );
 const getSystemYear = computed(() => {
   let year = parseInt(system.year.content);
@@ -583,7 +614,7 @@ function validateMobileForm() {
         }
         address.error = !address.content ? true : false;
         city.error = !city.content ? true : false;
-        houseNumber.error = !isHouseNumberValid.value ? true : false;
+        house_number.error = !isHouseNumberValid.value ? true : false;
         break;
       case 5:
         if (
@@ -645,7 +676,7 @@ function validateDesktopForm() {
 
       address.error = !address.content ? true : false;
       city.error = !city.content ? true : false;
-      houseNumber.error = !isHouseNumberValid.value ? true : false;
+      house_number.error = !isHouseNumberValid.value ? true : false;
       break;
     case 3:
       if ( (system.brand.content.length && system.brand.content != OTHER) || (system.brand.content == OTHER && system.other.content.length) ) {

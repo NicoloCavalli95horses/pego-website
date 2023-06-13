@@ -14,7 +14,7 @@
             ref="input_ref"
             type="text"
             autocomplete="none"
-            :class="{ error: error && !modelValue }"
+            :class="{ 'error': error && !modelValue }"
             :value="display_uppercase ? modelValue.toUpperCase() : modelValue"
             :required="is_required"
             :placeholder="getPlaceholder"
@@ -22,7 +22,10 @@
             @blur="() => { $emit('blur'); is_focused = false; }"
             @input="$emit('update:modelValue', $event.target.value)"
           />
-          <div v-if="error && !modelValue" class="warning-text" :class="{ mobile: device == 'mobile' }">
+          <div v-if="modelValue.length" class="reset" @click="$emit('reset')">
+            <Icon icon="fa-solid fa-close" class="svg-24" />
+          </div>
+          <div v-if="error && !modelValue" class="warning-text" :class="{ 'mobile': device == 'mobile' }">
             <label>{{ error_message || "Campo obbligatorio" }}</label>
           </div>
           <div v-if="show_tips" class="tips">
@@ -49,19 +52,22 @@
           <input
             ref="input_ref"
             type="tel"
-            size="10"
-            minlength="10"
-            maxlength="10"
+            :size="length"
+            :minlength="length"
+            :maxlength="length"
             autocomplete="none"
-            :class="{ error: error && !modelValue }"
-            :value="modelValue"
+            :class="{ 'error': error && !modelValue }"
+            :value="modelValue.replace(/\D/g, '')"
             :required="is_required"
             :placeholder="getPlaceholder"
             @focus="() => { $emit('focus'); is_focused = true; }"
             @blur="() => { $emit('blur'); is_focused = false; }"
             @input="$emit('update:modelValue', $event.target.value)"
           />
-          <div v-if="error && !modelValue" class="warning-text" :class="{ mobile: device == 'mobile' }">
+          <div v-if="modelValue.length" class="reset" @click="$emit('reset')">
+            <Icon icon="fa-solid fa-close" class="svg-24" />
+          </div>
+          <div v-if="error && !modelValue" class="warning-text" :class="{ 'mobile': device == 'mobile' }">
             <label>{{ error_message || "Campo obbligatorio" }}</label>
           </div>
         </div>
@@ -82,7 +88,7 @@
         <div class="input-wrapper">
           <textarea
             autocomplete="none"
-            :class="{ error: error && !modelValue }"
+            :class="{ 'error': error && !modelValue }"
             :value="modelValue"
             :required="is_required"
             :placeholder="getPlaceholder"
@@ -92,7 +98,10 @@
             @input="$emit('update:modelValue', $event.target.value)"
           >
           </textarea>
-          <div v-if="error && !modelValue" class="warning-text textarea" :class="{ mobile: device == 'mobile' }">
+          <div v-if="modelValue.length" class="reset" @click="$emit('reset')">
+            <Icon icon="fa-solid fa-close" class="svg-24" />
+          </div>
+          <div v-if="error && !modelValue" class="warning-text textarea" :class="{ 'mobile': device == 'mobile' }">
             <label>{{ error_message || "Campo obbligatorio" }}</label>
           </div>
         </div>
@@ -146,12 +155,16 @@ const props = defineProps({
 
   // take external classes
   ext_class: String,
+
+  // Max length of the input
+  length: Number
 });
 
 defineEmits([
   "update:modelValue",
   "selectedtip",
   "focus",
+  "reset",
   "blur"
 ]);
 
@@ -232,6 +245,17 @@ onUnmounted(() => {
     &::placeholder {
       filter: grayscale(60%);
       opacity: 0.7;
+    }
+  }
+
+  .reset {
+    top: 50%;
+    right: 0;
+    transform: translate(-50%, -50%);
+    position: absolute;
+    cursor: pointer;
+    svg {
+      color: var(--primary);
     }
   }
 
