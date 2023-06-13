@@ -475,7 +475,6 @@ const TOOLTIP = {
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const TEL_REGEX = /^(?:(?:\+|00)39)?\s*(?:\d{2}\s*){2}\d{6,7}$/;
-const HOUSE_NUM_REGEX = /^\d+(\s*[a-zA-Z]?)$/;
 
 
 // ==============================
