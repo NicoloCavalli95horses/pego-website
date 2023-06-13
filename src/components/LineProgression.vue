@@ -16,7 +16,7 @@
     </template>
 
     <div class="bar-wrapper">
-      <div class="bar" :style="{ 'width': active ? `${(100 * active) / steps.length}%` : '10%' }" />
+      <div class="bar" :style="{ 'width': active ? `${(100 * active) / steps.length}%` : '5%' }" />
     </div>
   </div>
 </template>
@@ -28,6 +28,7 @@
 import { computed } from "vue";
 import { getViewport } from "../utils/screen_size.js";
 
+
 // ==============================
 // Props
 // ==============================
@@ -36,16 +37,20 @@ const props = defineProps({
   active: Number,
 });
 
+
 // ==============================
 // Consts
 // ==============================
 const device = getViewport();
 const prev = computed(() => props.active - 1 >= 0 ? props.steps[props.active - 1].label : false );
 const succ = computed(() => props.active + 1 < props.steps.length ? props.steps[props.active + 1].label : "invia" );
+
+
 </script>
 
 <style lang="scss" scoped>
 .main {
+  user-select: none;
 
   .bar-wrapper {
     width: 100%;

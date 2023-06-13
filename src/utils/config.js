@@ -55,21 +55,25 @@ const config = {
       title: "Manutenzione straordinaria",
       description:
         "Su stufe a pellet Palazzetti, MCZ, Cadel, Anselmo Cola, Last Calor, Royal, Freepoint, Termovana, Red, Brisach. Una regolare manutenzione garantisce la sicurezza e diminuisce i consumi.",
+      src: "/img/cards/img_1.jpeg",
     },
     {
       title: "Assistenza tecnica autorizzata",
       description:
         "Nelle riparazioni utilizziamo ricambi originali e offriamo la garanzia prevista dalla legislazione vigente.",
+      src: "/img/cards/img_2.jpeg",
     },
     {
       title: "Rilascio libretto impianti",
       description:
         "Se ne sei sprovvisto, chiedici informazioni. Possiamo inserire e gestire il libretto di impianto nel catasto C.I.R.C.E.",
+      src: "/img/cards/img_3.jpeg",
     },
     {
       title: "Prove di ventilazione",
       description:
         "La prova di ventilazione certifica che gli ambienti di installazione non superino la soglia di 4 Pascal di pressione negativa, laddove non è possibile effettuare un foro di aerazione permanente secondo la norma tecnica vigente.",
+      src: "/img/cards/img_4.jpeg",
     },
   ],
   cities: [
@@ -197,34 +201,45 @@ const config = {
   faq: [
     {
       question: "A cosa serve la manutenzione della stufa a pellet?",
-      answer: "La manutenzione della stufa a pellet serve a mantenere l’impianto performante e sicuro nel tempo, riducendo fortemente il rischio di guasto nella stagione invernale. Inoltre, una stufa non regolarmente mantenuta consuma più combustibile a parità di calore generato. Alcuni motori possono aumentare la rumorosità se non correttamente puliti.",
+      answer:
+        "La manutenzione della stufa a pellet serve a mantenere l’impianto performante e sicuro nel tempo, riducendo fortemente il rischio di guasto nella stagione invernale. Inoltre, una stufa non regolarmente mantenuta consuma più combustibile a parità di calore generato. Alcuni motori possono aumentare la rumorosità se non correttamente puliti.",
     },
     {
       question: "Cos'è il libretto di impianto CIRCE?",
-      answer: "Nel libretto di impianto CIRCE (Regione Veneto) è registrato il tuo impianto e le operazioni di manutenzione su di esso eseguite. Puoi consultare il tuo libretto disponendo di codice catasto e codice chiave,",
-      link_src: 'https://catasto-impianti-termici.regione.veneto.it/consultazione_anonima.php',
-      link_text: 'cliccando qui.'
+      answer:
+        "Nel libretto di impianto CIRCE (Regione Veneto) è registrato il tuo impianto e le operazioni di manutenzione su di esso eseguite. Puoi consultare il tuo libretto disponendo di codice catasto e codice chiave,",
+      link_src:
+        "https://catasto-impianti-termici.regione.veneto.it/consultazione_anonima.php",
+      link_text: "cliccando qui.",
     },
     {
-      question: "La mia stufa a pellet ha un problema o va in errore, come posso risolvere?",
-      answer: "Generalmente in seguito a un malfunzionamento compare sul display o sulla schermata dell'applicazione un codice errore o la descrizione del problema. Comunicaci tale informazione e in che momento è emersa la problematica, assieme al nome del modello della stufa. Cercheremo di aiutarti telefonicamente o via email, qualora non fosse possibile fisseremo un appuntamento.",
+      question:
+        "La mia stufa a pellet ha un problema o va in errore, come posso risolvere?",
+      answer:
+        "Generalmente in seguito a un malfunzionamento compare sul display o sulla schermata dell'applicazione un codice errore o la descrizione del problema. Comunicaci tale informazione e in che momento è emersa la problematica, assieme al nome del modello della stufa. Cercheremo di aiutarti telefonicamente o via email, qualora non fosse possibile fisseremo un appuntamento.",
     },
     {
       question: "Ho un caminetto da riparare, posso rivolgermi a voi?",
-      answer: "Certamente, per la maggior parte dei modelli di caminetti delle marche che seguiamo c'è disponibilità di pezzi di ricambio, anche per modelli datati.",
+      answer:
+        "Certamente, per la maggior parte dei modelli di caminetti delle marche che seguiamo c'è disponibilità di pezzi di ricambio, anche per modelli datati.",
     },
     {
-      question: "La manutenzione comprende anche la pulizia della canna fumaria?",
-      answer: "Laddove accessibile, offriamo il servizio di pulizia della canna fumaria contestualmente alla manutenzione. Puliamo la canna fumaria solo di apparecchi a pellet, non di stufe o caminetti a legna, per i quali possiamo metterti in contatto con spazzacamini professionisti."
+      question:
+        "La manutenzione comprende anche la pulizia della canna fumaria?",
+      answer:
+        "Laddove accessibile, offriamo il servizio di pulizia della canna fumaria contestualmente alla manutenzione. Puliamo la canna fumaria solo di apparecchi a pellet, non di stufe o caminetti a legna, per i quali possiamo metterti in contatto con spazzacamini professionisti.",
     },
     {
-      question: "Che pezzi di ricambio vengono usati per le riparazioni, qualora fossero necessarie?",
-      answer: "Utilizziamo solamente pezzi di ricambio originali, forniti direttamente dalle aziende produttrici e dedicati precisamente alla tua stufa. Per questo chiediamo che ci sia comunicata la matricola identificativa del tuo apparecchio. Sui pezzi sostituiti è ovviamente vigente la garanzia europea."
+      question:
+        "Che pezzi di ricambio vengono usati per le riparazioni, qualora fossero necessarie?",
+      answer:
+        "Utilizziamo solamente pezzi di ricambio originali, forniti direttamente dalle aziende produttrici e dedicati precisamente alla tua stufa. Per questo chiediamo che ci sia comunicata la matricola identificativa del tuo apparecchio. Sui pezzi sostituiti è ovviamente vigente la garanzia europea.",
     },
     {
       question: "In cosa consiste la manutenzione di una stufa a pellet?",
-      answer: "Bisogna diffidare dalle manutenzioni poco approfondite: il controllo della stufa a pellet comprende la pulizia della camera di combustione e del giro fumi, la pulizia dei motori e il controllo delle sicurezze di serie sulla stufa. Inoltre, si pone attenzione alla funzionalità dell’impianto nella sua interezza. Tali operazioni richiedono circa un’ora e mezza."
-    }
+      answer:
+        "Bisogna diffidare dalle manutenzioni poco approfondite: il controllo della stufa a pellet comprende la pulizia della camera di combustione e del giro fumi, la pulizia dei motori e il controllo delle sicurezze di serie sulla stufa. Inoltre, si pone attenzione alla funzionalità dell’impianto nella sua interezza. Tali operazioni richiedono circa un’ora e mezza.",
+    },
   ],
 };
 

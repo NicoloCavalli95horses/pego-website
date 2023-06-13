@@ -18,6 +18,7 @@
 //=============================
 import { reactive, watch } from "vue";
 
+
 //=============================
 // Props, emits, consts
 //=============================
@@ -28,6 +29,7 @@ const props = defineProps({
 });
 
 const emit = defineEmits(["scroll", "active"]);
+
 
 //=============================
 // Consts
@@ -47,6 +49,7 @@ const scroller = reactive({
   max_dots: props.max_dots,
   min_dots: 2,
 });
+
 
 //=============================
 // Functions
@@ -92,6 +95,7 @@ function getScrollContainerValues() {
   scroller.step = scroller.max_scroll / (scroller.dots - 1);
 }
 
+
 //=============================
 // Watcher
 //=============================
@@ -110,6 +114,8 @@ watch(
     onContainerScroll();
   }
 );
+
+
 </script>
 
 <style lang="scss" scoped>

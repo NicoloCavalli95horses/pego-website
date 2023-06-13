@@ -32,6 +32,7 @@ const props = defineProps({
   },
 });
 
+
 //==============================
 // Consts
 //==============================
@@ -50,14 +51,11 @@ const isAPIsupported = computed(() =>
   ('IntersectionObserverEntry' in window) &&
   ('intersectionRatio' in window.IntersectionObserverEntry.prototype)
 );
+
+
 //==============================
 // Function
 //==============================
-// function isSafariBrowser() {
-  // const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
-  // return isSafari;
-// }
-
 function onIntersect( el ){
   if ( el[0].isIntersecting ) {
     startCounter();
@@ -81,6 +79,7 @@ function resetCounter(){
   clearInterval( interval );
 }
 
+
 //==============================
 // Life cycle
 //==============================
@@ -88,6 +87,8 @@ onMounted(() => {
   let observer = new IntersectionObserver(onIntersect, options);
   observer.observe( counter_ref.value );
 });
+
+
 </script>
 
 <style lang="scss" scoped>

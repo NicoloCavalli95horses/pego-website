@@ -114,11 +114,14 @@ import { fas } from "@fortawesome/free-solid-svg-icons";
 import Btn from "./Btn.vue";
 import Carousel from "./Carousel.vue";
 
+
 // ==============================
 // Consts
 // ==============================
 library.add( fas );
 const device = getViewport();
+
+
 </script>
 
 <style lang="scss" scoped>

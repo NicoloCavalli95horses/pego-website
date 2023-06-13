@@ -110,6 +110,7 @@ import { getViewport } from "../utils/screen_size.js";
 import { computed, onMounted, onUnmounted } from "vue";
 import Tooltip from "./Tooltip.vue";
 
+
 // ==============================
 // Props
 // ==============================
@@ -154,6 +155,7 @@ defineEmits([
   "blur"
 ]);
 
+
 // ==============================
 // Variables
 // ==============================
@@ -165,12 +167,14 @@ const isKeyboardOpen = ref( false );
 
 const getPlaceholder = computed(() => props.error ? "" : props.placeholder );
 
+
 //==============================
 // Functions
 //==============================
 function onKeyboard(){
   isKeyboardOpen.value =  windowH.value != window.innerHeight ? true : false;
 }
+
 
 //==============================
 // Life cycle
@@ -185,6 +189,7 @@ onMounted(() => {
 onUnmounted(() => {
   window.removeEventListener('resize', onKeyboard);
 })
+
 
 </script>
 

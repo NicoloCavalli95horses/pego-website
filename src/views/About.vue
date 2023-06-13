@@ -1,8 +1,7 @@
 <template>
-  <div class="grid" :class="{ mobile: device == 'mobile' }">
+  <div class="grid" :class="{ 'mobile': device == 'mobile' }">
     <img :src="about_src" alt="chi siamo" />
     <div class="text-wrapper">
-      <!-- <h4>Un'azienda a conduzione forem ipsum dolor sit.</h4> -->
       <p>
         Siamo un'azienda a conduzione familiare che da quasi vent'anni lavora
         nel campo degli impianti a pellet e legna come assistenza autorizzata.
@@ -31,11 +30,14 @@
 //==============================
 import { getViewport } from "../utils/screen_size.js";
 
+
 //==============================
 // Consts
 //==============================
 const device = getViewport();
 const about_src = "/img/about/img_1.jpeg";
+
+
 </script>
 
 <style lang="scss" scoped>

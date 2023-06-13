@@ -18,12 +18,14 @@ import { fas } from "@fortawesome/free-solid-svg-icons";
 
 import Btn from "./Btn.vue";
 
+
 // ==============================
 // Props
 // ==============================
 library.add( fas );
 const show = ref(false);
 const emit = defineEmits(["ontop"]);
+
 
 // ==============================
 // Functions
@@ -37,6 +39,8 @@ function onTopClick() {
 function onScroll(e) {
   show.value = e.target.scrollTop >= 50 ? true : false;
 }
+
+
 // ==============================
 // Life cycle
 // ==============================
@@ -47,6 +51,8 @@ onBeforeMount(() => {
 onUnmounted(() => {
   document.querySelector('body').removeEventListener("scroll", onScroll);
 });
+
+
 </script>
 
 <style lang="scss" scoped>

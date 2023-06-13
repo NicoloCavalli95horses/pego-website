@@ -52,6 +52,7 @@ import { fas } from "@fortawesome/free-solid-svg-icons";
 import Logo from "./Logo.vue";
 import Btn from "./Btn.vue";
 
+
 //==================================
 // Consts
 //==================================
@@ -59,7 +60,9 @@ library.add( fas );
 const device = getViewport();
 const show = reactive({
   mobile_menu: false,
-})
+});
+
+
 </script>
 
 <style lang="scss" scoped>

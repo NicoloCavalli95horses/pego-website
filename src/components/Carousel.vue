@@ -25,6 +25,7 @@
 import { ref } from "vue";
 import DotNavigator from "../components/DotNavigator.vue";
 
+
 // ==============================
 // Props
 // ==============================
@@ -33,11 +34,14 @@ defineProps({
   show_dots: Boolean,
 });
 
+
 //==============================
 // Consts
 //==============================
 const scrolled = ref(0);
 const scroller_ref = ref(undefined);
+
+
 </script>
 
 <style lang="scss" scoped>

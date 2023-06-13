@@ -16,7 +16,6 @@
 import { getViewport } from "../utils/screen_size.js";
 
 
-
 //==============================
 // Props
 //==============================
@@ -25,12 +24,10 @@ defineProps({
 });
 
 
-
 //==============================
 // Consts
 //==============================
 const device = getViewport();
-
 
 
 </script>

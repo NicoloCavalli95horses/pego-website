@@ -17,6 +17,8 @@ defineProps({
   steps: Array,
   active: Number
 });
+
+
 </script>
 
 <style lang="scss" scoped>

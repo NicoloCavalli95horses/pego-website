@@ -24,10 +24,13 @@ import Modal from "../components/Modal.vue";
 import Btn from "../components/Btn.vue";
 import { getViewport } from "../utils/screen_size.js";
 
+
 // ==============================
 // Consts
 // ==============================
 const device = getViewport();
+
+
 </script>
 
 <style lang="scss" scoped>

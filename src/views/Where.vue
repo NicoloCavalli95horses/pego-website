@@ -1,7 +1,7 @@
 <template>
   <div class="grid" :class="{ 'mobile' : device == 'mobile' }"> 
     <div class="btn-wrapper">
-      <h4 class="bottom-36">
+      <h4 class="bottom-36"> 
         Raggiungiamo tutti i comuni in provincia di Treviso, e alcuni comuni in provincia di Venezia.
       </h4>
       <Btn class="c-margin top-32" text="scopri tutti i comuni" :def="true" @click="show.modal = true" />
@@ -33,6 +33,7 @@
     :full_size="device == 'mobile'"
     :click_out_close="true"
     :close_btn="device == 'mobile'"
+    :no_scrollbar="device == 'mobile'"
     @closed="() => { show.modal = false; filter = ''; }"
   >
     <template v-if="device == 'mobile'" #header>
@@ -69,6 +70,7 @@ import Modal from "../components/Modal.vue";
 import InputText from "../components/InputText.vue";
 import LoadingSpinner from "../components/LoadingSpinner.vue";
 
+
 //==============================
 // Consts
 //==============================
@@ -85,11 +87,11 @@ const show = reactive({
 
 const cities = [...config.cities];
 
-const filteredCities = computed(() =>
-  cities.filter((city) =>
-    city.toLocaleLowerCase().includes(filter.value.toLocaleLowerCase())
-  )
-);
+const filteredCities = computed(() => cities.filter(
+  (city) => city.toLocaleLowerCase().includes(filter.value.toLocaleLowerCase())
+));
+
+
 </script>
 
 <style lang="scss" scoped>

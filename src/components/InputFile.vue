@@ -36,6 +36,7 @@ import { getViewport } from "../utils/screen_size.js";
 
 import Tooltip from "./Tooltip.vue";
 
+
 // ==============================
 // Props
 // ==============================
@@ -50,6 +51,7 @@ const emit = defineEmits([
   "upload",
   "delete"
 ]);
+
 
 // ==============================
 // Variables
@@ -73,6 +75,8 @@ const getFileName = computed(() => {
 
   return name;
 }); 
+
+
 // ==============================
 // Functions
 // ==============================
@@ -86,6 +90,8 @@ function onFileDelete(e) {
   file.value = undefined;
   emit('delete');
 }
+
+
 //==============================
 // Life cycle
 //==============================
@@ -94,6 +100,8 @@ onMounted(() => {
     input_ref.value.focus();
   }
 });
+
+
 </script>
 
 <style lang="scss" scoped>

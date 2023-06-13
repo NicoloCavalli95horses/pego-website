@@ -29,25 +29,7 @@ import { library } from "@fortawesome/fontawesome-svg-core";
 import { fas } from "@fortawesome/free-solid-svg-icons";
 import { computed, ref } from "vue";
 
-// ==============================
-// Consts
-// ==============================
-library.add( fas );
-const getLabel = computed(() => {
-  let label = '';
 
-  if ( props.error ) {
-    label = "Campo obbligatorio";
-  } else {
-    if ( !props.modelValue ) {
-      label = "Seleziona una opzione";
-    } else {
-      label = props.display_uppercase ? props.modelValue.toUpperCase() : props.modelValue;
-    }
-  }
-
-  return label;
-});
 // ==============================
 // Props
 // ==============================
@@ -68,10 +50,28 @@ const props = defineProps({
 
 const emit = defineEmits(["update:modelValue"]);
 
+
 // ==============================
 // Consts
 // ==============================
+library.add( fas );
 const show = ref(false);
+const getLabel = computed(() => {
+  let label = '';
+
+  if ( props.error ) {
+    label = "Campo obbligatorio";
+  } else {
+    if ( !props.modelValue ) {
+      label = "Seleziona una opzione";
+    } else {
+      label = props.display_uppercase ? props.modelValue.toUpperCase() : props.modelValue;
+    }
+  }
+
+  return label;
+});
+
 
 // ==============================
 // Functions
@@ -81,6 +81,8 @@ function onOptionClick(e, option) {
   show.value = false;
   emit("update:modelValue", option);
 }
+
+
 </script>
 
 <style lang="scss" scoped>

@@ -22,6 +22,7 @@ import { ref } from "vue";
 
 import Btn from "./Btn.vue";
 
+
 // ==============================
 // Props
 // ==============================
@@ -30,11 +31,13 @@ defineProps({
   direction: String,
 });
 
+
 // ==============================
 // Props
 // ==============================
 library.add( fas );
 const show_tip = ref(false);
+
 
 // ==============================
 // Functions
@@ -50,6 +53,8 @@ function onBackgroundClick(e) {
   e.preventDefault();
   show_tip.value = false;
 }
+
+
 </script>
 
 <style lang="scss" scoped>

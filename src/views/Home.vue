@@ -12,11 +12,11 @@
   <h3 :class="[ device == 'mobile' ? 'bottom-12' : 'bottom-36']">Cosa offriamo</h3>
   <Carousel :show_dots="device !== 'mobile'">
     <Card
-      v-for="(card, i) in config.cards"
+      v-for="card in config.cards"
       :key="card.title"
       :title="card.title"
       :description="card.description"
-      :img_src="`/img/cards/img_${ i + 1 }.jpeg`"
+      :img_src="card.src"
     />
   </Carousel>
 
@@ -86,10 +86,12 @@ import OnTopBtn from "../components/OnTopBtn.vue";
 import Carousel from "../components/Carousel.vue";
 import Accordion from "../components/Accordion.vue";
 
+
 //==============================
 // Consts
 //==============================
 const device = getViewport();
+
 
 </script>
 

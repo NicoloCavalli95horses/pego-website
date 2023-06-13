@@ -26,7 +26,7 @@
           </div>
         </header>
         <!-- scrollable-content -->
-        <div :class="['scrollable-content', { 'no-padding' : no_scrollable_padding }]">
+        <div :class="['scrollable-content', { 'no-padding' : no_scrollable_padding, 'no-scrollbar' : no_scrollbar }]">
           <slot />
         </div>
         <!-- footer -->
@@ -42,10 +42,9 @@
 // ==============================
 // Import
 // ==============================
-import { reactive } from "vue";
-import { onMounted, onUnmounted } from "vue";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fas } from "@fortawesome/free-solid-svg-icons";
+
 
 // ==============================
 // Props
@@ -59,44 +58,29 @@ const props = defineProps({
   click_out_close: Boolean,
   full_size: Boolean,
   close_btn: Boolean,
-  no_scrollable_padding: Boolean
+  no_scrollbar: Boolean,
+  no_scrollable_padding: Boolean,
 });
 
 const emit = defineEmits(["closed"]);
+
 
 //==================================
 // Consts
 //==================================
 library.add(fas);
-const screen = reactive({
-  width: window.innerWidth,
-  height: window.innerHeight,
-});
+
 
 //==================================
 // Functions
 //==================================
-function onResize() {
-  screen.width = window.innerWidth;
-  screen.height = window.innerHeight;
-}
-
 function onBackdropClick() {
   if (props.click_out_close) {
     emit("closed");
   }
 }
 
-//==================================
-// Life cycle
-//==================================
-onMounted(() => {
-  window.addEventListener("resize", onResize);
-});
 
-onUnmounted(() => {
-  window.removeEventListener("resize", onResize);
-});
 </script>
 
 <style lang="scss" scoped>
@@ -133,6 +117,13 @@ $gap: 2.2rem;
       padding: 0 2rem; // scrollbar padding
       &.no-padding {
         padding: 0;
+      }
+      &.no-scrollbar {
+        &::-webkit-scrollbar {
+          display: none;
+        }
+        -ms-overflow-style: none;  /* IE and Edge */
+        scrollbar-width: none;  /* Firefox */
       }
     }
 

@@ -411,6 +411,7 @@ import InputText from "./InputText.vue";
 import InputFile from "./InputFile.vue";
 import LineProgression from "./LineProgression.vue";
 
+
 // ==============================
 // Consts
 // ==============================
@@ -445,6 +446,7 @@ const TOOLTIP = {
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const TEL_REGEX = /^(?:(?:\+|00)39)?\s*(?:\d{2}\s*){2}\d{6,7}$/;
 const HOUSE_NUM_REGEX = /^\d+(\s*[a-zA-Z]?)$/;
+
 
 // ==============================
 // Consts
@@ -532,6 +534,7 @@ const getSystemYear = computed(() => {
   let year = parseInt(system.year.content);
   return year ? `${year}, (${new Date().getFullYear() - year} anni fa)` : 'non disponibile';
 });
+
 
 // ==============================
 // Functions
@@ -661,6 +664,7 @@ function onselectedtip(val) {
   city.show_tips = false;
 }
 
+
 // ==============================
 // Watch
 // ==============================
@@ -716,6 +720,8 @@ watch(
     }
   }
 );
+
+
 </script>
 
 <style lang="scss" scoped>
