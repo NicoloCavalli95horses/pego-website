@@ -64,6 +64,9 @@
   <Accordion :items="config.faq" />
   
   <div class="separator" />
+
+  <!-- Cookies banner -->
+  <CookiesBanner v-if="!hide_cookies" @close="hide_cookies = true" />
   
   <!-- Go back on top button -->
   <OnTopBtn />
@@ -73,6 +76,7 @@
 //==============================
 // Import
 //==============================
+import { ref } from "vue";
 import { config } from "../utils/config.js";
 import { getViewport } from "../utils/screen_size.js";
 
@@ -85,13 +89,14 @@ import Counter from "../components/Counter.vue";
 import OnTopBtn from "../components/OnTopBtn.vue";
 import Carousel from "../components/Carousel.vue";
 import Accordion from "../components/Accordion.vue";
+import CookiesBanner from "../components/CookiesBanner.vue";
 
 
 //==============================
 // Consts
 //==============================
 const device = getViewport();
-
+const hide_cookies = ref( false );
 
 </script>
 
